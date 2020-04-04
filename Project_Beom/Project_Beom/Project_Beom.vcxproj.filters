@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="99.Default">
+      <UniqueIdentifier>{f946c6b5-4bd8-4718-a175-e8298d1c83d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98.Headers">
+      <UniqueIdentifier>{445f6dce-e434-41e7-bdf8-cc2e5fe8c697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager">
+      <UniqueIdentifier>{90c691f6-05fe-4bf9-bb74-5f98185bf881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Default\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="99.Default\소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="99.Default\헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="97.Manager\AbstractFactory">
+      <UniqueIdentifier>{86e45031-c341-4a16-9de8-3261cb112e23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Camera">
+      <UniqueIdentifier>{d4334877-8bd4-4c2a-bbe9-edb2afb0e77e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Collision">
+      <UniqueIdentifier>{9b2136a5-fe86-4c10-b9d8-12a08e0ac1d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\File">
+      <UniqueIdentifier>{8c83fa71-0d6b-4351-895a-6ee40d0fdcec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Frame">
+      <UniqueIdentifier>{d26a8344-0ac0-463b-beb6-aa2b9af54542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Gdi">
+      <UniqueIdentifier>{416c277d-bfda-452e-b9e2-a97c38807b11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Key">
+      <UniqueIdentifier>{252b9af4-2b69-4888-bc11-1ec846ebe1db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Object">
+      <UniqueIdentifier>{e1b813db-0e73-4477-9a94-8ecacaa4a504}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Scene">
+      <UniqueIdentifier>{39bf7208-4e1d-4b56-bd47-33b00e251ac9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Timer">
+      <UniqueIdentifier>{f18caafc-4e46-48e8-8b9e-5146a9a39d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00.System">
+      <UniqueIdentifier>{ea98cbd5-b4cb-4ef0-8bd7-acb18c3c947f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct">
+      <UniqueIdentifier>{52058431-32eb-4092-8981-04f9b3b88037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene">
+      <UniqueIdentifier>{bdbce056-c50d-49ae-9046-98a166dc1c88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Maingame">
+      <UniqueIdentifier>{abef207b-5dd9-4a51-bcd4-a4ba4bdb09d8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>99.Default\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>99.Default\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>99.Default\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Project_Beom.h">
+      <Filter>99.Default\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>99.Default\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Constant.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Extern.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>02.GameObejct</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>97.Manager\AbstractFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>97.Manager\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>97.Manager\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>97.Manager\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>97.Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>97.Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>97.Manager\File</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame.h">
+      <Filter>97.Manager\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameManager.h">
+      <Filter>97.Manager\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="GdiImage.h">
+      <Filter>97.Manager\Gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="GdiManager.h">
+      <Filter>97.Manager\Gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>97.Manager\Key</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>97.Manager\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerManager.h">
+      <Filter>97.Manager\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>00.System</Filter>
+    </ClInclude>
+    <ClInclude Include="Maingame.h">
+      <Filter>01.Maingame</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Project_Beom.cpp">
+      <Filter>99.Default\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>99.Default\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>02.GameObejct</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>97.Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>97.Manager\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>97.Manager\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>97.Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>97.Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>97.Manager\File</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>97.Manager\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameManager.cpp">
+      <Filter>97.Manager\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="GdiImage.cpp">
+      <Filter>97.Manager\Gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="GdiManager.cpp">
+      <Filter>97.Manager\Gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
+      <Filter>97.Manager\Key</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>97.Manager\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerManager.cpp">
+      <Filter>97.Manager\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>00.System</Filter>
+    </ClCompile>
+    <ClCompile Include="Maingame.cpp">
+      <Filter>01.Maingame</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Project_Beom.rc">
+      <Filter>99.Default\리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>99.Default\리소스 파일</Filter>
+    </Image>
+    <Image Include="Project_Beom.ico">
+      <Filter>99.Default\리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
