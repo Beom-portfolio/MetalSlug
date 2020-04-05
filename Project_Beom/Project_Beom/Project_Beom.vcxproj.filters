@@ -64,6 +64,24 @@
     <Filter Include="01.Maingame">
       <UniqueIdentifier>{abef207b-5dd9-4a51-bcd4-a4ba4bdb09d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.Manager\GdiPlus">
+      <UniqueIdentifier>{b532cfd1-75da-4170-88b0-20b336f355eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player">
+      <UniqueIdentifier>{d68eead6-8da3-4c0b-ae09-f468abb878b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster">
+      <UniqueIdentifier>{9e62ff0c-79af-48db-add1-e97ce453a2fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Effect">
+      <UniqueIdentifier>{b6e9a0aa-9e65-4a98-a423-677324910f2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Background">
+      <UniqueIdentifier>{6289b5a8-8e7c-4aa8-aef6-f0b5495d241a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\UI">
+      <UniqueIdentifier>{2062e624-de3f-4f86-9de6-b68e01696d93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -153,6 +171,15 @@
     <ClInclude Include="Maingame.h">
       <Filter>01.Maingame</Filter>
     </ClInclude>
+    <ClInclude Include="GdiPlusImage.h">
+      <Filter>97.Manager\GdiPlus</Filter>
+    </ClInclude>
+    <ClInclude Include="GdiPlusManager.h">
+      <Filter>97.Manager\GdiPlus</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>03.Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -208,6 +235,15 @@
     </ClCompile>
     <ClCompile Include="Maingame.cpp">
       <Filter>01.Maingame</Filter>
+    </ClCompile>
+    <ClCompile Include="GdiPlusImage.cpp">
+      <Filter>97.Manager\GdiPlus</Filter>
+    </ClCompile>
+    <ClCompile Include="GdiPlusManager.cpp">
+      <Filter>97.Manager\GdiPlus</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>03.Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

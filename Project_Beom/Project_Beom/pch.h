@@ -34,6 +34,12 @@
 #include <unordered_map>
 using namespace std;
 
+// GDI+ 라이브러리
+#include <Gdiplus.h>
+using namespace Gdiplus;
+
+#pragma comment(lib, "Gdiplus.lib")
+
 // BSTR 지원
 #pragma comment(lib, "comsuppw.lib")
 
@@ -69,6 +75,7 @@ using namespace std;
 #include "FileManager.h"
 #include "CameraManager.h"
 #include "GdiManager.h"
+#include "GdiPlusManager.h"
 #include "ObjectManager.h"
 #include "CollisionManager.h"
 

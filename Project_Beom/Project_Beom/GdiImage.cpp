@@ -50,7 +50,7 @@ GdiImage* GdiImage::LoadGdiImage(const TCHAR* pFilePath)
 		, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 	if (NULL == info.Bitmap)
 	{
-		MessageBox(g_hWnd, pFilePath, L"Image load failed!", MB_OK);
+		ERRORMSG(pFilePath);
 		return NULL;
 	}
 	info.OldBmp = (HBITMAP)SelectObject(info.hMemDC, info.Bitmap);
@@ -89,7 +89,7 @@ GdiImage* GdiImage::LoadGdiImageFromFolder(bstr_t folderPath)
 			, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION);
 		if (NULL == info.Bitmap)
 		{
-			MessageBox(g_hWnd, tmpPath, L"Image load failed!", MB_OK);
+			ERRORMSG(tmpPath);
 			return NULL;
 		}
 		info.OldBmp = (HBITMAP)SelectObject(info.hMemDC, info.Bitmap);

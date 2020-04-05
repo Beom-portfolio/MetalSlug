@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SceneManager.h"
+#include "TestScene.h"
 
 SceneManager::SceneManager()
 {
@@ -21,13 +22,11 @@ bool SceneManager::ChangeSceneState(SCENESTATE SceneState)
 	switch (SceneState)
 	{
 	case SCENE_MENU:
-
 		break;
 	case SCENE_TEST:
-
+		m_Scene = new TestScene;
 		break;
 	case SCENE_MAIN:
-
 		break;
 	}
 
@@ -36,7 +35,7 @@ bool SceneManager::ChangeSceneState(SCENESTATE SceneState)
 
 	if (false == m_Scene->Initialize())
 	{
-		MessageBox(g_hWnd, L"씬 초기화 실패!", L"Error", MB_OK);
+		ERRORMSG(L"씬 초기화 실패!");
 		Release();
 		return false;
 	}

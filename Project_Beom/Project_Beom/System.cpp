@@ -2,6 +2,7 @@
 #include "System.h"
 #include "Resource.h"
 #include "Timer.h"
+#include "Maingame.h"
 
 #define MAX_LOADSTRING 100
 
@@ -66,6 +67,13 @@ int System::Logic()
 	msg.message = WM_NULL;
 
 	// MainGame
+	Maingame* game = new Maingame;
+	if (!game->Initialize())
+	{
+		ERRORMSG(L"Initialize Scene Fail!")
+		SAFE_RELEASE(game);
+		return 0;
+	}
 
 	// 기본 메시지 루프입니다:
 	while (WM_QUIT != msg.message)
@@ -90,9 +98,13 @@ int System::Logic()
 				PrintFPS();
 
 				// Game Loop
+				game->Update(TimeDelta);
+				game->Render();
 			}
 		}
 	}
+
+	SAFE_RELEASE(game);
 
 	return (int)msg.wParam;
 }
