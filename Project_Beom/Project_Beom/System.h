@@ -26,6 +26,7 @@ private:
 
 	int m_frameCount = 0;
 	float m_timeCount = 0.f;
+	float m_frameTimeDelta = 0.f;
 };
 
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);

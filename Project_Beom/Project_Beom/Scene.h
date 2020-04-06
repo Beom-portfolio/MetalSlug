@@ -9,9 +9,9 @@ public:
 
 public:
 	virtual bool Initialize() PURE;
-	virtual int Update(const float& TimeDelta) PURE;
-	virtual void Render(HDC hDC) PURE;
-	virtual void Release() PURE;
+	virtual int Update(const float& TimeDelta);
+	virtual void Render(HDC hDC);
+	virtual void Release();
 
 protected:
 	CameraManager* m_CamManager = nullptr;

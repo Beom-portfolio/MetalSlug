@@ -51,10 +51,10 @@ typedef struct BaseInfo
 // 게임 오브젝트 정보
 typedef struct GameObjectInfo
 {
-	int Pos_X;
-	int Pos_Y;
-	int Size_Width;
-	int Size_Height;
+	float Pos_X;
+	float Pos_Y;
+	int Size_X;
+	int Size_Y;
 }GAMEOBJINFO;
 
 // 스프라이트 정보

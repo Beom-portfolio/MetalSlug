@@ -71,7 +71,7 @@ void ObjectManager::Update(const float& TimeDelta)
 	// Collision
 	//GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
 	//GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
-	GET_MANAGER<CollisionManager>()->CollisionPixelToRect(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER]);
+	//GET_MANAGER<CollisionManager>()->CollisionPixelToRect(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER]);
 }
 
 void ObjectManager::Render(HDC hDC)
@@ -106,11 +106,7 @@ void ObjectManager::ReleaseAll()
 	{
 		for (auto& obj : m_mapObj[i])
 		{
-			if (nullptr != obj.second)
-			{
-				delete obj.second;
-				obj.second = nullptr;
-			}
+			SAFE_RELEASE(obj.second);
 		}
 		m_mapObj[i].clear();
 	}

@@ -97,8 +97,9 @@ int System::Logic()
 			{
 				PrintFPS();
 
+				GETMGR(KeyManager)->UpdateKey();
 				// Game Loop
-				game->Update(TimeDelta);
+				game->Update(m_frameTimeDelta);
 				game->Render();
 			}
 		}
@@ -118,12 +119,12 @@ void System::Release()
 
 void System::PrintFPS()
 {
-	float FrameTimeDelta = m_FrameManager->Get_FrameTimeDelta(strFrame);
+	m_frameTimeDelta = m_FrameManager->Get_FrameTimeDelta(strFrame);
 
 	if (m_timeCount >= 1.f)
 	{
 		char	strFPS[128] = {};
-		sprintf_s(strFPS, "Delta Time : %.5f  FPS : %d", FrameTimeDelta, m_frameCount);
+		sprintf_s(strFPS, "Delta Time : %.5f  FPS : %d", m_frameTimeDelta, m_frameCount);
 		SetWindowTextA(g_hWnd, strFPS);
 
 		m_timeCount = 0.f;
@@ -147,7 +148,7 @@ ATOM System::MyRegisterClass(HINSTANCE hInstance)
 	wcex.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_PROJECTBEOM));
 	wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_PROJECTBEOM);
+	wcex.lpszMenuName = NULL;
 	wcex.lpszClassName = szWindowClass;
 	wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 

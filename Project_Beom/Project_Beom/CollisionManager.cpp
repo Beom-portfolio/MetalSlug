@@ -63,8 +63,8 @@ void CollisionManager::CollisionRectEx(ObjectManager::MAPOBJ* DstList, ObjectMan
 
 				if (moveX > moveY)
 				{
-					PosX = Dst.second->GetInfo().Pos_X;
-					PosY = Dst.second->GetInfo().Pos_Y;
+					PosX = (int)Dst.second->GetInfo().Pos_X;
+					PosY = (int)Dst.second->GetInfo().Pos_Y;
 
 					if (Src.second->GetInfo().Pos_Y > PosY)
 						moveY *= -1;
@@ -73,8 +73,8 @@ void CollisionManager::CollisionRectEx(ObjectManager::MAPOBJ* DstList, ObjectMan
 				}
 				else
 				{
-					PosX = Dst.second->GetInfo().Pos_X;
-					PosY = Dst.second->GetInfo().Pos_Y;
+					PosX = (int)Dst.second->GetInfo().Pos_X;
+					PosY = (int)Dst.second->GetInfo().Pos_Y;
 
 					if (Src.second->GetInfo().Pos_X > PosX)
 						moveX *= -1;
@@ -110,7 +110,7 @@ void CollisionManager::CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, Object
 			int addr;
 
 			// 아래 
-			addr = rc.bottom * pixelCollide->Width + info.Pos_X;
+			addr = rc.bottom * pixelCollide->Width + (int)info.Pos_X;
 			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
 			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
 				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
@@ -120,7 +120,7 @@ void CollisionManager::CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, Object
 				while (Y > 0)
 				{
 					--Y;
-					addr = Y * pixelCollide->Width + info.Pos_X;
+					addr = Y * pixelCollide->Width + (int)info.Pos_X;
 
 					if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
 						pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
@@ -132,7 +132,7 @@ void CollisionManager::CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, Object
 					{
 						if (0 < Src.second->GetGravity())
 						{
-							Src.second->SetPosition(info.Pos_X, Y - collideInfo.Size_Height / 2);
+							Src.second->SetPosition((int)info.Pos_X, Y - collideInfo.Size_Y / 2);
 							Src.second->CollisionPixelPart(DIR_BOTTOM);
 						}
 						break;
@@ -142,7 +142,7 @@ void CollisionManager::CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, Object
 			else
 			{
 				// 밑에 한 픽셀 더 검사
-				addr = (rc.bottom + 2) * pixelCollide->Width + info.Pos_X;
+				addr = (rc.bottom + 2) * pixelCollide->Width + (int)info.Pos_X;
 				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
 				if (pixelCollide->vecPixel[addr].r != pixelCollide->CollPixel.r &&
 					pixelCollide->vecPixel[addr].g != pixelCollide->CollPixel.g &&
@@ -171,7 +171,7 @@ void CollisionManager::CollisionPixelToPoint(ObjectManager::MAPOBJ* pixel, Objec
 		for (auto& Src : *rect)
 		{
 			GAMEOBJINFO rc = Src.second->GetInfo();
-			int addr = rc.Pos_Y * pixelCollide->Width + rc.Pos_X;
+			int addr = (int)rc.Pos_Y * pixelCollide->Width + (int)rc.Pos_X;
 
 			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
 				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
@@ -190,11 +190,11 @@ bool CollisionManager::CheckCollisionRectDist(int* moveX, int* moveY, GameObject
 	// 충돌된 거리를 구한다.
 
 	// 축의 합을 구한다.
-	int width = (Dst->GetCollideInfo().Size_Width / 2) + (Src->GetCollideInfo().Size_Width / 2);
-	int height = (Dst->GetCollideInfo().Size_Height / 2) + (Src->GetCollideInfo().Size_Height / 2);
+	int width = (Dst->GetCollideInfo().Size_X / 2) + (Src->GetCollideInfo().Size_X / 2);
+	int height = (Dst->GetCollideInfo().Size_Y / 2) + (Src->GetCollideInfo().Size_Y / 2);
 
-	int distX = abs(Dst->GetInfo().Pos_X - Src->GetInfo().Pos_X);
-	int distY = abs(Dst->GetInfo().Pos_Y - Src->GetInfo().Pos_Y);
+	int distX = abs((int)Dst->GetInfo().Pos_X - (int)Src->GetInfo().Pos_X);
+	int distY = abs((int)Dst->GetInfo().Pos_Y - (int)Src->GetInfo().Pos_Y);
 
 	//  충돌된 경우
 	if ((width > distX) && (height > distY))

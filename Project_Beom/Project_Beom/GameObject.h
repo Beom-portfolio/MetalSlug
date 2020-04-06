@@ -19,6 +19,7 @@ public:
 	const SPRITEINFO& GetSpriteInfo() { return m_SpriteInfo; }
 	const DIRECTION& GetDirection() { return m_Direction; }
 	const OBJTYPE& GetObjectType() { return m_ObjType; }
+
 public:
 	void SetPosition(int posX, int posY);
 	void SetSize(int sizeWidth, int sizeHeight);
@@ -31,6 +32,7 @@ public:
 	void SetDirection(DIRECTION dir);
 	void SetObjectType(OBJTYPE type);
 	void SetFollowedObj(GameObject* obj);
+
 public:
 	bool LoadPixelCollider(const char* pFilePath,
 		unsigned char r, unsigned char g, unsigned char b);
