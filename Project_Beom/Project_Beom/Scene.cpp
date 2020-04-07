@@ -14,9 +14,10 @@ Scene::~Scene()
 
 int Scene::Update(const float& TimeDelta)
 {
+	
 	m_ObjManager->Update(TimeDelta);
 	m_CamManager->Update(TimeDelta);
-
+	
 	return 0;
 }
 

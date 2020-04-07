@@ -32,6 +32,12 @@ int Player::Update(const float& TimeDelta)
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
 		m_Info.Pos_X += m_Speed * TimeDelta;
 
+	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_UP))
+		m_Info.Pos_Y -= m_Speed * TimeDelta;
+
+	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_DOWN))
+		m_Info.Pos_Y += m_Speed * TimeDelta;
+
 	return 0;
 }
 

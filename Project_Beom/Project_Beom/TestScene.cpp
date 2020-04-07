@@ -19,8 +19,8 @@ bool TestScene::Initialize()
 {
 	GameObject* player = AbstractFactory<Player>::CreateObj();
 	m_CamManager->SetTarget(player);
-	//m_CamManager->SetResolution(3141, 600);
-	//m_CamManager->SetOffset(400, 300);
+	m_CamManager->SetResolution(4294, 606);
+	m_CamManager->SetOffset(50, 500, 50, 500);
 
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);

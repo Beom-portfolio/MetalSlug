@@ -150,19 +150,19 @@ int GameObject::Update(const float& TimeDelta)
 		ZeroMemory(&CamPos, sizeof(POSITION));
 	}
 
-	POSITION TotalPos = POSITION{ m_Info.Pos_X + CamPos.X , m_Info.Pos_Y + CamPos.Y };
+	m_TotalPos = POSITION{ m_Info.Pos_X + CamPos.X , m_Info.Pos_Y + CamPos.Y };
 
 	// 오브젝트 정보를 바탕으로 Rect 정보를 갱신한다.
-	m_Rect.left = (int)TotalPos.X - m_Info.Size_X / 2;
-	m_Rect.top = (int)TotalPos.Y - m_Info.Size_Y / 2;
-	m_Rect.right = (int)TotalPos.X + m_Info.Size_X / 2;
-	m_Rect.bottom = (int)TotalPos.Y + m_Info.Size_Y / 2;
+	m_Rect.left = (int)m_TotalPos.X - m_Info.Size_X / 2;
+	m_Rect.top = (int)m_TotalPos.Y - m_Info.Size_Y / 2;
+	m_Rect.right = (int)m_TotalPos.X + m_Info.Size_X / 2;
+	m_Rect.bottom = (int)m_TotalPos.Y + m_Info.Size_Y / 2;
 
 	// Collide Rect 정보를 갱신한다.
-	m_CollideRect.left = (int)(TotalPos.X + m_CollideInfo.Pos_X) - m_CollideInfo.Size_X / 2;
-	m_CollideRect.top = (int)(TotalPos.Y + m_CollideInfo.Pos_Y) - m_CollideInfo.Size_Y / 2;
-	m_CollideRect.right = (int)(TotalPos.X + m_CollideInfo.Pos_X) + m_CollideInfo.Size_X / 2;
-	m_CollideRect.bottom = (int)(TotalPos.Y + m_CollideInfo.Pos_Y) + m_CollideInfo.Size_Y / 2;
+	m_CollideRect.left = (int)(m_TotalPos.X + m_CollideInfo.Pos_X) - m_CollideInfo.Size_X / 2;
+	m_CollideRect.top = (int)(m_TotalPos.Y + m_CollideInfo.Pos_Y) - m_CollideInfo.Size_Y / 2;
+	m_CollideRect.right = (int)(m_TotalPos.X + m_CollideInfo.Pos_X) + m_CollideInfo.Size_X / 2;
+	m_CollideRect.bottom = (int)(m_TotalPos.Y + m_CollideInfo.Pos_Y) + m_CollideInfo.Size_Y / 2;
 
 	return 0;
 }

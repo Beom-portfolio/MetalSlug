@@ -14,7 +14,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
 // 현재 사용할 제한 프레임
-const TCHAR* strFrame = L"Frame_60";
+const TCHAR* strFrame = L"Frame_200";
 
 System::System()
 {

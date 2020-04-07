@@ -19,7 +19,7 @@ public:
 	const SPRITEINFO& GetSpriteInfo() { return m_SpriteInfo; }
 	const DIRECTION& GetDirection() { return m_Direction; }
 	const OBJTYPE& GetObjectType() { return m_ObjType; }
-
+	const POSITION& GetTotalPosition() { return m_TotalPos; }
 public:
 	void SetPosition(int posX, int posY);
 	void SetSize(int sizeWidth, int sizeHeight);
@@ -69,6 +69,8 @@ protected:
 	float			m_Speed = 0.f;
 	float			m_GravitySpeed = 0.f;
 	float			m_GravityAcc = 9.8f;
+
+	POSITION        m_TotalPos;
 
 	// 따라다녀야 할 오브젝트
 	GameObject* m_FollowedObj = nullptr;
