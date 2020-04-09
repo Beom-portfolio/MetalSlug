@@ -89,7 +89,7 @@ void Player::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 			return;
 
 		int count = 0;
-		for (int i = 1; i < 100; ++i)
+		for (int i = 1; i < 1000; ++i)
 		{
 			int addr = (int)(y - i) * pixelCollide->Width + (int)x;
 			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
@@ -103,9 +103,32 @@ void Player::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 		}
 		m_Info.Pos_Y -= count;
 	}
-	
-	if(dir == 0)
+	else
 	{
-		SetFall(true);
+		if (m_fallCheck || m_GravitySpeed < 0)
+			return;
+
+		// 아래로 내림
+		int x = (int)m_Info.Pos_X;
+		int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
+
+		const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
+		if (nullptr == pixelCollide)
+			return;
+
+		int count = 0;
+		for (int i = 0; i < 1000; ++i)
+		{
+			int addr = (int)(y + i) * pixelCollide->Width + (int)x;
+			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
+				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
+				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
+			{
+				break;
+			}
+			++count;
+		}
+		m_Info.Pos_Y += count;
 	}
 }
