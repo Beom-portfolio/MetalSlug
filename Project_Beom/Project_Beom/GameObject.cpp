@@ -53,15 +53,15 @@ void GameObject::SetFall(bool fall)
 {
 	if (true == fall && false == m_fallCheck)
 	{
-		m_GravitySpeed = 0;
-		m_GravityAcc = 0;
+		m_GravitySpeed = 0.f;
+		m_GravityTime = 0.f;
 		m_fallCheck = fall;
 	}
 
 	if (false == fall && true == m_fallCheck)
 	{
-		m_GravitySpeed = 0;
-		m_GravityAcc = 0;
+		m_GravitySpeed = 0.f;
+		m_GravityTime = 0.f;
 		m_fallCheck = fall;
 	}
 }
@@ -114,25 +114,60 @@ bool GameObject::LoadPixelCollider(const char* pFilePath, unsigned char r, unsig
 	{
 		// File Header와 Info Header 선언
 		// 비트맵 파일 자체에 관한 정보를 가진다.
-		BITMAPFILEHEADER	tBf = {};
+		BITMAPFILEHEADER	fh = {};
 		// 크기(가로 폭, 세로 높이)와 색상 포맷 등에 관한 정보를 가진다.
-		BITMAPINFOHEADER	tIf = {};
+		BITMAPINFOHEADER	ih = {};
 
 		// 파일 자체의 정보를 읽는다.
-		fread(&tBf, sizeof(tBf), 1, pFile);
-		fread(&tIf, sizeof(tIf), 1, pFile);
+		fread(&fh, sizeof(fh), 1, pFile);
+		// 비트맵이 아니면 종료한다.
+		if (fh.bfType != 0x4d42)
+		{
+			fclose(pFile);
+			return false;
+		}
 
-		fseek(pFile, tBf.bfOffBits, SEEK_SET);
+		fread(&ih, sizeof(ih), 1, pFile);
+		// 24비트인지 체크, 압축 안되어 있는지 체크
+		if (ih.biBitCount != 24 || ih.biCompression != BI_RGB)
+		{
+			fclose(pFile);
+			return false;
+		}
 
-		m_PixelInfo->Width = tIf.biWidth;
-		m_PixelInfo->Height = tIf.biHeight;
+		m_PixelInfo->Width = ih.biWidth;
+		m_PixelInfo->Height = ih.biHeight;
 
 		m_PixelInfo->vecPixel.clear();
-		m_PixelInfo->vecPixel.resize(tIf.biWidth * tIf.biHeight);
+		m_PixelInfo->vecPixel.resize(ih.biWidth * ih.biHeight);
 
 		fread(&m_PixelInfo->vecPixel[0], sizeof(PIXEL24), m_PixelInfo->vecPixel.size(), pFile);
 
+		PIXEL24* pixelArr = new PIXEL24[ih.biWidth];
+
+		for (int i = 0; i < ih.biHeight / 2; ++i)
+		{
+			memcpy(pixelArr, &m_PixelInfo->vecPixel[i * ih.biWidth],
+				sizeof(PIXEL24) * ih.biWidth);
+			memcpy(&m_PixelInfo->vecPixel[i * ih.biWidth],
+				&m_PixelInfo->vecPixel[(ih.biHeight - i - 1) * ih.biWidth],
+				sizeof(PIXEL24) * ih.biWidth);
+			memcpy(&m_PixelInfo->vecPixel[(ih.biHeight - i - 1) * ih.biWidth], 
+				pixelArr, sizeof(PIXEL24) * ih.biWidth);
+		}
+
+		SAFE_DELETE_ARRAY(pixelArr);
+
 		fclose(pFile);
+
+		// 확인용
+		/*fopen_s(&pFile, "test.bmp", "wb");
+		ih.biHeight = -ih.biHeight;
+		fwrite(&fh, sizeof(fh), 1, pFile);
+		fwrite(&ih, sizeof(ih), 1, pFile);
+		fwrite(&m_PixelInfo->vecPixel[0], sizeof(PIXEL24), m_PixelInfo->vecPixel.size(), pFile);
+		fclose(pFile);*/
+
 	}
 	else
 	{
@@ -175,6 +210,6 @@ void GameObject::CollisionDeactivate(GameObject* collideTarget)
 {
 }
 
-void GameObject::CollisionPixelPart(DIRECTION dir)
+void GameObject::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 {
 }

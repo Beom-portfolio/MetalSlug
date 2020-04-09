@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Player.h"
 #include "KeyManager.h"
+#include "CameraManager.h"
 
 Player::Player()
 	: GameObject()
@@ -32,11 +33,20 @@ int Player::Update(const float& TimeDelta)
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
 		m_Info.Pos_X += m_Speed * TimeDelta;
 
-	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_UP))
-		m_Info.Pos_Y -= m_Speed * TimeDelta;
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_SPACE))
+	{
+		SetFall(true);
+		m_GravitySpeed = -300.f;
+	}
 
-	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_DOWN))
-		m_Info.Pos_Y += m_Speed * TimeDelta;
+	{
+		if (m_fallCheck)
+		{
+			m_GravityTime += TimeDelta;
+			m_GravitySpeed += GRAVITY_ACC * m_GravityTime;
+			m_Info.Pos_Y += m_GravitySpeed * TimeDelta;
+		}
+	}
 
 	return 0;
 }
@@ -59,4 +69,43 @@ void Player::Render(HDC hdc)
 
 void Player::Release()
 {
+}
+
+void Player::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
+{
+	if ((dir & DIR_BOTTOM))
+	{
+		if (m_GravitySpeed < 0)
+			return;
+
+		SetFall(false);
+
+		// 위로 올림
+		int x = (int)m_Info.Pos_X;
+		int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
+
+		const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
+		if (nullptr == pixelCollide)
+			return;
+
+		int count = 0;
+		for (int i = 1; i < 100; ++i)
+		{
+			int addr = (int)(y - i) * pixelCollide->Width + (int)x;
+			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+			if (!(pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
+				 pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
+				 pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b))
+			{
+				break;
+			}
+			++count;
+		}
+		m_Info.Pos_Y -= count;
+	}
+	
+	if(dir == 0)
+	{
+		SetFall(true);
+	}
 }

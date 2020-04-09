@@ -4,10 +4,10 @@
 
 enum DIRECTION
 {
-	DIR_LEFT,
-	DIR_RIGHT,
-	DIR_TOP,
-	DIR_BOTTOM,
+	DIR_LEFT = 1,
+	DIR_RIGHT = 2,
+	DIR_TOP = 4,
+	DIR_BOTTOM = 8,
 	DIR_END
 };
 

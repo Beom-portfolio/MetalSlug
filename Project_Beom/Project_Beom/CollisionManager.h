@@ -13,12 +13,12 @@ public:
 	void CollisionRect(ObjectManager::MAPOBJ* DstList, ObjectManager::MAPOBJ* SrcList);
 	void CollisionRectEx(ObjectManager::MAPOBJ* DstList, ObjectManager::MAPOBJ* SrcList);
 
-	void CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, ObjectManager::MAPOBJ* rect);
+	void CollisionPixelToRectDir(ObjectManager::MAPOBJ* pixel, ObjectManager::MAPOBJ* rect);
 	void CollisionPixelToPoint(ObjectManager::MAPOBJ* pixel, ObjectManager::MAPOBJ* rect);
 
 private:
 	bool CheckCollisionRectDist(int* moveX, int* moveY, GameObject* Dst, GameObject* Src);
-	bool m_RenderCheck = false;
+	bool m_RenderCheck = true;
 };
 
 

@@ -20,6 +20,7 @@ public:
 	const DIRECTION& GetDirection() { return m_Direction; }
 	const OBJTYPE& GetObjectType() { return m_ObjType; }
 	const POSITION& GetTotalPosition() { return m_TotalPos; }
+
 public:
 	void SetPosition(int posX, int posY);
 	void SetSize(int sizeWidth, int sizeHeight);
@@ -44,7 +45,7 @@ public:
 	virtual void Release() PURE;
 	virtual void CollisionActivate(GameObject* collideTarget);
 	virtual void CollisionDeactivate(GameObject* collideTarget);
-	virtual void CollisionPixelPart(DIRECTION dir);
+	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
 
 protected:
 	GAMEOBJINFO		m_Info;
@@ -68,7 +69,7 @@ protected:
 	float			m_Angle = 0.f;
 	float			m_Speed = 0.f;
 	float			m_GravitySpeed = 0.f;
-	float			m_GravityAcc = 9.8f;
+	float			m_GravityTime = 0.f;
 
 	POSITION        m_TotalPos;
 

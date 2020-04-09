@@ -30,7 +30,8 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 	case SCENESTATE::SCENE_MENU:
 		break;
 	case SCENESTATE::SCENE_TEST:
-		LoadGdiImage(L"TestMap", L"../Resources/Stage/Stage_Floor_0.bmp");
+		LoadGdiImage(L"back", L"../Resources/Stage/Stage_Floor_0.bmp");
+		LoadGdiImage(L"back_collider", L"../Resources/Stage/Stage_Floor_0_Collider_Info.bmp");
 		break;
 	case SCENESTATE::SCENE_MAIN:
 		// Load Image

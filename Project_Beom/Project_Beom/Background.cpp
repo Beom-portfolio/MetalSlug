@@ -11,11 +11,12 @@ Background::~Background()
 
 bool Background::Initialize()
 {
-	m_Info = GAMEOBJINFO{ 4294 / 2, 300, 4294, 606 };
+	m_Info = GAMEOBJINFO{ 4200 / 2, 600 / 2, 4200, 600 };
 	m_RenderType = RENDER_BACKGROUND;
-	m_SpriteInfo.key = L"TestMap";
 
-	return false;
+	LoadPixelCollider("../Resources/Stage/Stage_Floor_0_Collider_Info.bmp", 255, 0, 0);
+
+	return true;
 }
 
 int Background::Update(const float& TimeDelta)
@@ -28,7 +29,12 @@ int Background::Update(const float& TimeDelta)
 
 void Background::Render(HDC hdc)
 {
-	HDC hMemDC = GET_MANAGER<GdiManager>()->FindImage(m_SpriteInfo.key)->GetGdiImageDefault();
+	HDC hMemDC;
+
+	if(true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
+		hMemDC = GET_MANAGER<GdiManager>()->FindImage(L"back_collider")->GetGdiImageDefault();
+	else
+		hMemDC = GET_MANAGER<GdiManager>()->FindImage(L"back")->GetGdiImageDefault();
 
 	TransparentBlt(hdc, m_Rect.left, m_Rect.top, m_Info.Size_X, m_Info.Size_Y,
 		hMemDC,

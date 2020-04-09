@@ -90,9 +90,9 @@ typedef struct GdiImageInfo
 // ÇÈ¼¿ Á¤º¸
 typedef struct _tagPixel24
 {
-	unsigned char	r;
-	unsigned char	g;
 	unsigned char	b;
+	unsigned char	g;
+	unsigned char	r;
 }PIXEL24;
 
 typedef struct _tagPixelColliderInfo

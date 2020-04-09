@@ -86,7 +86,7 @@ void CollisionManager::CollisionRectEx(ObjectManager::MAPOBJ* DstList, ObjectMan
 	}
 }
 
-void CollisionManager::CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, ObjectManager::MAPOBJ* rect)
+void CollisionManager::CollisionPixelToRectDir(ObjectManager::MAPOBJ* pixel, ObjectManager::MAPOBJ* rect)
 {
 	for (auto& Dst : *pixel)
 	{
@@ -101,11 +101,16 @@ void CollisionManager::CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, Object
 
 		for (auto& Src : *rect)
 		{
+			int dir = 0;
+
 			GAMEOBJINFO info = Src.second->GetInfo();
 			GAMEOBJINFO collideInfo = Src.second->GetCollideInfo();
 			RECT rc = Src.second->GetCollideRect();
 			POSITION CamPos = GET_MANAGER<CameraManager>()->GetPos();
 			rc.bottom -= (int)CamPos.Y;
+			rc.top -= (int)CamPos.Y;
+			rc.left -= (int)CamPos.X;
+			rc.right -= (int)CamPos.X;
 
 			int addr;
 
@@ -116,41 +121,37 @@ void CollisionManager::CollisionPixelToRect(ObjectManager::MAPOBJ* pixel, Object
 				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
 				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
 			{
-				int Y = rc.bottom;
-				while (Y > 0)
-				{
-					--Y;
-					addr = Y * pixelCollide->Width + (int)info.Pos_X;
-
-					if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-						pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-						pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
-					{
-						continue;
-					}
-					else
-					{
-						if (0 < Src.second->GetGravity())
-						{
-							Src.second->SetPosition((int)info.Pos_X, Y - collideInfo.Size_Y / 2);
-							Src.second->CollisionPixelPart(DIR_BOTTOM);
-						}
-						break;
-					}
-				}
+				dir |= DIR_BOTTOM;
 			}
-			else
+			// À§
+			addr = rc.top * pixelCollide->Width + (int)info.Pos_X;
+			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
+				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
+				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
 			{
-				// ¹Ø¿¡ ÇÑ ÇÈ¼¿ ´õ °Ë»ç
-				addr = (rc.bottom + 2) * pixelCollide->Width + (int)info.Pos_X;
-				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-				if (pixelCollide->vecPixel[addr].r != pixelCollide->CollPixel.r &&
-					pixelCollide->vecPixel[addr].g != pixelCollide->CollPixel.g &&
-					pixelCollide->vecPixel[addr].b != pixelCollide->CollPixel.b)
-				{
-					Src.second->SetFall(true);
-				}
+				dir |= DIR_TOP;
 			}
+			// ¿ÞÂÊ
+			addr = (int)info.Pos_Y * pixelCollide->Width + (int)rc.left;
+			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
+				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
+				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
+			{
+				dir |= DIR_LEFT;
+			}
+			// ¿À¸¥ÂÊ
+			addr = (int)info.Pos_Y * pixelCollide->Width + (int)rc.right;
+			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
+				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
+				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
+			{
+				dir |= DIR_RIGHT;
+			}
+		
+			Src.second->CollisionPixelPart((DIRECTION)dir, Dst.second);
 		}
 	}
 }
@@ -167,17 +168,16 @@ void CollisionManager::CollisionPixelToPoint(ObjectManager::MAPOBJ* pixel, Objec
 		if (nullptr == pixelCollide)
 			continue;
 
-
 		for (auto& Src : *rect)
 		{
 			GAMEOBJINFO rc = Src.second->GetInfo();
 			int addr = (int)rc.Pos_Y * pixelCollide->Width + (int)rc.Pos_X;
-
+			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
 			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
 				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
 				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
 			{
-				printf("Collide!\n");
+				//printf("Collide! ");
 			}
 
 		}
