@@ -35,7 +35,7 @@ State* PlayerTopStandState::HandleInput(GameObject* object, KeyManager* input)
 	if (input->GetKeyState(STATE_PUSH, VK_SPACE))
 		return new PlayerTopJumpState();
 
-	if (input->GetKeyState(STATE_PUSH, VK_DOWN))
+	if (!object->GetFallCheck() && input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerTopDownState();
 	
 	if (!object->GetFallCheck())

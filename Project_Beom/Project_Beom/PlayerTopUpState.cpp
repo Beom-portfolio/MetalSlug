@@ -41,17 +41,13 @@ State* PlayerTopUpState::HandleInput(GameObject* object, KeyManager* input)
 		object->SetSpriteInfo(info);
 	}
 
-	if (input->GetKeyState(STATE_PUSH, VK_DOWN))
+	if (!object->GetFallCheck() && 
+		input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerTopDownState();
 
-	if (!input->GetKeyState(STATE_PUSH, VK_UP))
-	{
-		if (input->GetKeyState(STATE_PUSH, VK_LEFT) || input->GetKeyState(STATE_PUSH, VK_RIGHT))
-			return new PlayerTopJumpState();
+	if (!input->GetKeyState(STATE_PUSH, VK_UP))	
+		return new PlayerTopJumpState();
 
-		return new PlayerTopStandState();
-		
-	}
 
 	return nullptr;
 }
