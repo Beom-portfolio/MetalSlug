@@ -12,6 +12,7 @@ public:
 	const RENDERTYPE& GetRenderType() { return m_RenderType; }
 	const bool& GetState() { return m_isDead; }
 	const bool& GetRenderCheck() { return m_renderCheck; }
+	const bool& GetFallCheck() { return m_fallCheck; }
 	const float& GetAngle() { return m_Angle; }
 	const float& GetSpeed() { return m_Speed; }
 	const float& GetGravity() { return m_GravitySpeed; }
@@ -22,7 +23,7 @@ public:
 	const POSITION& GetTotalPosition() { return m_TotalPos; }
 
 public:
-	void SetPosition(int posX, int posY);
+	void SetPosition(float posX, float posY);
 	void SetSize(int sizeWidth, int sizeHeight);
 	void SetAngle(float angle);
 	void SetSpeed(float speed);

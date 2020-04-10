@@ -22,7 +22,7 @@ GameObject::~GameObject()
 	}
 }
 
-void GameObject::SetPosition(int posX, int posY)
+void GameObject::SetPosition(float posX, float posY)
 {
 	m_Info.Pos_X = (float)posX;
 	m_Info.Pos_Y = (float)posY;

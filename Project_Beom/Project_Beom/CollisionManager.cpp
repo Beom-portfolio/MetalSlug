@@ -69,7 +69,7 @@ void CollisionManager::CollisionRectEx(ObjectManager::MAPOBJ* DstList, ObjectMan
 					if (Src.second->GetInfo().Pos_Y > PosY)
 						moveY *= -1;
 
-					Dst.second->SetPosition(PosX, PosY + moveY);
+					Dst.second->SetPosition((float)PosX, (float)PosY + moveY);
 				}
 				else
 				{
@@ -79,7 +79,7 @@ void CollisionManager::CollisionRectEx(ObjectManager::MAPOBJ* DstList, ObjectMan
 					if (Src.second->GetInfo().Pos_X > PosX)
 						moveX *= -1;
 
-					Dst.second->SetPosition(PosX + moveX, PosY);
+					Dst.second->SetPosition((float)PosX + moveX, (float)PosY);
 				}
 			}
 		}

@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "KeyManager.h"
 #include "CameraManager.h"
+#include "PlayerBottom.h"
+#include "PlayerTop.h"
 
 Player::Player()
 	: GameObject()
@@ -19,19 +21,31 @@ bool Player::Initialize()
 	m_Speed = 500.f;
 	m_RenderType = RENDER_OBJ;
 
+	m_Bottom = new PlayerBottom;
+	m_Bottom->Initialize();
+	m_Top = new PlayerTop;
+	m_Top->Initialize();
+
 	return true;
 }
 
 int Player::Update(const float& TimeDelta)
 {
-	if (-1 == GameObject::Update(TimeDelta))
-		return -1;
-
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
+	{
 		m_Info.Pos_X -= m_Speed * TimeDelta;
 
+		if(!m_fallCheck)
+			m_Direction = DIR_LEFT;
+	}
+
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
+	{
 		m_Info.Pos_X += m_Speed * TimeDelta;
+
+		if (!m_fallCheck)
+			m_Direction = DIR_RIGHT;
+	}
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_SPACE))
 	{
@@ -48,27 +62,36 @@ int Player::Update(const float& TimeDelta)
 		}
 	}
 
+	m_Bottom->SetDirection(m_Direction);
+	m_Top->SetDirection(m_Direction);
+	m_Bottom->SetFall(m_fallCheck);
+	m_Top->SetFall(m_fallCheck);
+	m_Bottom->Update(TimeDelta);
+	m_Top->Update(TimeDelta);
+	m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+	m_Top->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+
+	if (-1 == GameObject::Update(TimeDelta))
+		return -1;
+
 	return 0;
 }
 
 void Player::Render(HDC hdc)
 {
-	if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
+	/*if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
 		Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
 
-	Rectangle(hdc, m_Rect.left, m_Rect.top, m_Rect.right, m_Rect.bottom);
+	Rectangle(hdc, m_Rect.left, m_Rect.top, m_Rect.right, m_Rect.bottom);*/
 
-	/*HDC hMemDC = GET_MANAGER<GdiManager>()->FindImage(m_SpriteInfo.key)->GetGdiImageDefault();
-
-	TransparentBlt(hdc, m_Rect.left, m_Rect.top, m_Info.Size_X, m_Info.Size_Y,
-		hMemDC,
-		(int)m_SpriteInfo.SpriteIndex * m_Info.Size_X,
-		m_SpriteInfo.StateIndex * m_Info.Size_Y,
-		m_Info.Size_X, m_Info.Size_Y, RGB(255, 0, 255));*/
+	m_Bottom->Render(hdc);
+	m_Top->Render(hdc);
 }
 
 void Player::Release()
 {
+	SAFE_RELEASE(m_Bottom);
+	SAFE_RELEASE(m_Top);
 }
 
 void Player::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)

@@ -30,8 +30,39 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 	case SCENESTATE::SCENE_MENU:
 		break;
 	case SCENESTATE::SCENE_TEST:
+		// back
 		LoadGdiImage(L"back", L"../Resources/Stage/Stage_Floor_0.bmp");
 		LoadGdiImage(L"back_collider", L"../Resources/Stage/Stage_Floor_0_Collider_Info.bmp");
+		// player
+		LoadGdiImage(L"none",				L"../Resources/Player/none.bmp");
+		// right
+		LoadGdiImage(L"bottom_down_r",		L"../Resources/Player/Right/down.bmp");
+		LoadGdiImage(L"bottom_down_move_r", L"../Resources/Player/Right/down_move.bmp");
+		LoadGdiImage(L"bottom_jump_r",		L"../Resources/Player/Right/Bottom/jump.bmp");
+		LoadGdiImage(L"bottom_jump_run_r",	L"../Resources/Player/Right/Bottom/jump_run.bmp");
+		LoadGdiImage(L"bottom_run_r",		L"../Resources/Player/Right/Bottom/run.bmp");
+		LoadGdiImage(L"bottom_stand_r",		L"../Resources/Player/Right/Bottom/stand.bmp");
+		LoadGdiImage(L"top_jump_r",			L"../Resources/Player/Right/Top/jump.bmp");
+		LoadGdiImage(L"top_jump_run_r",		L"../Resources/Player/Right/Top/jump_run.bmp");
+		LoadGdiImage(L"top_run_r",			L"../Resources/Player/Right/Top/run.bmp");
+		LoadGdiImage(L"top_stand_r",		L"../Resources/Player/Right/Top/stand.bmp");
+		LoadGdiImage(L"top_under_r",		L"../Resources/Player/Right/Top/under.bmp");
+		LoadGdiImage(L"top_up_r",			L"../Resources/Player/Right/Top/up.bmp");
+		// left
+		LoadGdiImage(L"bottom_down_l",		L"../Resources/Player/Left/down.bmp");
+		LoadGdiImage(L"bottom_down_move_l", L"../Resources/Player/Left/down_move.bmp");
+		LoadGdiImage(L"bottom_jump_l",		L"../Resources/Player/Left/Bottom/jump.bmp");
+		LoadGdiImage(L"bottom_jump_run_l",	L"../Resources/Player/Left/Bottom/jump_run.bmp");
+		LoadGdiImage(L"bottom_run_l",		L"../Resources/Player/Left/Bottom/run.bmp");
+		LoadGdiImage(L"bottom_stand_l",		L"../Resources/Player/Left/Bottom/stand.bmp");
+		LoadGdiImage(L"top_jump_l",			L"../Resources/Player/Left/Top/jump.bmp");
+		LoadGdiImage(L"top_jump_run_l",		L"../Resources/Player/Left/Top/jump_run.bmp");
+		LoadGdiImage(L"top_run_l",			L"../Resources/Player/Left/Top/run.bmp");
+		LoadGdiImage(L"top_stand_l",		L"../Resources/Player/Left/Top/stand.bmp");
+		LoadGdiImage(L"top_under_l",		L"../Resources/Player/Left/Top/under.bmp");
+		LoadGdiImage(L"top_up_l",			L"../Resources/Player/Left/Top/up.bmp");
+		
+
 		break;
 	case SCENESTATE::SCENE_MAIN:
 		// Load Image

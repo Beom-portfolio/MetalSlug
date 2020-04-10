@@ -82,6 +82,24 @@
     <Filter Include="02.GameObejct\UI">
       <UniqueIdentifier>{2062e624-de3f-4f86-9de6-b68e01696d93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\State">
+      <UniqueIdentifier>{79b30091-07f8-4b57-83a7-9368ed50b3b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom">
+      <UniqueIdentifier>{939172e5-a946-4171-b65c-5d5ac38ec13d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top">
+      <UniqueIdentifier>{ab079501-0712-4fd7-b727-38905550321c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State">
+      <UniqueIdentifier>{d94ab8d0-f406-4df4-8153-ad5905797144}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\State">
+      <UniqueIdentifier>{eaaa5939-69c3-49d1-8d68-122adf178ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State">
+      <UniqueIdentifier>{1bac8515-3acd-4bc0-911b-faede0aabe49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -186,6 +204,57 @@
     <ClInclude Include="Background.h">
       <Filter>02.GameObejct\Background</Filter>
     </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>02.GameObejct\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomStandState.h">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottom.h">
+      <Filter>02.GameObejct\Player\Bottom</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomJumpState.h">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomRunState.h">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomJumpRunState.h">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTop.h">
+      <Filter>02.GameObejct\Player\Top</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopStandState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopRunState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopJumpState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopJumpRunState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopUnderState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopUpState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomDownState.h">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomDownMoveState.h">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopDownMoveState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopDownState.h">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -256,6 +325,57 @@
     </ClCompile>
     <ClCompile Include="Background.cpp">
       <Filter>02.GameObejct\Background</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>02.GameObejct\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomStandState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottom.cpp">
+      <Filter>02.GameObejct\Player\Bottom</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomJumpState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomRunState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomJumpRunState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTop.cpp">
+      <Filter>02.GameObejct\Player\Top</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopStandState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopRunState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopJumpState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopJumpRunState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopUnderState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopUpState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomDownMoveState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomDownState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopDownMoveState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopDownState.cpp">
+      <Filter>02.GameObejct\Player\Top\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
