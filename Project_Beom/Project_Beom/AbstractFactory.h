@@ -19,7 +19,7 @@ public:
 	{
 		GameObject* pObj = new SubClass;
 		pObj->Initialize();
-		pObj->SetPosition(posX, posY);
+		pObj->SetPosition((float)posX, (float)posY);
 
 		return pObj;
 	}

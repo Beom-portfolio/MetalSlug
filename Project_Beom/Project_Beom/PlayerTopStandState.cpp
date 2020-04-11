@@ -4,6 +4,7 @@
 #include "PlayerTopJumpState.h"
 #include "PlayerTopUpState.h"
 #include "PlayerTopDownState.h"
+#include "PlayerTopStandAttState.h"
 #include "GameObject.h"
 
 PlayerTopStandState::PlayerTopStandState()
@@ -32,12 +33,7 @@ void PlayerTopStandState::Enter(GameObject* object)
 
 State* PlayerTopStandState::HandleInput(GameObject* object, KeyManager* input)
 {
-	if (input->GetKeyState(STATE_PUSH, VK_SPACE))
-		return new PlayerTopJumpState();
-
-	if (!object->GetFallCheck() && input->GetKeyState(STATE_PUSH, VK_DOWN))
-		return new PlayerTopDownState();
-	
+	// 좌우 이동
 	if (!object->GetFallCheck())
 	{
 		if (input->GetKeyState(STATE_PUSH, VK_LEFT))
@@ -47,8 +43,21 @@ State* PlayerTopStandState::HandleInput(GameObject* object, KeyManager* input)
 			return new PlayerTopRunState();
 	}
 
+	// 아래 보기
+	if (!object->GetFallCheck() && input->GetKeyState(STATE_PUSH, VK_DOWN))
+		return new PlayerTopDownState();
+
+	// 위로 보기
 	if (input->GetKeyState(STATE_PUSH, VK_UP))
 		return new PlayerTopUpState();
+
+	// 공격
+	if (input->GetKeyState(STATE_DOWN, 'A'))
+		return new PlayerTopStandAttState();
+
+	// 점프
+	if (input->GetKeyState(STATE_PUSH, 'S'))
+		return new PlayerTopJumpState();
 
 	return nullptr;
 }

@@ -3,6 +3,7 @@
 #include "PlayerBottomJumpState.h"
 #include "PlayerBottomRunState.h"
 #include "PlayerBottomDownState.h"
+#include "PlayerBottomDownAttState.h"
 #include "GameObject.h"
 
 PlayerBottomStandState::PlayerBottomStandState()
@@ -31,11 +32,14 @@ void PlayerBottomStandState::Enter(GameObject* object)
 
 State* PlayerBottomStandState::HandleInput(GameObject* object, KeyManager* input)
 {
-	if (input->GetKeyState(STATE_DOWN, VK_SPACE))
+	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerBottomJumpState();
 
 	if (input->GetKeyState(STATE_PUSH, VK_DOWN))
-		return new PlayerBottomDownState();
+		if (input->GetKeyState(STATE_PUSH, 'A'))
+			return new PlayerBottomDownAttState();
+		else
+			return new PlayerBottomDownState();
 
 	if (input->GetKeyState(STATE_PUSH, VK_LEFT))
 		return new PlayerBottomRunState();

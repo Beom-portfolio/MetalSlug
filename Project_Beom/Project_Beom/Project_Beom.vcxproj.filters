@@ -94,11 +94,74 @@
     <Filter Include="02.GameObejct\Player\Bottom\State">
       <UniqueIdentifier>{d94ab8d0-f406-4df4-8153-ad5905797144}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObejct\Player\State">
-      <UniqueIdentifier>{eaaa5939-69c3-49d1-8d68-122adf178ff1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Player\Top\State">
       <UniqueIdentifier>{1bac8515-3acd-4bc0-911b-faede0aabe49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Attack">
+      <UniqueIdentifier>{5262f21b-b5ef-45b7-8dc8-b59025c54911}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement">
+      <UniqueIdentifier>{5ef5c3b5-2537-4585-8eac-b7ec02ad2846}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement\Down">
+      <UniqueIdentifier>{82e89200-8b18-42cc-9807-961280adfcbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement\Down\DownMove">
+      <UniqueIdentifier>{95056063-1119-4dfe-b142-48c1c7e92f7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement\Jump">
+      <UniqueIdentifier>{6f2c4ffa-009f-40bf-80d2-d65fd55f762f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement\Jump\Run">
+      <UniqueIdentifier>{d66ed6de-81dc-4ebd-9731-8e60d7975f47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement\Run">
+      <UniqueIdentifier>{d1f3ab2a-2214-4919-a163-311df3368815}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement\Under">
+      <UniqueIdentifier>{faf5dda7-8c97-4fad-a24e-5beaede3d387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Movement\Up">
+      <UniqueIdentifier>{4f7dc2fc-6142-4045-b167-53eabff43701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Down">
+      <UniqueIdentifier>{2e33f77d-74a5-4241-9427-bc7bb0811f3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Down\Move">
+      <UniqueIdentifier>{fdb5e985-c752-4cb2-a89b-4fa22ecd57ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Jump">
+      <UniqueIdentifier>{def7f319-259b-497c-a778-77b3964e9649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Run">
+      <UniqueIdentifier>{13009ccc-3f0a-4c74-948b-983263b13a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Jump\Run">
+      <UniqueIdentifier>{9acac234-ff67-4dff-b6a3-3cb8b400323e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Attack\Normal">
+      <UniqueIdentifier>{2c4f88dd-8cba-46c3-a33d-11c7ace654c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Attack\Knife">
+      <UniqueIdentifier>{55555c8d-18c2-4b36-a206-f801684d97ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Attack\Heavy">
+      <UniqueIdentifier>{bf1d15e8-7aef-4f8d-a731-e181463557dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\Att">
+      <UniqueIdentifier>{2edb2271-ecff-4cfc-88d8-527c42328a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\Att\Normal">
+      <UniqueIdentifier>{c90b504c-bcdb-4210-a697-05243da4bbcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Bullet">
+      <UniqueIdentifier>{84f66ac9-a349-4e9d-a368-c93e662aa99b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Bullet\Pistol">
+      <UniqueIdentifier>{e0303020-5343-433f-b343-47e835907f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Effect\Pistol">
+      <UniqueIdentifier>{26350c79-bbc3-405d-854c-40eed3bc3412}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -207,53 +270,77 @@
     <ClInclude Include="State.h">
       <Filter>02.GameObejct\State</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerBottomStandState.h">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBottom.h">
       <Filter>02.GameObejct\Player\Bottom</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerBottomJumpState.h">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerBottomRunState.h">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerBottomJumpRunState.h">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTop.h">
       <Filter>02.GameObejct\Player\Top</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerTopStandState.h">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerTopRunState.h">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerTopJumpState.h">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerTopJumpRunState.h">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerTopUnderState.h">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerTopUpState.h">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerBottomDownState.h">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerBottomDownMoveState.h">
+    <ClInclude Include="PlayerBottomStandState.h">
       <Filter>02.GameObejct\Player\Bottom\State</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopDownMoveState.h">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Movement\Down\DownMove</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopDownState.h">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Down</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopJumpState.h">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopJumpRunState.h">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Jump\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopRunState.h">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopUnderState.h">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Under</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopUpState.h">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Up</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopStandState.h">
       <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomRunState.h">
+      <Filter>02.GameObejct\Player\Bottom\State\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomJumpState.h">
+      <Filter>02.GameObejct\Player\Bottom\State\Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomJumpRunState.h">
+      <Filter>02.GameObejct\Player\Bottom\State\Jump\Run</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomDownState.h">
+      <Filter>02.GameObejct\Player\Bottom\State\Down</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomDownMoveState.h">
+      <Filter>02.GameObejct\Player\Bottom\State\Down\Move</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopJumpAttState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopStandAttState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopUnderAttState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopUpAttState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBottomDownAttState.h">
+      <Filter>02.GameObejct\Player\Bottom\Att\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopRunJumpAttState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClInclude>
+    <ClInclude Include="PistolBullet.h">
+      <Filter>02.GameObejct\Bullet\Pistol</Filter>
+    </ClInclude>
+    <ClInclude Include="PistolEffect.h">
+      <Filter>02.GameObejct\Effect\Pistol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -329,53 +416,77 @@
     <ClCompile Include="State.cpp">
       <Filter>02.GameObejct\State</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerBottomStandState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBottom.cpp">
       <Filter>02.GameObejct\Player\Bottom</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerBottomJumpState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerBottomRunState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerBottomJumpRunState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTop.cpp">
       <Filter>02.GameObejct\Player\Top</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerTopStandState.cpp">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerTopRunState.cpp">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerTopJumpState.cpp">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerTopJumpRunState.cpp">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerTopUnderState.cpp">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerTopUpState.cpp">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerBottomDownMoveState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\State</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerBottomDownState.cpp">
+    <ClCompile Include="PlayerBottomStandState.cpp">
       <Filter>02.GameObejct\Player\Bottom\State</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopDownMoveState.cpp">
-      <Filter>02.GameObejct\Player\Top\State</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Movement\Down\DownMove</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopDownState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Down</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopJumpState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopJumpRunState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Jump\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopRunState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopUnderState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Under</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopUpState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Movement\Up</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopStandState.cpp">
       <Filter>02.GameObejct\Player\Top\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomRunState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomJumpState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State\Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomJumpRunState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State\Jump\Run</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomDownState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State\Down</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomDownMoveState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\State\Down\Move</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopJumpAttState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopStandAttState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopUnderAttState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopUpAttState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBottomDownAttState.cpp">
+      <Filter>02.GameObejct\Player\Bottom\Att\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopRunJumpAttState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+    </ClCompile>
+    <ClCompile Include="PistolBullet.cpp">
+      <Filter>02.GameObejct\Bullet\Pistol</Filter>
+    </ClCompile>
+    <ClCompile Include="PistolEffect.cpp">
+      <Filter>02.GameObejct\Effect\Pistol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

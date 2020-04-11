@@ -2,6 +2,7 @@
 #include "PlayerTopDownState.h"
 #include "PlayerTopStandState.h"
 #include "PlayerTopUnderState.h"
+#include "PlayerTopStandAttState.h"
 #include "GameObject.h"
 
 PlayerTopDownState::PlayerTopDownState()
@@ -28,9 +29,15 @@ void PlayerTopDownState::Enter(GameObject* object)
 State* PlayerTopDownState::HandleInput(GameObject* object, KeyManager* input)
 {
 	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
-		return new PlayerTopStandState;
+		if (input->GetKeyState(STATE_PUSH, 'A'))
+			return new PlayerTopStandAttState;
+		else
+			return new PlayerTopStandState;
 
-	if (input->GetKeyState(STATE_DOWN, VK_SPACE))
+	if (input->GetKeyState(STATE_DOWN, 'A'))
+		return new PlayerTopDownState();
+
+	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerTopUnderState();
 
 	return nullptr;

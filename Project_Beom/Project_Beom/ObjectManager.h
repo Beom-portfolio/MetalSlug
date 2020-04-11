@@ -18,6 +18,7 @@ public:
 
 public:
 	void AddObject(const TCHAR* tag, GameObject* Obj, OBJTYPE ObjType);
+	void AddObject(GameObject* Obj, OBJTYPE ObjType);
 	void Update(const float& TimeDelta);
 	void Render(HDC hDC);
 	void ReleaseAll();
@@ -26,7 +27,12 @@ public:
 	void ReleaseObj(GameObject* Obj, OBJTYPE ObjType);
 
 private:
+	bool CullingCheck(GameObject* Obj);
+
+private:
 	unordered_multimap<const TCHAR*, GameObject*>			m_mapObj[OBJ_END];
-	vector<GameObject*> m_vecRender[RENDER_END];
+	vector<GameObject*>										m_vecRender[RENDER_END];
+
+	RECT m_outOfScreen;
 };
 

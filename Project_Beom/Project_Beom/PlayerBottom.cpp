@@ -3,6 +3,7 @@
 #include "PlayerBottomStandState.h"
 
 PlayerBottom::PlayerBottom()
+	: GameObject()
 {
 }
 
@@ -13,7 +14,7 @@ PlayerBottom::~PlayerBottom()
 bool PlayerBottom::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 400, 267 };
-	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
+	
 
 	m_State = new PlayerBottomStandState;
 	m_State->Enter(this);
@@ -41,6 +42,10 @@ void PlayerBottom::Render(HDC hdc)
 		(int)m_SpriteInfo.SpriteIndex * m_Info.Size_X,
 		m_SpriteInfo.StateIndex * m_Info.Size_Y,
 		m_Info.Size_X, m_Info.Size_Y, RGB(75, 169, 218));
+
+	// for test
+	if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
+		Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
 }
 
 void PlayerBottom::Release()

@@ -34,6 +34,11 @@ void GameObject::SetSize(int sizeWidth, int sizeHeight)
 	m_Info.Size_Y = sizeHeight;
 }
 
+void GameObject::SetCollideInfo(const GAMEOBJINFO& info)
+{
+	m_CollideInfo = info;
+}
+
 void GameObject::SetAngle(float angle)
 {
 	m_Angle = angle;
@@ -64,6 +69,11 @@ void GameObject::SetFall(bool fall)
 		m_GravityTime = 0.f;
 		m_fallCheck = fall;
 	}
+}
+
+void GameObject::SetCulling(bool culling)
+{
+	m_cullingCheck = culling;
 }
 
 void GameObject::SetRenderCheck(bool render)
@@ -198,6 +208,15 @@ int GameObject::Update(const float& TimeDelta)
 	m_CollideRect.top = (int)(m_TotalPos.Y + m_CollideInfo.Pos_Y) - m_CollideInfo.Size_Y / 2;
 	m_CollideRect.right = (int)(m_TotalPos.X + m_CollideInfo.Pos_X) + m_CollideInfo.Size_X / 2;
 	m_CollideRect.bottom = (int)(m_TotalPos.Y + m_CollideInfo.Pos_Y) + m_CollideInfo.Size_Y / 2;
+
+	// 카메라 좌표 포함
+	m_OriginCollideRect.left = (int)(m_Info.Pos_X + m_CollideInfo.Pos_X) - m_CollideInfo.Size_X / 2;
+	m_OriginCollideRect.top = (int)(m_Info.Pos_Y + m_CollideInfo.Pos_Y) - m_CollideInfo.Size_Y / 2;
+	m_OriginCollideRect.right = (int)(m_Info.Pos_X + m_CollideInfo.Pos_X) + m_CollideInfo.Size_X / 2;
+	m_OriginCollideRect.bottom = (int)(m_Info.Pos_Y + m_CollideInfo.Pos_Y) + m_CollideInfo.Size_Y / 2;
+
+	m_OriginCollidePos.X = m_Info.Pos_X + m_CollideInfo.Pos_X;
+	m_OriginCollidePos.Y = m_Info.Pos_Y + m_CollideInfo.Pos_Y;
 
 	return 0;
 }

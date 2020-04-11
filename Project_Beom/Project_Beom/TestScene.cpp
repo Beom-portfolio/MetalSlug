@@ -6,6 +6,7 @@
 #include "CameraManager.h"
 #include "Player.h"
 #include "Background.h"
+#include "PistolBullet.h"
 
 TestScene::TestScene()
 {
@@ -31,6 +32,13 @@ bool TestScene::Initialize()
 int TestScene::Update(const float& TimeDelta)
 {
 	Scene::Update(TimeDelta);
+
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F1))
+	{
+		GET_MANAGER<CollisionManager>()->GetRenderCheck() ? 
+			GET_MANAGER<CollisionManager>()->SetRenderCheck(false) 
+			: GET_MANAGER<CollisionManager>()->SetRenderCheck(true);
+	}
 
 	return 0;
 }

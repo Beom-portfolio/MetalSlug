@@ -5,6 +5,7 @@
 #include "PlayerBottom.h"
 #include "PlayerTop.h"
 
+
 Player::Player()
 	: GameObject()
 {
@@ -47,7 +48,12 @@ int Player::Update(const float& TimeDelta)
 			m_Direction = DIR_RIGHT;
 	}
 
-	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_SPACE))
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'A'))
+	{
+		
+	}
+
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'S'))
 	{
 		SetFall(true);
 		m_GravitySpeed = -300.f;
@@ -62,14 +68,17 @@ int Player::Update(const float& TimeDelta)
 		}
 	}
 
-	m_Bottom->SetDirection(m_Direction);
-	m_Top->SetDirection(m_Direction);
-	m_Bottom->SetFall(m_fallCheck);
-	m_Top->SetFall(m_fallCheck);
-	m_Bottom->Update(TimeDelta);
-	m_Top->Update(TimeDelta);
-	m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
-	m_Top->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+	// update part
+	{
+		m_Bottom->SetDirection(m_Direction);
+		m_Top->SetDirection(m_Direction);
+		m_Bottom->SetFall(m_fallCheck);
+		m_Top->SetFall(m_fallCheck);
+		m_Bottom->Update(TimeDelta);
+		m_Top->Update(TimeDelta);
+		m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+		m_Top->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+	}
 
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;

@@ -1,4 +1,5 @@
 #pragma once
+
 class GameObject
 {
 public:
@@ -9,10 +10,12 @@ public:
 	const GAMEOBJINFO& GetInfo() { return m_Info; }
 	const GAMEOBJINFO& GetCollideInfo() { return m_CollideInfo; }
 	const RECT& GetCollideRect() { return m_CollideRect; }
+	const RECT& GetOriginCollideRect() { return m_OriginCollideRect; }
 	const RENDERTYPE& GetRenderType() { return m_RenderType; }
 	const bool& GetState() { return m_isDead; }
 	const bool& GetRenderCheck() { return m_renderCheck; }
 	const bool& GetFallCheck() { return m_fallCheck; }
+	const bool& GetCullingCheck() { return m_cullingCheck; }
 	const float& GetAngle() { return m_Angle; }
 	const float& GetSpeed() { return m_Speed; }
 	const float& GetGravity() { return m_GravitySpeed; }
@@ -21,14 +24,17 @@ public:
 	const DIRECTION& GetDirection() { return m_Direction; }
 	const OBJTYPE& GetObjectType() { return m_ObjType; }
 	const POSITION& GetTotalPosition() { return m_TotalPos; }
+	const POSITION& GetOriginCollidePosition() { return m_OriginCollidePos; }
 
 public:
 	void SetPosition(float posX, float posY);
 	void SetSize(int sizeWidth, int sizeHeight);
+	void SetCollideInfo(const GAMEOBJINFO& info);
 	void SetAngle(float angle);
 	void SetSpeed(float speed);
 	void SetCollideOn(bool on);
 	void SetFall(bool fall);
+	void SetCulling(bool culling);
 	void SetRenderCheck(bool render);
 	void SetSpriteInfo(SPRITEINFO spriteInfo);
 	void SetDirection(DIRECTION dir);
@@ -54,11 +60,15 @@ protected:
 	RENDERTYPE		m_RenderType = RENDER_END;
 	DIRECTION		m_Direction = DIR_END;
 	DWORD			m_Dir = 0;
-	// Collider
+
+	// Render
 	PIXELCOLLIDERINFO* m_PixelInfo = nullptr;
 	RECT				m_Rect;
+	// Collider
 	GAMEOBJINFO			m_CollideInfo;
 	RECT				m_CollideRect;
+	RECT				m_OriginCollideRect; // Ä«¸Þ¶ó ÁÂÇ¥¸¦ »«
+	POSITION			m_OriginCollidePos;
 
 	OBJTYPE				m_ObjType = OBJ_END;
 
@@ -67,6 +77,7 @@ protected:
 	bool			m_isCollideOn = true;
 	bool			m_fallCheck = true;
 	bool			m_renderCheck = true;
+	bool			m_cullingCheck = false;
 	float			m_Angle = 0.f;
 	float			m_Speed = 0.f;
 	float			m_GravitySpeed = 0.f;

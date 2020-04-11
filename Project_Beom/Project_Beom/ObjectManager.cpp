@@ -43,8 +43,36 @@ void ObjectManager::AddObject(const TCHAR* tag, GameObject* Obj, OBJTYPE ObjType
 	m_mapObj[ObjType].insert(MAPOBJ::value_type(tag, Obj));
 }
 
+void ObjectManager::AddObject(GameObject* Obj, OBJTYPE ObjType)
+{
+	wstring tag;
+	tag = L"NoName_" + to_wstring(g_Count);
+	++g_Count;
+
+	if (nullptr == Obj)
+		return;
+
+	Obj->SetObjectType(ObjType);
+
+	m_mapObj[ObjType].insert(MAPOBJ::value_type(tag.c_str(), Obj));
+}
+
 void ObjectManager::Update(const float& TimeDelta)
 {
+	// Collision
+	//GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
+	//GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
+	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER]);
+	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_BULLET]);
+
+	// Culling Check
+	POSITION CamPos = GETMGR(CameraManager)->GetPos();
+	POSITION ScreenSize = POSITION{ (float)WINSIZE_X, (float)WINSIZE_Y };
+	m_outOfScreen.left = LONG(0.f - CamPos.X);
+	m_outOfScreen.right = LONG(ScreenSize.X - CamPos.X);
+	m_outOfScreen.top = LONG(0.f - CamPos.Y);
+	m_outOfScreen.bottom = LONG(ScreenSize.Y - CamPos.Y);
+
 	// Update
 	for (auto i = 0; i < OBJ_END; ++i)
 	{
@@ -53,6 +81,8 @@ void ObjectManager::Update(const float& TimeDelta)
 
 		for (auto iter = iter_begin; iter != iter_end;)
 		{
+			(*iter).second->SetCulling(CullingCheck((*iter).second));
+
 			// 죽은 상태라면 컨테이너에서 삭제한다.
 			if (true == (*iter).second->GetState())
 			{
@@ -67,15 +97,12 @@ void ObjectManager::Update(const float& TimeDelta)
 			}
 		}
 	}
-
-	// Collision
-	//GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
-	//GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
-	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER]);
 }
 
 void ObjectManager::Render(HDC hDC)
 {
+	int count = 0;
+
 	for (auto i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& obj : m_mapObj[i])
@@ -83,7 +110,11 @@ void ObjectManager::Render(HDC hDC)
 			RENDERTYPE type = obj.second->GetRenderType();
 			m_vecRender[type].emplace_back(obj.second);
 		}
+		if (OBJ_BULLET == i)
+			count = m_mapObj[i].size();
 	}
+
+	cout << count << endl;
 
 	// Y축 기준으로 render 순서 정렬
 	sort(m_vecRender[RENDER_OBJ].begin(), m_vecRender[RENDER_OBJ].end(),
@@ -93,7 +124,7 @@ void ObjectManager::Render(HDC hDC)
 	{
 		for (auto& obj : m_vecRender[i])
 		{
-			if (true == obj->GetRenderCheck())
+			if (obj->GetRenderCheck() && !obj->GetCullingCheck())
 				obj->Render(hDC);
 		}
 		m_vecRender[i].clear();
@@ -145,4 +176,21 @@ void ObjectManager::ReleaseObjFromTag(const TCHAR* tag, OBJTYPE ObjType)
 void ObjectManager::ReleaseObj(GameObject* Obj, OBJTYPE ObjType)
 {
 	ReleaseObjFromTag(GetTagFromObj(Obj, ObjType), ObjType);
+}
+
+bool ObjectManager::CullingCheck(GameObject* Obj)
+{
+	GAMEOBJINFO Info = Obj->GetInfo();
+	RECT objRect;
+	objRect.left = LONG(Info.Pos_X - (float)Info.Size_X / 2);
+	objRect.right = LONG(Info.Pos_X + (float)Info.Size_X / 2);
+	objRect.top = LONG(Info.Pos_Y - (float)Info.Size_Y / 2);
+	objRect.bottom = LONG(Info.Pos_Y + (float)Info.Size_Y / 2);
+
+	if (objRect.left > m_outOfScreen.right || objRect.right < m_outOfScreen.left)
+		return true;
+	if (objRect.top > m_outOfScreen.bottom || objRect.bottom < m_outOfScreen.top)
+		return true;
+
+	return false;
 }

@@ -48,6 +48,12 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"top_stand_r",		L"../Resources/Player/Right/Top/stand.bmp");
 		LoadGdiImage(L"top_under_r",		L"../Resources/Player/Right/Top/under.bmp");
 		LoadGdiImage(L"top_up_r",			L"../Resources/Player/Right/Top/up.bmp");
+
+		LoadGdiImage(L"top_stand_att_r", L"../Resources/Player/Right/Top/shot.bmp");
+		LoadGdiImage(L"top_jump_att_r", L"../Resources/Player/Right/Top/jump_shot.bmp");
+		LoadGdiImage(L"top_under_att_r", L"../Resources/Player/Right/Top/under_shot.bmp");
+		LoadGdiImage(L"top_up_att_r", L"../Resources/Player/Right/Top/up_shot.bmp");
+		LoadGdiImage(L"bottom_down_att_r", L"../Resources/Player/Right/down_shot.bmp");
 		// left
 		LoadGdiImage(L"bottom_down_l",		L"../Resources/Player/Left/down.bmp");
 		LoadGdiImage(L"bottom_down_move_l", L"../Resources/Player/Left/down_move.bmp");
@@ -62,7 +68,15 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"top_under_l",		L"../Resources/Player/Left/Top/under.bmp");
 		LoadGdiImage(L"top_up_l",			L"../Resources/Player/Left/Top/up.bmp");
 		
-
+		LoadGdiImage(L"top_stand_att_l", L"../Resources/Player/Left/Top/shot.bmp");
+		LoadGdiImage(L"top_jump_att_l", L"../Resources/Player/Left/Top/jump_shot.bmp");
+		LoadGdiImage(L"top_under_att_l", L"../Resources/Player/Left/Top/under_shot.bmp");
+		LoadGdiImage(L"top_up_att_l", L"../Resources/Player/Left/Top/up_shot.bmp");
+		LoadGdiImage(L"bottom_down_att_l", L"../Resources/Player/Left/down_shot.bmp");
+		// bullet
+		LoadGdiImage(L"pistol_bullet", L"../Resources/Weapon/Pistol/Pistol.bmp");
+		// effect
+		LoadGdiImage(L"effect_pistol", L"../Resources/Effect/Normal.bmp");
 		break;
 	case SCENESTATE::SCENE_MAIN:
 		// Load Image

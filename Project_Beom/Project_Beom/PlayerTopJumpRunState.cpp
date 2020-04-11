@@ -2,6 +2,9 @@
 #include "PlayerTopJumpRunState.h"
 #include "PlayerTopRunState.h"
 #include "PlayerTopUpState.h"
+#include "PlayerTopStandAttState.h"
+#include "PlayerTopRunJumpAttState.h"
+#include "PlayerTopUpAttState.h"
 #include "GameObject.h"
 
 PlayerTopJumpRunState::PlayerTopJumpRunState()
@@ -35,6 +38,13 @@ State* PlayerTopJumpRunState::HandleInput(GameObject* object, KeyManager* input)
 
 	if (!object->GetFallCheck())
 		return new PlayerTopRunState();
+
+	// АјАн
+	if (input->GetKeyState(STATE_DOWN, 'A'))
+		if (input->GetKeyState(STATE_PUSH, VK_UP))
+			return new PlayerTopUpAttState();
+		else
+			return new PlayerTopRunJumpAttState();
 
 	return nullptr;
 }

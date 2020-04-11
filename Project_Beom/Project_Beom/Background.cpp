@@ -12,6 +12,7 @@ Background::~Background()
 bool Background::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 4200 / 2, 600 / 2, 4200, 600 };
+	m_ObjType = OBJ_BACK;
 	m_RenderType = RENDER_BACKGROUND;
 
 	LoadPixelCollider("../Resources/Stage/Stage_Floor_0_Collider_Info.bmp", 255, 0, 0);

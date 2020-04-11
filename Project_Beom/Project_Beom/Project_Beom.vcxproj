@@ -174,8 +174,11 @@
     <ClInclude Include="Math.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PistolBullet.h" />
+    <ClInclude Include="PistolEffect.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBottom.h" />
+    <ClInclude Include="PlayerBottomDownAttState.h" />
     <ClInclude Include="PlayerBottomDownMoveState.h" />
     <ClInclude Include="PlayerBottomDownState.h" />
     <ClInclude Include="PlayerBottomJumpRunState.h" />
@@ -184,11 +187,16 @@
     <ClInclude Include="PlayerTop.h" />
     <ClInclude Include="PlayerTopDownMoveState.h" />
     <ClInclude Include="PlayerTopDownState.h" />
+    <ClInclude Include="PlayerTopJumpAttState.h" />
     <ClInclude Include="PlayerTopJumpRunState.h" />
     <ClInclude Include="PlayerTopJumpState.h" />
+    <ClInclude Include="PlayerTopRunJumpAttState.h" />
     <ClInclude Include="PlayerTopRunState.h" />
+    <ClInclude Include="PlayerTopStandAttState.h" />
     <ClInclude Include="PlayerTopStandState.h" />
+    <ClInclude Include="PlayerTopUnderAttState.h" />
     <ClInclude Include="PlayerTopUnderState.h" />
+    <ClInclude Include="PlayerTopUpAttState.h" />
     <ClInclude Include="PlayerTopUpState.h" />
     <ClInclude Include="Project_Beom.h" />
     <ClInclude Include="Resource.h" />
@@ -224,8 +232,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="PistolBullet.cpp" />
+    <ClCompile Include="PistolEffect.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBottom.cpp" />
+    <ClCompile Include="PlayerBottomDownAttState.cpp" />
     <ClCompile Include="PlayerBottomDownMoveState.cpp" />
     <ClCompile Include="PlayerBottomDownState.cpp" />
     <ClCompile Include="PlayerBottomJumpRunState.cpp" />
@@ -234,11 +245,16 @@
     <ClCompile Include="PlayerTop.cpp" />
     <ClCompile Include="PlayerTopDownMoveState.cpp" />
     <ClCompile Include="PlayerTopDownState.cpp" />
+    <ClCompile Include="PlayerTopJumpAttState.cpp" />
     <ClCompile Include="PlayerTopJumpRunState.cpp" />
     <ClCompile Include="PlayerTopJumpState.cpp" />
+    <ClCompile Include="PlayerTopRunJumpAttState.cpp" />
     <ClCompile Include="PlayerTopRunState.cpp" />
+    <ClCompile Include="PlayerTopStandAttState.cpp" />
     <ClCompile Include="PlayerTopStandState.cpp" />
+    <ClCompile Include="PlayerTopUnderAttState.cpp" />
     <ClCompile Include="PlayerTopUnderState.cpp" />
+    <ClCompile Include="PlayerTopUpAttState.cpp" />
     <ClCompile Include="PlayerTopUpState.cpp" />
     <ClCompile Include="Project_Beom.cpp" />
     <ClCompile Include="Scene.cpp" />

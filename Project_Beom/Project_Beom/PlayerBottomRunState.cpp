@@ -44,7 +44,7 @@ State* PlayerBottomRunState::HandleInput(GameObject* object, KeyManager* input)
 	if ((upCheck & DIR_RIGHT) && (upCheck & DIR_LEFT))
 		return new PlayerBottomStandState();
 
-	if (input->GetKeyState(STATE_DOWN, VK_SPACE))
+	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerBottomJumpRunState();
 
 	return nullptr;

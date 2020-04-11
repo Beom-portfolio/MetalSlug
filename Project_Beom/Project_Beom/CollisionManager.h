@@ -18,7 +18,7 @@ public:
 
 private:
 	bool CheckCollisionRectDist(int* moveX, int* moveY, GameObject* Dst, GameObject* Src);
-	bool m_RenderCheck = true;
+	bool m_RenderCheck = false;
 };
 
 

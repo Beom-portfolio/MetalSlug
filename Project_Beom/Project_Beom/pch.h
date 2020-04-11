@@ -46,6 +46,8 @@ using namespace Gdiplus;
 // TransparentBlt 라이브러리
 #pragma comment(lib, "msimg32.lib")
 
+#pragma comment(linker, "/entry:wWinMainCRTStartup /subsystem:console")
+
 // 디버깅용 콘솔 창
 #ifdef UNICODE 
 #ifdef _DEBUG

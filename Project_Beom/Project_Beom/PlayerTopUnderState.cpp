@@ -2,6 +2,7 @@
 #include "PlayerTopUnderState.h"
 #include "PlayerTopStandState.h"
 #include "PlayerTopJumpState.h"
+#include "PlayerTopUnderAttState.h"
 #include "GameObject.h"
 
 PlayerTopUnderState::PlayerTopUnderState()
@@ -35,6 +36,9 @@ State* PlayerTopUnderState::HandleInput(GameObject* object, KeyManager* input)
 
 	if (!object->GetFallCheck())
 		return new PlayerTopStandState();
+
+	if(input->GetKeyState(STATE_DOWN, 'A'))
+		return new PlayerTopUnderAttState();
 
 	return nullptr;
 }

@@ -34,12 +34,17 @@ int KeyManager::UpdateKey()
 	ComputeKeyState(VK_RIGHT);
 	ComputeKeyState(VK_UP);
 	ComputeKeyState(VK_DOWN);
-	ComputeKeyState(VK_SPACE);
 	/*ComputeKeyState(VK_LCONTROL);
 	ComputeKeyState(VK_LSHIFT);
 	ComputeKeyState(VK_F1);
 	ComputeKeyState(VK_F2);
 	ComputeKeyState(VK_RETURN);*/
+
+	ComputeKeyState('A');
+	ComputeKeyState('S');
+	ComputeKeyState('D');
+
+	ComputeKeyState(VK_F1);
 
 	return 0;
 }
