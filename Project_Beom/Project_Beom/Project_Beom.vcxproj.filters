@@ -139,20 +139,11 @@
     <Filter Include="02.GameObejct\Player\Bottom\State\Jump\Run">
       <UniqueIdentifier>{9acac234-ff67-4dff-b6a3-3cb8b400323e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObejct\Player\Top\State\Attack\Normal">
-      <UniqueIdentifier>{2c4f88dd-8cba-46c3-a33d-11c7ace654c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Player\Top\State\Attack\Knife">
       <UniqueIdentifier>{55555c8d-18c2-4b36-a206-f801684d97ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObejct\Player\Top\State\Attack\Heavy">
-      <UniqueIdentifier>{bf1d15e8-7aef-4f8d-a731-e181463557dd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Player\Bottom\Att">
       <UniqueIdentifier>{2edb2271-ecff-4cfc-88d8-527c42328a39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="02.GameObejct\Player\Bottom\Att\Normal">
-      <UniqueIdentifier>{c90b504c-bcdb-4210-a697-05243da4bbcd}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObejct\Bullet">
       <UniqueIdentifier>{84f66ac9-a349-4e9d-a368-c93e662aa99b}</UniqueIdentifier>
@@ -162,6 +153,12 @@
     </Filter>
     <Filter Include="02.GameObejct\Effect\Pistol">
       <UniqueIdentifier>{26350c79-bbc3-405d-854c-40eed3bc3412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Top\State\Attack\Gun">
+      <UniqueIdentifier>{2c4f88dd-8cba-46c3-a33d-11c7ace654c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\Att\Gun">
+      <UniqueIdentifier>{c90b504c-bcdb-4210-a697-05243da4bbcd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -319,22 +316,22 @@
       <Filter>02.GameObejct\Player\Bottom\State\Down\Move</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopJumpAttState.h">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopStandAttState.h">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopUnderAttState.h">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopUpAttState.h">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBottomDownAttState.h">
-      <Filter>02.GameObejct\Player\Bottom\Att\Normal</Filter>
+      <Filter>02.GameObejct\Player\Bottom\Att\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopRunJumpAttState.h">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PistolBullet.h">
       <Filter>02.GameObejct\Bullet\Pistol</Filter>
@@ -465,22 +462,22 @@
       <Filter>02.GameObejct\Player\Bottom\State\Down\Move</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopJumpAttState.cpp">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopStandAttState.cpp">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopUnderAttState.cpp">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopUpAttState.cpp">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBottomDownAttState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\Att\Normal</Filter>
+      <Filter>02.GameObejct\Player\Bottom\Att\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopRunJumpAttState.cpp">
-      <Filter>02.GameObejct\Player\Top\State\Attack\Normal</Filter>
+      <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PistolBullet.cpp">
       <Filter>02.GameObejct\Bullet\Pistol</Filter>

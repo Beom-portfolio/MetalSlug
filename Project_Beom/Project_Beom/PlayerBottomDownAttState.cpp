@@ -3,6 +3,8 @@
 #include "PlayerBottomDownState.h"
 #include "PlayerBottomStandState.h"
 #include "PlayerBottomDownMoveState.h"
+#include "PlayerBottomJumpState.h"
+#include "PlayerBottom.h"
 #include "GameObject.h"
 #include "PistolBullet.h"
 
@@ -18,18 +20,36 @@ void PlayerBottomDownAttState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 	m_originDir = object->GetDirection();
-	if (DIR_RIGHT == object->GetDirection())
+	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == m_originDir)
 	{
-		info.key = L"bottom_down_att_r";
-		object->SetCollideInfo(GAMEOBJINFO{ 30, 10, 50, 5 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"bottom_down_att_r";
+			info.MaxFrame = 5;
+			object->SetCollideInfo(GAMEOBJINFO{ 30, 10, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"bottom_down_att_heavy_r";
+			info.MaxFrame = 4;
+		}
 	}
 	else
 	{
-		info.key = L"bottom_down_att_l";
-		object->SetCollideInfo(GAMEOBJINFO{ -30, 10, 50, 5 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"bottom_down_att_l";
+			info.MaxFrame = 5;
+			object->SetCollideInfo(GAMEOBJINFO{ -30, 10, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"bottom_down_att_heavy_l";
+			info.MaxFrame = 4;
+		}
 	}
 	info.Type = SPRITE_ONCE;
-	info.MaxFrame = 5;
 	info.Speed = 20.f;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
@@ -40,6 +60,10 @@ void PlayerBottomDownAttState::Enter(GameObject* object)
 State* PlayerBottomDownAttState::HandleInput(GameObject* object, KeyManager* input)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
+
+	// มกวม
+	if (object->GetFallCheck() || input->GetKeyState(STATE_DOWN, 'S'))
+		return  new PlayerBottomJumpState();
 
 	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerBottomStandState;
@@ -93,6 +117,37 @@ void PlayerBottomDownAttState::Update(GameObject* object, const float& TimeDelta
 			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
 
 			m_onceCheck = true;
+		}
+	}
+
+	m_originDir = object->GetDirection();
+	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == m_originDir)
+	{
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"bottom_down_att_r";
+			info.MaxFrame = 5;
+			object->SetCollideInfo(GAMEOBJINFO{ 30, 10, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"bottom_down_att_heavy_r";
+			info.MaxFrame = 4;
+		}
+	}
+	else
+	{
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"bottom_down_att_l";
+			info.MaxFrame = 5;
+			object->SetCollideInfo(GAMEOBJINFO{ -30, 10, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"bottom_down_att_heavy_l";
+			info.MaxFrame = 4;
 		}
 	}
 

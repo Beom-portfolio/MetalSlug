@@ -1,8 +1,10 @@
 #include "pch.h"
 #include "PlayerBottomDownMoveState.h"
+#include "PlayerBottomDownState.h"
 #include "PlayerBottomStandState.h"
 #include "PlayerBottomJumpState.h"
 #include "PlayerBottomDownAttState.h"
+#include "PlayerBottom.h"
 #include "GameObject.h"
 
 PlayerBottomDownMoveState::PlayerBottomDownMoveState()
@@ -16,10 +18,17 @@ PlayerBottomDownMoveState::~PlayerBottomDownMoveState()
 void PlayerBottomDownMoveState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
-	if(DIR_RIGHT == object->GetDirection())
-		info.key = L"bottom_down_move_r";
+	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == object->GetDirection())
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_move_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_move_heavy_r";
+	}
 	else
-		info.key = L"bottom_down_move_l";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_move_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_move_heavy_l";
+	}
 	info.Type = SPRITE_REPEAT;
 	info.MaxFrame = 7;
 	info.Speed = 13.f;
@@ -31,6 +40,9 @@ void PlayerBottomDownMoveState::Enter(GameObject* object)
 
 State* PlayerBottomDownMoveState::HandleInput(GameObject* object, KeyManager* input)
 {
+	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
+		return new PlayerBottomStandState();
+
 	int upCheck = 0;
 
 	if (!input->GetKeyState(STATE_PUSH, VK_LEFT))
@@ -39,10 +51,7 @@ State* PlayerBottomDownMoveState::HandleInput(GameObject* object, KeyManager* in
 		upCheck |= DIR_RIGHT;
 
 	if ((upCheck & DIR_RIGHT) && (upCheck & DIR_LEFT))
-		return new PlayerBottomStandState();
-
-	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
-		return new PlayerBottomStandState();
+		return new PlayerBottomDownState();
 
 	if (input->GetKeyState(STATE_DOWN, 'A'))
 		return new PlayerBottomDownAttState();
@@ -56,14 +65,22 @@ State* PlayerBottomDownMoveState::HandleInput(GameObject* object, KeyManager* in
 void PlayerBottomDownMoveState::Update(GameObject* object, const float& TimeDelta)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
-	if (DIR_RIGHT == object->GetDirection())
-		info.key = L"bottom_down_move_r";
-	else
-		info.key = L"bottom_down_move_l";
 	info.SpriteIndex += info.Speed * TimeDelta;
 
 	if ((float)info.MaxFrame <= info.SpriteIndex)
 		info.SpriteIndex = 0.f;
+
+	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == object->GetDirection())
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_move_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_move_heavy_r";
+	}
+	else
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_move_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_move_heavy_l";
+	}
 
 	object->SetSpriteInfo(info);
 }

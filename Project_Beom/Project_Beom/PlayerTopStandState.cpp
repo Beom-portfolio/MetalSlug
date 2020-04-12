@@ -5,6 +5,7 @@
 #include "PlayerTopUpState.h"
 #include "PlayerTopDownState.h"
 #include "PlayerTopStandAttState.h"
+#include "PlayerTop.h"
 #include "GameObject.h"
 
 PlayerTopStandState::PlayerTopStandState()
@@ -18,13 +19,20 @@ PlayerTopStandState::~PlayerTopStandState()
 void PlayerTopStandState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
 	if (DIR_RIGHT == object->GetDirection())
-		info.key = L"top_stand_r";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_stand_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_stand_heavy_r";
+	}
 	else
-		info.key = L"top_stand_l";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_stand_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_stand_heavy_l";
+	}
 	info.Type = SPRITE_REPEAT;
 	info.MaxFrame = 3;
-	info.Speed = 5.f;
+	info.Speed = 10.f;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
 
@@ -65,10 +73,37 @@ State* PlayerTopStandState::HandleInput(GameObject* object, KeyManager* input)
 void PlayerTopStandState::Update(GameObject* object, const float& TimeDelta)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
-	info.SpriteIndex += info.Speed * TimeDelta;
+	// ¼û½¬´Â ¸ð¼Ç ¿Ô´Ù°¬´Ù
+	if(m_SpriteReverseCheck)
+		info.SpriteIndex -= info.Speed * TimeDelta;
+	else
+		info.SpriteIndex += info.Speed * TimeDelta;
 
-	if ((float)info.MaxFrame <= info.SpriteIndex)
+	if (!m_SpriteReverseCheck && (float)info.MaxFrame <= info.SpriteIndex)
+	{
+		m_SpriteReverseCheck = true;
+		info.SpriteIndex = (float)(info.MaxFrame - 1);
+	}
+	
+	if (m_SpriteReverseCheck && 0.f >= info.SpriteIndex)
+	{
+		m_SpriteReverseCheck = false;
 		info.SpriteIndex = 0.f;
+	}
+
+	// ¹«±â ¹Ù²Þ
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == object->GetDirection())
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_stand_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_stand_heavy_r";
+	}
+	else
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_stand_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_stand_heavy_l";
+	}
+
 
 	object->SetSpriteInfo(info);
 }

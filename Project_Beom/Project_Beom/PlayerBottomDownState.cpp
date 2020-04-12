@@ -4,6 +4,7 @@
 #include "PlayerBottomDownMoveState.h"
 #include "PlayerBottomJumpState.h"
 #include "PlayerBottomDownAttState.h"
+#include "PlayerBottom.h"
 #include "GameObject.h"
 
 PlayerBottomDownState::PlayerBottomDownState()
@@ -17,13 +18,21 @@ PlayerBottomDownState::~PlayerBottomDownState()
 void PlayerBottomDownState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
+	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
 	if (DIR_RIGHT == object->GetDirection())
-		info.key = L"bottom_down_r";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_heavy_r";
+	}
 	else
-		info.key = L"bottom_down_l";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_heavy_l";
+	}
 	info.Type = SPRITE_REPEAT;
 	info.MaxFrame = 4;
-	info.Speed = 7.f;
+	if (PLAYER_PISTOL == weaponType) info.Speed = 14.f;
+	else if (PLAYER_HEAVY == weaponType) info.Speed = 10.f;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
 
@@ -32,14 +41,14 @@ void PlayerBottomDownState::Enter(GameObject* object)
 
 State* PlayerBottomDownState::HandleInput(GameObject* object, KeyManager* input)
 {
+	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
+		return new PlayerBottomStandState;
+
 	if (input->GetKeyState(STATE_PUSH, VK_LEFT))
 		return new PlayerBottomDownMoveState();
 
 	if (input->GetKeyState(STATE_PUSH, VK_RIGHT))
 		return new PlayerBottomDownMoveState();
-
-	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
-		return new PlayerBottomStandState;
 
 	if (input->GetKeyState(STATE_DOWN, 'A'))
 		return new PlayerBottomDownAttState();
@@ -53,10 +62,38 @@ State* PlayerBottomDownState::HandleInput(GameObject* object, KeyManager* input)
 void PlayerBottomDownState::Update(GameObject* object, const float& TimeDelta)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
-	info.SpriteIndex += info.Speed * TimeDelta;
+	// ¼û½¬´Â ¸ð¼Ç ¿Ô´Ù°¬´Ù
+	if (m_SpriteReverseCheck)
+		info.SpriteIndex -= info.Speed * TimeDelta;
+	else
+		info.SpriteIndex += info.Speed * TimeDelta;
 
-	if ((float)info.MaxFrame <= info.SpriteIndex)
+	if (!m_SpriteReverseCheck && (float)info.MaxFrame <= info.SpriteIndex)
+	{
+		m_SpriteReverseCheck = true;
+		info.SpriteIndex = (float)(info.MaxFrame - 1);
+	}
+
+	if (m_SpriteReverseCheck && 0.f >= info.SpriteIndex)
+	{
+		m_SpriteReverseCheck = false;
 		info.SpriteIndex = 0.f;
+	}
+
+	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == object->GetDirection())
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_heavy_r";
+	}
+	else
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"bottom_down_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"bottom_down_heavy_l";
+	}
+
+	if (PLAYER_PISTOL == weaponType) info.Speed = 14.f;
+	else if (PLAYER_HEAVY == weaponType) info.Speed = 10.f;
 
 	object->SetSpriteInfo(info);
 }

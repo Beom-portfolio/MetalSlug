@@ -2,8 +2,6 @@
 #include "GameObject.h"
 
 class State;
-class PlayerBottom;
-class PlayerTop;
 class Player 
 	: public GameObject
 {
@@ -21,7 +19,7 @@ public:
 	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
 
 private:
-	PlayerBottom* m_Bottom = nullptr;
-	PlayerTop* m_Top = nullptr;
+	GameObject* m_Bottom = nullptr;
+	GameObject* m_Top = nullptr;
 };
 

@@ -4,6 +4,7 @@
 #include "PlayerTopDownState.h"
 #include "PlayerTopJumpState.h"
 #include "PlayerTopUpAttState.h"
+#include "PlayerTop.h"
 #include "GameObject.h"
 
 PlayerTopUpState::PlayerTopUpState()
@@ -17,10 +18,17 @@ PlayerTopUpState::~PlayerTopUpState()
 void PlayerTopUpState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
 	if (DIR_RIGHT == object->GetDirection())
-		info.key = L"top_up_r";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_up_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_up_heavy_r";
+	}
 	else
-		info.key = L"top_up_l";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_up_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_up_heavy_l";
+	}
 	info.Type = SPRITE_REPEAT;
 	info.MaxFrame = 4;
 	info.Speed = 7.f;
@@ -32,16 +40,6 @@ void PlayerTopUpState::Enter(GameObject* object)
 
 State* PlayerTopUpState::HandleInput(GameObject* object, KeyManager* input)
 {
-	if (!object->GetFallCheck())
-	{
-		SPRITEINFO info = object->GetSpriteInfo();
-		if (DIR_RIGHT == object->GetDirection())
-			info.key = L"top_up_r";
-		else
-			info.key = L"top_up_l";
-		object->SetSpriteInfo(info);
-	}
-
 	if (!object->GetFallCheck() && 
 		input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerTopDownState();
@@ -63,6 +61,21 @@ void PlayerTopUpState::Update(GameObject* object, const float& TimeDelta)
 
 	if ((float)info.MaxFrame <= info.SpriteIndex)
 		info.SpriteIndex = 0.f;
+
+	if (!object->GetFallCheck())
+	{
+		PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+		if (DIR_RIGHT == object->GetDirection())
+		{
+			if (PLAYER_PISTOL == weaponType) info.key = L"top_up_r";
+			else if (PLAYER_HEAVY == weaponType) info.key = L"top_up_heavy_r";
+		}
+		else
+		{
+			if (PLAYER_PISTOL == weaponType) info.key = L"top_up_l";
+			else if (PLAYER_HEAVY == weaponType) info.key = L"top_up_heavy_l";
+		}
+	}
 
 	object->SetSpriteInfo(info);
 }

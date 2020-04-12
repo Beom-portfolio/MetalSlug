@@ -27,6 +27,9 @@ void PlayerTopDownMoveState::Enter(GameObject* object)
 
 State* PlayerTopDownMoveState::HandleInput(GameObject* object, KeyManager* input)
 {
+	if (object->GetFallCheck())
+		return new PlayerTopStandState;
+
 	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerTopUnderState();
 

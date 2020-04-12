@@ -4,6 +4,7 @@
 #include "PlayerTopUnderAttState.h"
 #include "PlayerTopUpAttState.h"
 #include "PistolBullet.h"
+#include "PlayerTop.h"
 #include "GameObject.h"
 
 PlayerTopJumpAttState::PlayerTopJumpAttState()
@@ -18,18 +19,36 @@ void PlayerTopJumpAttState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 	m_originDir = object->GetDirection();
-	if (DIR_RIGHT == object->GetDirection())
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == m_originDir)
 	{
-		info.key = L"top_jump_att_r";
-		object->SetCollideInfo(GAMEOBJINFO{ 50, -18, 50, 5 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_jump_att_r";
+			info.MaxFrame = 9;
+			object->SetCollideInfo(GAMEOBJINFO{ 50, -18, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_jump_att_heavy_r";
+			info.MaxFrame = 4;
+		}
 	}
 	else
 	{
-		info.key = L"top_jump_att_l";
-		object->SetCollideInfo(GAMEOBJINFO{ -50, -18, 50, 5 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_jump_att_l";
+			info.MaxFrame = 9;
+			object->SetCollideInfo(GAMEOBJINFO{ -50, -18, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_jump_att_heavy_l";
+			info.MaxFrame = 4;
+		}
 	}
 	info.Type = SPRITE_ONCE;
-	info.MaxFrame = 9;
 	info.Speed = 20.f;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
@@ -91,6 +110,37 @@ void PlayerTopJumpAttState::Update(GameObject* object, const float& TimeDelta)
 			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
 
 			m_onceCheck = true;
+		}
+	}
+
+	m_originDir = object->GetDirection();
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == m_originDir)
+	{
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_jump_att_r";
+			info.MaxFrame = 9;
+			object->SetCollideInfo(GAMEOBJINFO{ 50, -18, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_jump_att_heavy_r";
+			info.MaxFrame = 4;
+		}
+	}
+	else
+	{
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_jump_att_l";
+			info.MaxFrame = 9;
+			object->SetCollideInfo(GAMEOBJINFO{ -50, -18, 50, 5 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_jump_att_heavy_l";
+			info.MaxFrame = 4;
 		}
 	}
 

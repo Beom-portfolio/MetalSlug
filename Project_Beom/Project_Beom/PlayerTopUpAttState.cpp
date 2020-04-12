@@ -6,6 +6,7 @@
 #include "PlayerTopStandAttState.h"
 #include "PlayerTopJumpAttState.h"
 #include "PistolBullet.h"
+#include "PlayerTop.h"
 #include "GameObject.h"
 
 PlayerTopUpAttState::PlayerTopUpAttState()
@@ -20,18 +21,36 @@ void PlayerTopUpAttState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 	m_originDir = object->GetDirection();
-	if (DIR_RIGHT == object->GetDirection())
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == m_originDir)
 	{
-		info.key = L"top_up_att_r";
-		object->SetCollideInfo(GAMEOBJINFO{ -5, -65, 5, 50 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_up_att_r";
+			info.MaxFrame = 10;
+			object->SetCollideInfo(GAMEOBJINFO{ -5, -65, 5, 50 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_up_att_heavy_r";
+			info.MaxFrame = 4;
+		}
 	}
 	else
 	{
-		info.key = L"top_up_att_l";
-		object->SetCollideInfo(GAMEOBJINFO{ 5, -65, 5, 50 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_up_att_l";
+			info.MaxFrame = 10;
+			object->SetCollideInfo(GAMEOBJINFO{ 5, -65, 5, 50 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_up_att_heavy_l";
+			info.MaxFrame = 4;
+		}
 	}
 	info.Type = SPRITE_ONCE;
-	info.MaxFrame = 10;
 	info.Speed = 20.f;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
@@ -42,22 +61,6 @@ void PlayerTopUpAttState::Enter(GameObject* object)
 State* PlayerTopUpAttState::HandleInput(GameObject* object, KeyManager* input)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
-
-	if (!object->GetFallCheck())
-	{
-		SPRITEINFO info = object->GetSpriteInfo();
-		if (DIR_RIGHT == object->GetDirection())
-		{
-			info.key = L"top_up_att_r";
-			object->SetCollideInfo(GAMEOBJINFO{ -5, -100, 5, 50 });
-		}
-		else
-		{
-			info.key = L"top_up_att_l";
-			object->SetCollideInfo(GAMEOBJINFO{ 5, -100, 5, 50 });
-		}
-		object->SetSpriteInfo(info);
-	}
 
 	if (!object->GetFallCheck() &&
 		input->GetKeyState(STATE_PUSH, VK_DOWN))
@@ -113,6 +116,36 @@ void PlayerTopUpAttState::Update(GameObject* object, const float& TimeDelta)
 			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
 
 			m_onceCheck = true;
+		}
+	}
+
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == m_originDir)
+	{
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_up_att_r";
+			info.MaxFrame = 10;
+			object->SetCollideInfo(GAMEOBJINFO{ -5, -65, 5, 50 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_up_att_heavy_r";
+			info.MaxFrame = 4;
+		}
+	}
+	else
+	{
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_up_att_l";
+			info.MaxFrame = 10;
+			object->SetCollideInfo(GAMEOBJINFO{ 5, -65, 5, 50 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_up_att_heavy_l";
+			info.MaxFrame = 4;
 		}
 	}
 

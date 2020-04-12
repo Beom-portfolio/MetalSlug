@@ -68,6 +68,14 @@ int Player::Update(const float& TimeDelta)
 		}
 	}
 
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F2))
+	{
+		PLAYERWEAPON w = ((PlayerTop*)m_Top)->GetPlayerWeapon();
+		(PLAYER_PISTOL == w) ? w = PLAYER_HEAVY : w = PLAYER_PISTOL;
+		((PlayerTop*)m_Top)->SetPlayerWeapon(w);
+		((PlayerBottom*)m_Bottom)->SetPlayerWeapon(w);
+	}
+
 	// update part
 	{
 		m_Bottom->SetDirection(m_Direction);

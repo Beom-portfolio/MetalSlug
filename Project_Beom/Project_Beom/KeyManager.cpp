@@ -45,6 +45,7 @@ int KeyManager::UpdateKey()
 	ComputeKeyState('D');
 
 	ComputeKeyState(VK_F1);
+	ComputeKeyState(VK_F2);
 
 	return 0;
 }

@@ -6,6 +6,7 @@
 #include "PlayerTopStandAttState.h"
 #include "PlayerTopJumpAttState.h"
 #include "PlayerTopUpAttState.h"
+#include "PlayerTop.h"
 #include "GameObject.h"
 
 PlayerTopJumpState::PlayerTopJumpState()
@@ -19,10 +20,17 @@ PlayerTopJumpState::~PlayerTopJumpState()
 void PlayerTopJumpState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
 	if (DIR_RIGHT == object->GetDirection())
-		info.key = L"top_jump_r";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_jump_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_jump_heavy_r";
+	}
 	else
-		info.key = L"top_jump_l";
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_jump_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_jump_heavy_l";
+	}
 	info.Type = SPRITE_ONCE;
 	info.MaxFrame = 6;
 	info.Speed = 15.f;
@@ -57,6 +65,18 @@ void PlayerTopJumpState::Update(GameObject* object, const float& TimeDelta)
 
 	if ((float)info.MaxFrame <= info.SpriteIndex)
 		info.SpriteIndex -= 1.f;
+
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == object->GetDirection())
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_jump_r";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_jump_heavy_r";
+	}
+	else
+	{
+		if (PLAYER_PISTOL == weaponType) info.key = L"top_jump_l";
+		else if (PLAYER_HEAVY == weaponType) info.key = L"top_jump_heavy_l";
+	}
 
 	object->SetSpriteInfo(info);
 }

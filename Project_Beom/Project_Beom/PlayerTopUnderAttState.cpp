@@ -3,6 +3,7 @@
 #include "PlayerTopUnderState.h"
 #include "PlayerTopJumpAttState.h"
 #include "PistolBullet.h"
+#include "PlayerTop.h"
 #include "GameObject.h"
 
 PlayerTopUnderAttState::PlayerTopUnderAttState()
@@ -17,15 +18,30 @@ void PlayerTopUnderAttState::Enter(GameObject* object)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 	m_originDir = object->GetDirection();
-	if (DIR_RIGHT == object->GetDirection())
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+	if (DIR_RIGHT == m_originDir)
 	{
-		info.key = L"top_under_att_r";
-		object->SetCollideInfo(GAMEOBJINFO{ 15, 80, 5, 50 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_under_att_r";
+			object->SetCollideInfo(GAMEOBJINFO{ 15, 80, 5, 50 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_under_att_heavy_r";
+		}
 	}
 	else
 	{
-		info.key = L"top_under_att_l";
-		object->SetCollideInfo(GAMEOBJINFO{ -15, 80, 5, 50 });
+		if (PLAYER_PISTOL == weaponType)
+		{
+			info.key = L"top_under_att_l";
+			object->SetCollideInfo(GAMEOBJINFO{ -15, 80, 5, 50 });
+		}
+		else if (PLAYER_HEAVY == weaponType)
+		{
+			info.key = L"top_under_att_heavy_l";
+		}
 	}
 	info.Type = SPRITE_ONCE;
 	info.MaxFrame = 4;

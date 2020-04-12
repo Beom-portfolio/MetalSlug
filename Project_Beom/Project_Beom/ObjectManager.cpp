@@ -101,8 +101,6 @@ void ObjectManager::Update(const float& TimeDelta)
 
 void ObjectManager::Render(HDC hDC)
 {
-	int count = 0;
-
 	for (auto i = 0; i < OBJ_END; ++i)
 	{
 		for (auto& obj : m_mapObj[i])
@@ -110,11 +108,7 @@ void ObjectManager::Render(HDC hDC)
 			RENDERTYPE type = obj.second->GetRenderType();
 			m_vecRender[type].emplace_back(obj.second);
 		}
-		if (OBJ_BULLET == i)
-			count = m_mapObj[i].size();
 	}
-
-	cout << count << endl;
 
 	// Y축 기준으로 render 순서 정렬
 	sort(m_vecRender[RENDER_OBJ].begin(), m_vecRender[RENDER_OBJ].end(),
