@@ -5,6 +5,7 @@
 #include "PlayerBottomDownMoveState.h"
 #include "PlayerBottomJumpState.h"
 #include "PlayerBottom.h"
+#include "MachinegunBullet.h"
 #include "GameObject.h"
 #include "PistolBullet.h"
 
@@ -33,6 +34,7 @@ void PlayerBottomDownAttState::Enter(GameObject* object)
 		{
 			info.key = L"bottom_down_att_heavy_r";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ 50, 1, 50, 5 });
 		}
 	}
 	else
@@ -47,6 +49,7 @@ void PlayerBottomDownAttState::Enter(GameObject* object)
 		{
 			info.key = L"bottom_down_att_heavy_l";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ -50, 1, 50, 5 });
 		}
 	}
 	info.Type = SPRITE_ONCE;
@@ -93,35 +96,59 @@ void PlayerBottomDownAttState::Update(GameObject* object, const float& TimeDelta
 	SPRITEINFO info = object->GetSpriteInfo();
 	info.SpriteIndex += info.Speed * TimeDelta;
 
+	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
 	// ÃÑ¾Ë »ý¼º
-	if (!m_onceCheck)
+	if (PLAYER_PISTOL == weaponType)
 	{
-		if (1.f <= info.SpriteIndex)
+		if (!m_onceCheck && 1.f <= info.SpriteIndex)
 		{
 			float posX, posY;
 			GameObject* bullet = AbstractFactory<PistolBullet>::CreateObj();
 			if (DIR_RIGHT == m_originDir)
-			{
 				posX = (float)object->GetOriginCollideRect().right;
-				posY = object->GetOriginCollidePosition().Y;
-				bullet->SetDirection(DIR_RIGHT);
-			}
 			else
-			{
 				posX = (float)object->GetOriginCollideRect().left;
-				posY = object->GetOriginCollidePosition().Y;
-				bullet->SetDirection(DIR_LEFT);
-			}
-		
+			
+			posY = object->GetOriginCollidePosition().Y;
+			bullet->SetDirection(m_originDir);
 			bullet->SetPosition(posX, posY);
 			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
 
 			m_onceCheck = true;
 		}
 	}
+	else
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			if (i == m_count && i == (int)info.SpriteIndex)
+			{
+				float posX, posY;
+				GameObject* bullet = AbstractFactory<MachinegunBullet>::CreateObj();
+				if (DIR_RIGHT == m_originDir)
+				{
+					posX = (float)object->GetOriginCollideRect().right;
+					bullet->SetAngle(0.f);
+				}
+				else
+				{
+					posX = (float)object->GetOriginCollideRect().left;
+					bullet->SetAngle(180.f);
+				}
 
-	m_originDir = object->GetDirection();
-	PLAYERWEAPON weaponType = ((PlayerBottom*)object)->GetPlayerWeapon();
+				if (0 == i)
+					posY = object->GetOriginCollidePosition().Y;
+				else
+					posY = object->GetOriginCollidePosition().Y + 10.f - (10.f * (i - 1));
+				bullet->SetDirection(m_originDir);
+				bullet->SetPosition(posX, posY);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+				++m_count;
+			}
+		}
+	}
+
+	
 	if (DIR_RIGHT == m_originDir)
 	{
 		if (PLAYER_PISTOL == weaponType)

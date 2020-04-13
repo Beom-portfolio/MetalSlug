@@ -16,7 +16,10 @@ GdiImage* GdiManager::FindImage(const TCHAR* pKey)
 	MAPBITMAP::const_iterator iter = m_mapBmp.find(pKey);
 
 	if (m_mapBmp.end() == iter)
+	{
+		ERRORMSG(pKey);
 		return nullptr;
+	}
 
 	return iter->second;
 }
@@ -67,6 +70,10 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"top_under_att_heavy_r",		L"../Resources/Player/Right/Top/heavy/under_shot.bmp");
 		LoadGdiImage(L"top_up_att_heavy_r",			L"../Resources/Player/Right/Top/heavy/up_shot.bmp");
 		LoadGdiImage(L"bottom_down_att_heavy_r",	L"../Resources/Player/Right/Top/heavy/down_shot.bmp");
+		LoadGdiImage(L"top_diagonal_att_right_up",	L"../Resources/Player/Right/Top/heavy/up_ru_shot.bmp");
+		LoadGdiImage(L"top_diagonal_att_up_right",  L"../Resources/Player/Right/Top/heavy/up_rd_shot.bmp");
+		LoadGdiImage(L"top_diagonal_att_right_down",L"../Resources/Player/Right/Top/heavy/down_rd_shot.bmp");
+		LoadGdiImage(L"top_diagonal_att_down_right", L"../Resources/Player/Right/Top/heavy/down_ru_shot.bmp");
 		// left
 		LoadGdiImage(L"bottom_down_l",		L"../Resources/Player/Left/down.bmp");
 		LoadGdiImage(L"bottom_down_move_l", L"../Resources/Player/Left/down_move.bmp");
@@ -99,10 +106,18 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"top_under_att_heavy_l",		L"../Resources/Player/Left/Top/heavy/under_shot.bmp");
 		LoadGdiImage(L"top_up_att_heavy_l",			L"../Resources/Player/Left/Top/heavy/up_shot.bmp");
 		LoadGdiImage(L"bottom_down_att_heavy_l",	L"../Resources/Player/Left/Top/heavy/down_shot.bmp");
+		LoadGdiImage(L"top_diagonal_att_left_up",	L"../Resources/Player/Left/Top/heavy/up_lu_shot.bmp");
+		LoadGdiImage(L"top_diagonal_att_up_left",   L"../Resources/Player/Left/Top/heavy/up_ld_shot.bmp");
+		LoadGdiImage(L"top_diagonal_att_left_down", L"../Resources/Player/Left/Top/heavy/down_ld_shot2.bmp");
+		LoadGdiImage(L"top_diagonal_att_down_left", L"../Resources/Player/Left/Top/heavy/down_lu_shot.bmp");
 		// bullet
 		LoadGdiImage(L"pistol_bullet", L"../Resources/Weapon/Pistol/Pistol.bmp");
+		LoadGdiImage(L"machinegun_bullet", L"../Resources/Weapon/HeavyMachine/Heavy.bmp");
 		// effect
 		LoadGdiImage(L"effect_pistol", L"../Resources/Effect/Normal.bmp");
+		LoadGdiImage(L"effect_medium_explosion", L"../Resources/Effect/medium_explosion.bmp");
+		LoadGdiImage(L"effect_big_explosion", L"../Resources/Effect/big_explosion.bmp");
+		LoadGdiImage(L"effect_granade_explosion", L"../Resources/Effect/explosion.bmp");
 		break;
 	case SCENESTATE::SCENE_MAIN:
 		// Load Image

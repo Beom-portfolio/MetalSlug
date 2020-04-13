@@ -5,7 +5,9 @@
 #include "PlayerTopDownState.h"
 #include "PlayerTopStandAttState.h"
 #include "PlayerTopJumpAttState.h"
+#include "PlayerTopDiagonalUpToStandState.h"
 #include "PistolBullet.h"
+#include "MachinegunBullet.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
 
@@ -34,6 +36,7 @@ void PlayerTopUpAttState::Enter(GameObject* object)
 		{
 			info.key = L"top_up_att_heavy_r";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ -12, -85, 5, 50 });
 		}
 	}
 	else
@@ -48,6 +51,7 @@ void PlayerTopUpAttState::Enter(GameObject* object)
 		{
 			info.key = L"top_up_att_heavy_l";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ 12, -85, 5, 50 });
 		}
 	}
 	info.Type = SPRITE_ONCE;
@@ -62,6 +66,10 @@ State* PlayerTopUpAttState::HandleInput(GameObject* object, KeyManager* input)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 
+	// 공격중 방향이 틀어지면 종료
+	if (object->GetDirection() != m_originDir)
+		return new PlayerTopUpState();
+
 	if (!object->GetFallCheck() &&
 		input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerTopDownState();
@@ -69,12 +77,24 @@ State* PlayerTopUpAttState::HandleInput(GameObject* object, KeyManager* input)
 	// 다시 공격
 	if (input->GetKeyState(STATE_DOWN, 'A'))
 	{
+		PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+
 		if (!input->GetKeyState(STATE_PUSH, VK_UP))
 		{
 			if (!object->GetFallCheck())
-				return new PlayerTopStandAttState();
+			{
+				if (PLAYER_HEAVY == weaponType)
+					return new PlayerTopDiagonalUpToStandState();
+				else
+					return new PlayerTopStandAttState();
+			}
 			else
-				return new PlayerTopJumpAttState();
+			{
+				if (PLAYER_HEAVY == weaponType)
+					return new PlayerTopDiagonalUpToStandState();
+				else
+					return new PlayerTopJumpAttState();
+			}
 		}
 		else
 		{
@@ -94,23 +114,16 @@ void PlayerTopUpAttState::Update(GameObject* object, const float& TimeDelta)
 	SPRITEINFO info = object->GetSpriteInfo();
 	info.SpriteIndex += info.Speed * TimeDelta;
 
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
 	// 총알 생성
-	if (!m_onceCheck)
+	if (PLAYER_PISTOL == weaponType)
 	{
-		if (1.f <= info.SpriteIndex)
+		if (!m_onceCheck && 1.f <= info.SpriteIndex)
 		{
 			float posX, posY;
 			GameObject* bullet = AbstractFactory<PistolBullet>::CreateObj();
-			if (DIR_RIGHT == m_originDir)
-			{
-				posX = object->GetOriginCollidePosition().X;
-				posY = (float)object->GetOriginCollideRect().top;
-			}
-			else
-			{
-				posX = object->GetOriginCollidePosition().X;
-				posY = (float)object->GetOriginCollideRect().top;
-			}
+			posX = object->GetOriginCollidePosition().X;
+			posY = (float)object->GetOriginCollideRect().top;
 			bullet->SetDirection(DIR_TOP);
 			bullet->SetPosition(posX, posY);
 			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
@@ -118,8 +131,30 @@ void PlayerTopUpAttState::Update(GameObject* object, const float& TimeDelta)
 			m_onceCheck = true;
 		}
 	}
+	else
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			if (i == m_count && i == (int)info.SpriteIndex)
+			{
+				float posX, posY;
+				GameObject* bullet = AbstractFactory<MachinegunBullet>::CreateObj();
 
-	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+				if (0 == i)
+					posX = object->GetOriginCollidePosition().X;
+				else
+					posX = object->GetOriginCollidePosition().X + 10.f - (10.f * (i - 1));
+				posY = (float)object->GetOriginCollideRect().top;
+
+				bullet->SetAngle(90.f);
+				bullet->SetDirection(DIR_TOP);
+				bullet->SetPosition(posX, posY);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+				++m_count;
+			}
+		}
+	}
+
 	if (DIR_RIGHT == m_originDir)
 	{
 		if (PLAYER_PISTOL == weaponType)
@@ -132,6 +167,7 @@ void PlayerTopUpAttState::Update(GameObject* object, const float& TimeDelta)
 		{
 			info.key = L"top_up_att_heavy_r";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ -12, -85, 5, 50 });
 		}
 	}
 	else
@@ -146,6 +182,7 @@ void PlayerTopUpAttState::Update(GameObject* object, const float& TimeDelta)
 		{
 			info.key = L"top_up_att_heavy_l";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ 12, -85, 5, 50 });
 		}
 	}
 

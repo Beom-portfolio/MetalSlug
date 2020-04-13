@@ -48,11 +48,6 @@ int Player::Update(const float& TimeDelta)
 			m_Direction = DIR_RIGHT;
 	}
 
-	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'A'))
-	{
-		
-	}
-
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'S'))
 	{
 		SetFall(true);

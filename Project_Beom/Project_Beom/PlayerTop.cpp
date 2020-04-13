@@ -16,7 +16,6 @@ bool PlayerTop::Initialize()
 	m_Info = GAMEOBJINFO{ 0, 0, 400, 267 };
 	m_State = new PlayerTopStandState;
 	m_State->Enter(this);
-
 	return true;
 }
 
@@ -24,6 +23,14 @@ int PlayerTop::Update(const float& TimeDelta)
 {
 	m_State->Update(this, TimeDelta);
 	HandleInput();
+
+	// ÃÑ¾Ë ¼Óµµ¿ë
+	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT) ||
+		GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
+		m_Speed = 500.f;
+	else
+		m_Speed = 0.f;
+
 
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;

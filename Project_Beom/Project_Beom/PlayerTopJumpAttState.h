@@ -15,6 +15,7 @@ public:
 
 private:
 	DIRECTION  m_originDir = DIR_END;
+	int m_count = 0;
 };
 
 

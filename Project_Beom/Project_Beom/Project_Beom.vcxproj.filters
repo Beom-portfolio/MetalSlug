@@ -160,6 +160,12 @@
     <Filter Include="02.GameObejct\Player\Bottom\Att\Gun">
       <UniqueIdentifier>{c90b504c-bcdb-4210-a697-05243da4bbcd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Bullet\Machinegun">
+      <UniqueIdentifier>{53f62d16-8a6a-4038-90c3-8c9a00c6c07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Effect\Explosion">
+      <UniqueIdentifier>{77edfa5d-4213-474c-a19e-7028f77c8138}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -339,6 +345,30 @@
     <ClInclude Include="PistolEffect.h">
       <Filter>02.GameObejct\Effect\Pistol</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerTopDiagonalDownToStandState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopDiagonalStandToDownState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopDiagonalStandToUpState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerTopDiagonalUpToStandState.h">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="MachinegunBullet.h">
+      <Filter>02.GameObejct\Bullet\Machinegun</Filter>
+    </ClInclude>
+    <ClInclude Include="MediumExplosion.h">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClInclude>
+    <ClInclude Include="BigExplosion.h">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClInclude>
+    <ClInclude Include="GranadeExplosion.h">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -484,6 +514,30 @@
     </ClCompile>
     <ClCompile Include="PistolEffect.cpp">
       <Filter>02.GameObejct\Effect\Pistol</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopDiagonalDownToStandState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopDiagonalStandToDownState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopDiagonalUpToStandState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerTopDiagonalStandToUpState.cpp">
+      <Filter>02.GameObejct\Player\Top\State\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="MachinegunBullet.cpp">
+      <Filter>02.GameObejct\Bullet\Machinegun</Filter>
+    </ClCompile>
+    <ClCompile Include="MediumExplosion.cpp">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClCompile>
+    <ClCompile Include="BigExplosion.cpp">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClCompile>
+    <ClCompile Include="GranadeExplosion.cpp">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

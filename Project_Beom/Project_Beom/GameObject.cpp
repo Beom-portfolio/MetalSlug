@@ -42,6 +42,8 @@ void GameObject::SetCollideInfo(const GAMEOBJINFO& info)
 void GameObject::SetAngle(float angle)
 {
 	m_Angle = angle;
+	m_DeltaX = cosf(ToRadian(angle)) * m_Hypotenuse;
+	m_DeltaY = -sinf(ToRadian(angle)) * m_Hypotenuse;
 }
 
 void GameObject::SetSpeed(float speed)
@@ -99,6 +101,12 @@ void GameObject::SetObjectType(OBJTYPE type)
 void GameObject::SetFollowedObj(GameObject* obj)
 {
 	m_FollowedObj = obj;
+}
+
+void GameObject::SetHypotenuse(float hypotenuse)
+{
+	m_Hypotenuse = hypotenuse;
+	SetAngle(m_Angle);
 }
 
 bool GameObject::LoadPixelCollider(const char* pFilePath, unsigned char r, unsigned char g, unsigned char b)
@@ -231,4 +239,10 @@ void GameObject::CollisionDeactivate(GameObject* collideTarget)
 
 void GameObject::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 {
+}
+
+void GameObject::GotoAngle(const float& TimeDelta)
+{
+	m_Info.Pos_X += m_DeltaX * m_Speed * TimeDelta;
+	m_Info.Pos_Y += m_DeltaY * m_Speed * TimeDelta;
 }

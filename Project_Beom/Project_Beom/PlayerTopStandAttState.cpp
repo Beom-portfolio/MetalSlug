@@ -5,7 +5,9 @@
 #include "PlayerTopDownState.h"
 #include "PlayerTopUpState.h"
 #include "PlayerTopUpAttState.h"
+#include "PlayerTopDiagonalStandToUpState.h"
 #include "PistolBullet.h"
+#include "MachinegunBullet.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
 
@@ -34,6 +36,7 @@ void PlayerTopStandAttState::Enter(GameObject* object)
 		{
 			info.key = L"top_stand_att_heavy_r";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ 35, 0, 50, 5 });
 		}
 	}
 	else
@@ -48,6 +51,7 @@ void PlayerTopStandAttState::Enter(GameObject* object)
 		{ 
 			info.key = L"top_stand_att_heavy_l";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ -35, 0, 50, 5 });
 		}
 	}
 	info.Type = SPRITE_ONCE;
@@ -62,16 +66,35 @@ State* PlayerTopStandAttState::HandleInput(GameObject* object, KeyManager* input
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 
-	// 위 보기
-	if (input->GetKeyState(STATE_PUSH, VK_UP))
-		if(input->GetKeyState(STATE_PUSH, 'A'))
-			return new PlayerTopUpAttState();
-		else
-			return new PlayerTopUpState();
+	// 공격중 방향이 틀어지면 종료
+	if (object->GetDirection() != m_originDir)
+		return new PlayerTopStandState();
 
 	// 아래 보기
 	if (!object->GetFallCheck() && input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerTopDownState();
+
+	// 위 보기
+	if (input->GetKeyState(STATE_PUSH, VK_UP))
+	{
+		PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+
+		if (input->GetKeyState(STATE_DOWN, 'A'))
+		{
+			if(PLAYER_HEAVY == weaponType)
+				return new PlayerTopDiagonalStandToUpState();
+			else
+				return new PlayerTopUpAttState();
+		}
+		else
+		{
+			if (PLAYER_HEAVY == weaponType)
+				return new PlayerTopDiagonalStandToUpState();
+			else
+				return new PlayerTopUpState();
+		}
+	}
+
 
 	// 다시 공격
 	if (input->GetKeyState(STATE_DOWN, 'A'))
@@ -81,9 +104,7 @@ State* PlayerTopStandAttState::HandleInput(GameObject* object, KeyManager* input
 	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerTopRunState();
 
-	// 공격중 방향이 틀어지면 종료
-	if (object->GetDirection() != m_originDir)
-		return new PlayerTopStandState();
+
 
 	// 모두 재생하면 종료
 	if ((float)info.MaxFrame <= info.SpriteIndex)
@@ -97,33 +118,62 @@ void PlayerTopStandAttState::Update(GameObject* object, const float& TimeDelta)
 	SPRITEINFO info = object->GetSpriteInfo();
 	info.SpriteIndex += info.Speed * TimeDelta;
 
+	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
 	// 총알 생성
-	if (!m_onceCheck)
+	// 권총
+	if (PLAYER_PISTOL == weaponType)
 	{
-		if (1.f <= info.SpriteIndex)
+		if (!m_onceCheck && 1.f <= info.SpriteIndex)
 		{
 			float posX, posY;
 			GameObject* bullet = AbstractFactory<PistolBullet>::CreateObj();
 			if (DIR_RIGHT == m_originDir)
-			{
 				posX = (float)object->GetOriginCollideRect().right;
-				posY = object->GetOriginCollidePosition().Y;
-				bullet->SetDirection(DIR_RIGHT);
-			}
 			else
-			{
 				posX = (float)object->GetOriginCollideRect().left;
-				posY = object->GetOriginCollidePosition().Y;
-				bullet->SetDirection(DIR_LEFT);
-			}
+
+			posY = object->GetOriginCollidePosition().Y;
+			bullet->SetDirection(m_originDir);
 			bullet->SetPosition(posX, posY);
+			bullet->SetSpeed(bullet->GetSpeed() + object->GetSpeed());
 			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
 			
 			m_onceCheck = true;
 		}
 	}
+	else
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			if (i == m_count && i == (int)info.SpriteIndex)
+			{
+				float posX, posY;
+				GameObject* bullet = AbstractFactory<MachinegunBullet>::CreateObj();
+				if (DIR_RIGHT == m_originDir)
+				{
+					posX = (float)object->GetOriginCollideRect().right;
+					bullet->SetAngle(0.f);
+				}
+				else
+				{
+					posX = (float)object->GetOriginCollideRect().left;
+					bullet->SetAngle(180.f);
+				}
 
-	PLAYERWEAPON weaponType = ((PlayerTop*)object)->GetPlayerWeapon();
+				if(0 == i)
+					posY = object->GetOriginCollidePosition().Y;
+				else
+					posY = object->GetOriginCollidePosition().Y + 10.f - (10.f * (i - 1));
+				bullet->SetDirection(m_originDir);
+				bullet->SetSpeed(bullet->GetSpeed() + object->GetSpeed());
+				bullet->SetPosition(posX, posY);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+				++m_count;
+			}
+		}
+	}
+
+	
 	if (DIR_RIGHT == m_originDir)
 	{
 		if (PLAYER_PISTOL == weaponType)
@@ -136,6 +186,7 @@ void PlayerTopStandAttState::Update(GameObject* object, const float& TimeDelta)
 		{
 			info.key = L"top_stand_att_heavy_r";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ 35, 0, 50, 5 });
 		}
 	}
 	else
@@ -150,6 +201,7 @@ void PlayerTopStandAttState::Update(GameObject* object, const float& TimeDelta)
 		{
 			info.key = L"top_stand_att_heavy_l";
 			info.MaxFrame = 4;
+			object->SetCollideInfo(GAMEOBJINFO{ -35, 0, 50, 5 });
 		}
 	}
 

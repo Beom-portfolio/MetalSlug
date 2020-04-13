@@ -40,6 +40,7 @@ public:
 	void SetDirection(DIRECTION dir);
 	void SetObjectType(OBJTYPE type);
 	void SetFollowedObj(GameObject* obj);
+	void SetHypotenuse(float hypotenuse);
 
 public:
 	bool LoadPixelCollider(const char* pFilePath,
@@ -53,6 +54,9 @@ public:
 	virtual void CollisionActivate(GameObject* collideTarget);
 	virtual void CollisionDeactivate(GameObject* collideTarget);
 	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+
+protected:
+	void GotoAngle(const float& TimeDelta);
 
 protected:
 	GAMEOBJINFO		m_Info;
@@ -78,7 +82,12 @@ protected:
 	bool			m_fallCheck = true;
 	bool			m_renderCheck = true;
 	bool			m_cullingCheck = false;
+	// È¸Àü
 	float			m_Angle = 0.f;
+	float			m_DeltaX = 0.f;
+	float			m_DeltaY = 0.f;
+	float			m_Hypotenuse = 1.f;
+
 	float			m_Speed = 0.f;
 	float			m_GravitySpeed = 0.f;
 	float			m_GravityTime = 0.f;
