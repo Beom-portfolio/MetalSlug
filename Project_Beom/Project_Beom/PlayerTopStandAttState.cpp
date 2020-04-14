@@ -6,6 +6,9 @@
 #include "PlayerTopUpState.h"
 #include "PlayerTopUpAttState.h"
 #include "PlayerTopDiagonalStandToUpState.h"
+#include "PlayerTopJumpState.h"
+#include "PlayerTopKnifeAttState.h"
+#include "PlayerTopBombAttState.h"
 #include "PistolBullet.h"
 #include "MachinegunBullet.h"
 #include "PlayerTop.h"
@@ -95,16 +98,22 @@ State* PlayerTopStandAttState::HandleInput(GameObject* object, KeyManager* input
 		}
 	}
 
+	// 폭탄
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerTopBombAttState();
 
 	// 다시 공격
 	if (input->GetKeyState(STATE_DOWN, 'A'))
-		return new PlayerTopStandAttState();
+	{
+		if (true == object->GetCollideCheck())
+			return new PlayerTopKnifeAttState();
+		else
+			return new PlayerTopStandAttState();
+	}
 
 	// 점프
 	if (input->GetKeyState(STATE_DOWN, 'S'))
-		return new PlayerTopRunState();
-
-
+		return new PlayerTopJumpState();
 
 	// 모두 재생하면 종료
 	if ((float)info.MaxFrame <= info.SpriteIndex)

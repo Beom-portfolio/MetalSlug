@@ -18,6 +18,9 @@ public:
 public:
 	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
 
+public:
+	virtual void CollisionActivate(GameObject* collideTarget);
+	virtual void CollisionDeactivate(GameObject* collideTarget);
 private:
 	GameObject* m_Bottom = nullptr;
 	GameObject* m_Top = nullptr;

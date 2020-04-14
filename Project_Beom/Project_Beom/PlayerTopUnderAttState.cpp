@@ -3,6 +3,7 @@
 #include "PlayerTopUnderState.h"
 #include "PlayerTopJumpAttState.h"
 #include "PlayerTopDiagonalDownToStandState.h"
+#include "PlayerTopJumpBombAttState.h"
 #include "PistolBullet.h"
 #include "MachinegunBullet.h"
 #include "PlayerTop.h"
@@ -80,6 +81,10 @@ State* PlayerTopUnderAttState::HandleInput(GameObject* object, KeyManager* input
 			return new PlayerTopUnderAttState();
 		}
 	}
+
+	// 폭탄
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerTopJumpBombAttState();
 
 	// 모두 재생하면 종료
 	if ((float)info.MaxFrame <= info.SpriteIndex)

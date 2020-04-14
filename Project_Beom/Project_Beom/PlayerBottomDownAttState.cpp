@@ -5,6 +5,7 @@
 #include "PlayerBottomDownMoveState.h"
 #include "PlayerBottomJumpState.h"
 #include "PlayerBottom.h"
+#include "PlayerBottomKnifeAttState.h"
 #include "MachinegunBullet.h"
 #include "GameObject.h"
 #include "PistolBullet.h"
@@ -73,7 +74,12 @@ State* PlayerBottomDownAttState::HandleInput(GameObject* object, KeyManager* inp
 
 	// 다시 공격
 	if (input->GetKeyState(STATE_DOWN, 'A'))
-		return new PlayerBottomDownAttState();
+	{
+		if (true == object->GetCollideCheck())
+			return new PlayerBottomKnifeAttState();
+		else
+			return new PlayerBottomDownAttState();
+	}
 
 	if ((float)info.MaxFrame <= info.SpriteIndex)
 	{

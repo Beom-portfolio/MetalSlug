@@ -4,6 +4,8 @@
 #include "PlayerTopDownState.h"
 #include "PlayerTopJumpState.h"
 #include "PlayerTopUpAttState.h"
+#include "PlayerTopKnifeAttState.h"
+#include "PlayerTopBombAttState.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
 
@@ -49,7 +51,16 @@ State* PlayerTopUpState::HandleInput(GameObject* object, KeyManager* input)
 
 	// °ø°Ý
 	if (input->GetKeyState(STATE_DOWN, 'A'))
-		return new PlayerTopUpAttState();
+	{
+		if (true == object->GetCollideCheck())
+			return new PlayerTopKnifeAttState();
+		else
+			return new PlayerTopUpAttState();
+	}
+
+	// ¼ö·ùÅº
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerTopBombAttState();
 
 	return nullptr;
 }

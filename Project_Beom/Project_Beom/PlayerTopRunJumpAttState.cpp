@@ -7,6 +7,7 @@
 #include "PlayerTopDiagonalStandToDownState.h"
 #include "PlayerTopUpState.h"
 #include "PlayerTopUnderAttState.h"
+#include "PlayerTopJumpBombAttState.h"
 #include "PistolBullet.h"
 #include "MachinegunBullet.h"
 #include "PlayerTop.h"
@@ -97,6 +98,9 @@ State* PlayerTopRunJumpAttState::HandleInput(GameObject* object, KeyManager* inp
 				return new PlayerTopUnderAttState();
 		}
 	
+	// ÆøÅº
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerTopJumpBombAttState();
 
 	// ´Ù½Ã °ø°Ý
 	if (input->GetKeyState(STATE_DOWN, 'A'))

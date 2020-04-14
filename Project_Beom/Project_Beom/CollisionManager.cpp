@@ -30,6 +30,7 @@ void CollisionManager::CollisionRect(ObjectManager::MAPOBJ* DstList, ObjectManag
 				// 충돌 하였다면 서로 충돌 처리를 한다. 
 				Src.second->CollisionActivate(Dst.second);
 				Dst.second->CollisionActivate(Src.second);
+				break;
 			}
 			else
 			{

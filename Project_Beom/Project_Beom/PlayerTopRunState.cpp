@@ -5,6 +5,7 @@
 #include "PlayerTopUpState.h"
 #include "PlayerTopDownMoveState.h"
 #include "PlayerTopStandAttState.h"
+#include "PlayerTopBombAttState.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
 
@@ -61,8 +62,12 @@ State* PlayerTopRunState::HandleInput(GameObject* object, KeyManager* input)
 	if (input->GetKeyState(STATE_DOWN, 'A'))
 		return new PlayerTopStandAttState();
 
-	if (input->GetKeyState(STATE_PUSH, 'S'))
+	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerTopJumpRunState();
+
+	// ¼ö·ùÅº
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerTopBombAttState();
 
 	return nullptr;
 }

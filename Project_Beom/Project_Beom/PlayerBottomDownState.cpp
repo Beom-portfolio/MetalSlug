@@ -4,6 +4,8 @@
 #include "PlayerBottomDownMoveState.h"
 #include "PlayerBottomJumpState.h"
 #include "PlayerBottomDownAttState.h"
+#include "PlayerBottomKnifeAttState.h"
+#include "PlayerBottomBombAttState.h"
 #include "PlayerBottom.h"
 #include "GameObject.h"
 
@@ -51,10 +53,18 @@ State* PlayerBottomDownState::HandleInput(GameObject* object, KeyManager* input)
 		return new PlayerBottomDownMoveState();
 
 	if (input->GetKeyState(STATE_DOWN, 'A'))
-		return new PlayerBottomDownAttState();
+	{
+		if(true == object->GetCollideCheck())
+			return new PlayerBottomKnifeAttState();
+		else
+			return new PlayerBottomDownAttState(); 
+	}
 
 	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerBottomJumpState();
+
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerBottomBombAttState();
 
 	return nullptr;
 }

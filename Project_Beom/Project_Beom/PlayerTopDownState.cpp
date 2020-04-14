@@ -28,9 +28,6 @@ void PlayerTopDownState::Enter(GameObject* object)
 
 State* PlayerTopDownState::HandleInput(GameObject* object, KeyManager* input)
 {
-	if(object->GetFallCheck())
-		return new PlayerTopStandState;
-
 	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
 		if (input->GetKeyState(STATE_PUSH, 'A'))
 			return new PlayerTopStandAttState;
@@ -42,6 +39,9 @@ State* PlayerTopDownState::HandleInput(GameObject* object, KeyManager* input)
 
 	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerTopUnderState();
+
+	if (object->GetFallCheck())
+		return new PlayerTopStandState;
 
 	return nullptr;
 }

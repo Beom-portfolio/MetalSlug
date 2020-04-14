@@ -154,6 +154,7 @@
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="BigExplosion.h" />
+    <ClInclude Include="Bomb.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constant.h" />
@@ -172,23 +173,28 @@
     <ClInclude Include="GranadeExplosion.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="MachinegunBullet.h" />
+    <ClInclude Include="MachinegunEffect.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Maingame.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="MediumExplosion.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PistolBullet.h" />
     <ClInclude Include="PistolEffect.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBottom.h" />
+    <ClInclude Include="PlayerBottomBombAttState.h" />
     <ClInclude Include="PlayerBottomDownAttState.h" />
     <ClInclude Include="PlayerBottomDownMoveState.h" />
     <ClInclude Include="PlayerBottomDownState.h" />
     <ClInclude Include="PlayerBottomJumpRunState.h" />
     <ClInclude Include="PlayerBottomJumpState.h" />
+    <ClInclude Include="PlayerBottomKnifeAttState.h" />
     <ClInclude Include="PlayerBottomRunState.h" />
     <ClInclude Include="PlayerTop.h" />
+    <ClInclude Include="PlayerTopBombAttState.h" />
     <ClInclude Include="PlayerTopDiagonalDownToStandState.h" />
     <ClInclude Include="PlayerTopDiagonalStandToDownState.h" />
     <ClInclude Include="PlayerTopDiagonalStandToUpState.h" />
@@ -196,8 +202,10 @@
     <ClInclude Include="PlayerTopDownMoveState.h" />
     <ClInclude Include="PlayerTopDownState.h" />
     <ClInclude Include="PlayerTopJumpAttState.h" />
+    <ClInclude Include="PlayerTopJumpBombAttState.h" />
     <ClInclude Include="PlayerTopJumpRunState.h" />
     <ClInclude Include="PlayerTopJumpState.h" />
+    <ClInclude Include="PlayerTopKnifeAttState.h" />
     <ClInclude Include="PlayerTopRunJumpAttState.h" />
     <ClInclude Include="PlayerTopRunState.h" />
     <ClInclude Include="PlayerTopStandAttState.h" />
@@ -222,6 +230,7 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BigExplosion.cpp" />
+    <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="FileManager.cpp" />
@@ -235,8 +244,10 @@
     <ClCompile Include="GranadeExplosion.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="MachinegunBullet.cpp" />
+    <ClCompile Include="MachinegunEffect.cpp" />
     <ClCompile Include="Maingame.cpp" />
     <ClCompile Include="MediumExplosion.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -248,13 +259,16 @@
     <ClCompile Include="PistolEffect.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBottom.cpp" />
+    <ClCompile Include="PlayerBottomBombAttState.cpp" />
     <ClCompile Include="PlayerBottomDownAttState.cpp" />
     <ClCompile Include="PlayerBottomDownMoveState.cpp" />
     <ClCompile Include="PlayerBottomDownState.cpp" />
     <ClCompile Include="PlayerBottomJumpRunState.cpp" />
     <ClCompile Include="PlayerBottomJumpState.cpp" />
+    <ClCompile Include="PlayerBottomKnifeAttState.cpp" />
     <ClCompile Include="PlayerBottomRunState.cpp" />
     <ClCompile Include="PlayerTop.cpp" />
+    <ClCompile Include="PlayerTopBombAttState.cpp" />
     <ClCompile Include="PlayerTopDiagonalDownToStandState.cpp" />
     <ClCompile Include="PlayerTopDiagonalStandToDownState.cpp" />
     <ClCompile Include="PlayerTopDiagonalStandToUpState.cpp" />
@@ -262,8 +276,10 @@
     <ClCompile Include="PlayerTopDownMoveState.cpp" />
     <ClCompile Include="PlayerTopDownState.cpp" />
     <ClCompile Include="PlayerTopJumpAttState.cpp" />
+    <ClCompile Include="PlayerTopJumpBombAttState.cpp" />
     <ClCompile Include="PlayerTopJumpRunState.cpp" />
     <ClCompile Include="PlayerTopJumpState.cpp" />
+    <ClCompile Include="PlayerTopKnifeAttState.cpp" />
     <ClCompile Include="PlayerTopRunJumpAttState.cpp" />
     <ClCompile Include="PlayerTopRunState.cpp" />
     <ClCompile Include="PlayerTopStandAttState.cpp" />

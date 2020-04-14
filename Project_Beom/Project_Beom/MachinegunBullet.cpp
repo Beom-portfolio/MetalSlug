@@ -4,6 +4,7 @@
 #include "MediumExplosion.h"
 #include "BigExplosion.h"
 #include "GranadeExplosion.h"
+#include "MachinegunEffect.h"
 
 MachinegunBullet::MachinegunBullet()
 {
@@ -78,8 +79,16 @@ void MachinegunBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget
 {
 	if (0 != dir)
 	{
-		GETMGR(ObjectManager)->AddObject(
-			AbstractFactory<BigExplosion>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y), OBJ_EFFECT);
+		GameObject* effect = AbstractFactory<MachinegunEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y);
+		if(DIR_LEFT & dir)
+			effect->SetDirection(DIR_LEFT);
+		if (DIR_RIGHT & dir)
+			effect->SetDirection(DIR_RIGHT);
+		if (DIR_TOP & dir)
+			effect->SetDirection(DIR_TOP);
+		if (DIR_BOTTOM & dir)
+			effect->SetDirection(DIR_BOTTOM);
+		GETMGR(ObjectManager)->AddObject(effect, OBJ_EFFECT);
 		m_isDead = true;
 	}
 }

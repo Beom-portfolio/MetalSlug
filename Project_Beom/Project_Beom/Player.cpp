@@ -17,21 +17,25 @@ Player::~Player()
 
 bool Player::Initialize()
 {
-	m_Info = GAMEOBJINFO{ 400, 300, 60, 100 };
-	m_CollideInfo = GAMEOBJINFO{ 0, 0, 60, 100 };
-	m_Speed = 500.f;
+	m_Info = GAMEOBJINFO{ 400, 300, 0, 0 };
+	m_CollideInfo = GAMEOBJINFO{ 0, 10, 55, 90 };
+
+	m_Speed = 300.f;
 	m_RenderType = RENDER_OBJ;
 
-	m_Bottom = new PlayerBottom;
-	m_Bottom->Initialize();
-	m_Top = new PlayerTop;
-	m_Top->Initialize();
+	m_Bottom = AbstractFactory<PlayerBottom>::CreateObj();
+	m_Top = AbstractFactory<PlayerTop>::CreateObj();
 
 	return true;
 }
 
 int Player::Update(const float& TimeDelta)
 {
+	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_DOWN))
+		m_CollideInfo = GAMEOBJINFO{ 0, 20, 55, 55 };
+	else
+		m_CollideInfo = GAMEOBJINFO{ 0, 10, 55, 90 };
+
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
 	{
 		m_Info.Pos_X -= m_Speed * TimeDelta;
@@ -91,10 +95,8 @@ int Player::Update(const float& TimeDelta)
 
 void Player::Render(HDC hdc)
 {
-	/*if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
+	if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
 		Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
-
-	Rectangle(hdc, m_Rect.left, m_Rect.top, m_Rect.right, m_Rect.bottom);*/
 
 	m_Bottom->Render(hdc);
 	m_Top->Render(hdc);
@@ -166,4 +168,16 @@ void Player::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 		}
 		m_Info.Pos_Y += count;
 	}
+}
+
+void Player::CollisionActivate(GameObject* collideTarget)
+{
+	m_Top->SetCollideCheck(true);
+	m_Bottom->SetCollideCheck(true);
+}
+
+void Player::CollisionDeactivate(GameObject* collideTarget)
+{
+	m_Top->SetCollideCheck(false);
+	m_Bottom->SetCollideCheck(false);
 }

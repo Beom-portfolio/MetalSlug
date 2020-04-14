@@ -3,6 +3,7 @@
 #include "PlayerTopStandState.h"
 #include "PlayerTopJumpState.h"
 #include "PlayerTopUnderAttState.h"
+#include "PlayerTopJumpBombAttState.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
 
@@ -47,6 +48,10 @@ State* PlayerTopUnderState::HandleInput(GameObject* object, KeyManager* input)
 
 	if(input->GetKeyState(STATE_DOWN, 'A'))
 		return new PlayerTopUnderAttState();
+
+	// ¼ö·ùÅº
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerTopJumpBombAttState();
 
 	return nullptr;
 }

@@ -16,6 +16,7 @@ public:
 	const bool& GetRenderCheck() { return m_renderCheck; }
 	const bool& GetFallCheck() { return m_fallCheck; }
 	const bool& GetCullingCheck() { return m_cullingCheck; }
+	const bool& GetCollideCheck() { return m_isCollide; }
 	const float& GetAngle() { return m_Angle; }
 	const float& GetSpeed() { return m_Speed; }
 	const float& GetGravity() { return m_GravitySpeed; }
@@ -32,15 +33,18 @@ public:
 	void SetCollideInfo(const GAMEOBJINFO& info);
 	void SetAngle(float angle);
 	void SetSpeed(float speed);
+	void SetGravitySpeed(float gravitySpeed);
 	void SetCollideOn(bool on);
 	void SetFall(bool fall);
 	void SetCulling(bool culling);
 	void SetRenderCheck(bool render);
+	void SetCollideCheck(bool collide);
 	void SetSpriteInfo(SPRITEINFO spriteInfo);
-	void SetDirection(DIRECTION dir);
 	void SetObjectType(OBJTYPE type);
 	void SetFollowedObj(GameObject* obj);
 	void SetHypotenuse(float hypotenuse);
+
+	virtual void SetDirection(DIRECTION dir);
 
 public:
 	bool LoadPixelCollider(const char* pFilePath,
@@ -82,6 +86,8 @@ protected:
 	bool			m_fallCheck = true;
 	bool			m_renderCheck = true;
 	bool			m_cullingCheck = false;
+	bool			m_isCollide = false;
+
 	// È¸Àü
 	float			m_Angle = 0.f;
 	float			m_DeltaX = 0.f;
@@ -91,6 +97,8 @@ protected:
 	float			m_Speed = 0.f;
 	float			m_GravitySpeed = 0.f;
 	float			m_GravityTime = 0.f;
+
+	int				m_Damage = 0;
 
 	POSITION        m_TotalPos;
 

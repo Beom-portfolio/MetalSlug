@@ -5,6 +5,7 @@
 #include "PlayerTopUpAttState.h"
 #include "PlayerTopDiagonalStandToUpState.h"
 #include "PlayerTopDiagonalStandToDownState.h"
+#include "PlayerTopJumpBombAttState.h"
 #include "PistolBullet.h"
 #include "MachinegunBullet.h"
 #include "PlayerTop.h"
@@ -64,6 +65,10 @@ void PlayerTopJumpAttState::Enter(GameObject* object)
 State* PlayerTopJumpAttState::HandleInput(GameObject* object, KeyManager* input)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
+
+	// ÆøÅº
+	if (input->GetKeyState(STATE_DOWN, 'D'))
+		return new PlayerTopJumpBombAttState();
 
 	// ´Ù½Ã °ø°Ý
 	if (input->GetKeyState(STATE_DOWN, 'A'))

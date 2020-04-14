@@ -11,13 +11,13 @@ GranadeExplosion::~GranadeExplosion()
 
 bool GranadeExplosion::Initialize()
 {
-	m_Info = GAMEOBJINFO{ 0, 0, 200, 200 };
+	m_Info = GAMEOBJINFO{ 0, 0, 100, 200 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
 	m_ObjType = OBJ_EFFECT;
 	m_RenderType = RENDER_EFFECT;
 	m_SpriteInfo.key = L"effect_granade_explosion";
-	m_SpriteInfo.MaxFrame = 20;
-	m_SpriteInfo.Speed = 25.f;
+	m_SpriteInfo.MaxFrame = 23;
+	m_SpriteInfo.Speed = 35.f;
 
 	return true;
 }
@@ -43,7 +43,7 @@ void GranadeExplosion::Render(HDC hdc)
 		hMemDC,
 		(int)m_SpriteInfo.SpriteIndex * m_Info.Size_X,
 		m_SpriteInfo.StateIndex * m_Info.Size_Y,
-		m_Info.Size_X, m_Info.Size_Y, RGB(86, 177, 222));
+		m_Info.Size_X, m_Info.Size_Y, RGB(255, 0, 255));
 }
 
 void GranadeExplosion::Release()

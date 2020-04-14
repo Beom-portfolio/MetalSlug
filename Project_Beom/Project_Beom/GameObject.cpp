@@ -51,6 +51,11 @@ void GameObject::SetSpeed(float speed)
 	m_Speed = speed;
 }
 
+void GameObject::SetGravitySpeed(float gravitySpeed)
+{
+	m_GravitySpeed = gravitySpeed;
+}
+
 void GameObject::SetCollideOn(bool on)
 {
 	m_isCollideOn = on;
@@ -81,6 +86,11 @@ void GameObject::SetCulling(bool culling)
 void GameObject::SetRenderCheck(bool render)
 {
 	m_renderCheck = render;
+}
+
+void GameObject::SetCollideCheck(bool collide)
+{
+	m_isCollide = collide;
 }
 
 void GameObject::SetSpriteInfo(SPRITEINFO spriteInfo)
