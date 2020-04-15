@@ -154,6 +154,7 @@
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="BigExplosion.h" />
+    <ClInclude Include="Blood.h" />
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -219,6 +220,13 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="PlayerBottomStandState.h" />
+    <ClInclude Include="Soldier.h" />
+    <ClInclude Include="SoldierBomb.h" />
+    <ClInclude Include="SoldierBombAttState.h" />
+    <ClInclude Include="SoldierDieState.h" />
+    <ClInclude Include="SoldierIdleState.h" />
+    <ClInclude Include="SoldierKnifeState.h" />
+    <ClInclude Include="SoldierRunState.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="System.h" />
@@ -230,6 +238,7 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BigExplosion.cpp" />
+    <ClCompile Include="Blood.cpp" />
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -292,6 +301,13 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="PlayerBottomStandState.cpp" />
+    <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="SoldierBomb.cpp" />
+    <ClCompile Include="SoldierBombAttState.cpp" />
+    <ClCompile Include="SoldierDieState.cpp" />
+    <ClCompile Include="SoldierIdleState.cpp" />
+    <ClCompile Include="SoldierKnifeState.cpp" />
+    <ClCompile Include="SoldierRunState.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="TestScene.cpp" />

@@ -17,12 +17,12 @@ void CollisionManager::CollisionRect(ObjectManager::MAPOBJ* DstList, ObjectManag
 
 	for (auto& Dst : *DstList)
 	{
-		if (true == Dst.second->GetState())
+		if (Dst.second->GetDeadCheck() || !Dst.second->GetCollideOnCheck())
 			continue;
 
 		for (auto& Src : *SrcList)
 		{
-			if (true == Src.second->GetState())
+			if (Src.second->GetDeadCheck() || !Src.second->GetCollideOnCheck())
 				continue;
 
 			if (IntersectRect(&rc, &Dst.second->GetCollideRect(), &Src.second->GetCollideRect()))
@@ -49,12 +49,12 @@ void CollisionManager::CollisionRectEx(ObjectManager::MAPOBJ* DstList, ObjectMan
 
 	for (auto& Dst : *DstList)
 	{
-		if (true == Dst.second->GetState())
+		if (Dst.second->GetDeadCheck() || !Dst.second->GetCollideOnCheck())
 			continue;
 
 		for (auto& Src : *SrcList)
 		{
-			if (true == Src.second->GetState())
+			if (Src.second->GetDeadCheck() || !Src.second->GetCollideOnCheck())
 				continue;
 
 			if (CheckCollisionRectDist(&moveX, &moveY, Dst.second, Src.second))
@@ -91,7 +91,7 @@ void CollisionManager::CollisionPixelToRectDir(ObjectManager::MAPOBJ* pixel, Obj
 {
 	for (auto& Dst : *pixel)
 	{
-		if (true == Dst.second->GetState())
+		if (Dst.second->GetDeadCheck() || !Dst.second->GetCollideOnCheck())
 			continue;
 
 		const PIXELCOLLIDERINFO* pixelCollide = Dst.second->GetPixelCollider();
@@ -161,7 +161,7 @@ void CollisionManager::CollisionPixelToPoint(ObjectManager::MAPOBJ* pixel, Objec
 {
 	for (auto& Dst : *pixel)
 	{
-		if (true == Dst.second->GetState())
+		if (true == Dst.second->GetDeadCheck())
 			continue;
 
 		const PIXELCOLLIDERINFO* pixelCollide = Dst.second->GetPixelCollider();

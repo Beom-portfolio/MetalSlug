@@ -8,6 +8,7 @@
 #include "Background.h"
 #include "PistolBullet.h"
 #include "Monster.h"
+#include "Soldier.h"
 
 TestScene::TestScene()
 {
@@ -23,13 +24,13 @@ bool TestScene::Initialize()
 	m_CamManager->SetTarget(player);
 	m_CamManager->SetResolution(4200, 600);
 	m_CamManager->SetOffset(50, 50, 50, 50);
-	m_CamManager->SetFixPos(200, 300);
+	m_CamManager->SetFixPos(400, 300);
 
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
 	m_ObjManager->AddObject(L"Background", AbstractFactory<Background>::CreateObj(), OBJ_BACK);
-	m_ObjManager->AddObject(L"Monster", AbstractFactory<Monster>::CreateObj(), OBJ_MONSTER);
-	m_ObjManager->AddObject(L"Monster", AbstractFactory<Monster>::CreateObj(500, 300), OBJ_MONSTER);
+	m_ObjManager->AddObject(L"Monster", AbstractFactory<Soldier>::CreateObj(600, 300), OBJ_MONSTER);
+	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Monster>::CreateObj(500, 300), OBJ_MONSTER);
 	return true;
 }
 
@@ -42,6 +43,11 @@ int TestScene::Update(const float& TimeDelta)
 		GET_MANAGER<CollisionManager>()->GetRenderCheck() ? 
 			GET_MANAGER<CollisionManager>()->SetRenderCheck(false) 
 			: GET_MANAGER<CollisionManager>()->SetRenderCheck(true);
+	}
+
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F3))
+	{
+		m_ObjManager->AddObject(L"Monster", AbstractFactory<Soldier>::CreateObj(500 + rand() % 100 - rand() % 100, 300), OBJ_MONSTER);
 	}
 
 	return 0;

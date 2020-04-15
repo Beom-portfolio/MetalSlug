@@ -22,7 +22,7 @@ void PlayerBottomRunState::Enter(GameObject* object)
 		info.key = L"bottom_run_l";
 	info.Type = SPRITE_REPEAT;
 	info.MaxFrame = 12;
-	info.Speed = 15.f;
+	info.Speed = 25.f;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
 

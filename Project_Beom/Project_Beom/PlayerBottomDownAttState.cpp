@@ -118,7 +118,7 @@ void PlayerBottomDownAttState::Update(GameObject* object, const float& TimeDelta
 			posY = object->GetOriginCollidePosition().Y;
 			bullet->SetDirection(m_originDir);
 			bullet->SetPosition(posX, posY);
-			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+			GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 
 			m_onceCheck = true;
 		}
@@ -148,7 +148,7 @@ void PlayerBottomDownAttState::Update(GameObject* object, const float& TimeDelta
 					posY = object->GetOriginCollidePosition().Y + 10.f - (10.f * (i - 1));
 				bullet->SetDirection(m_originDir);
 				bullet->SetPosition(posX, posY);
-				GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 				++m_count;
 			}
 		}

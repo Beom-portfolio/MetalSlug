@@ -14,8 +14,8 @@ PlayerBottom::~PlayerBottom()
 bool PlayerBottom::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 400, 267 };
-	
 
+	m_Direction = DIR_RIGHT;
 	m_State = new PlayerBottomStandState;
 	m_State->Enter(this);
 

@@ -61,10 +61,15 @@ void ObjectManager::Update(const float& TimeDelta)
 {
 	// Collision
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_PLAYER_BULLET]);
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER_BULLET]);
 	//GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
+
+	// 지형
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_MONSTER]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER]);
-	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_BULLET]);
+	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER_BULLET]);
+	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_MONSTER_BULLET]);
 
 	// Culling Check
 	POSITION CamPos = GETMGR(CameraManager)->GetPos();
@@ -85,7 +90,9 @@ void ObjectManager::Update(const float& TimeDelta)
 			(*iter).second->SetCulling(CullingCheck((*iter).second));
 
 			// 죽은 상태라면 컨테이너에서 삭제한다.
-			if (true == (*iter).second->GetState())
+			// 사라지지 않는 객체는 죽더라도 지우지 않는다.
+			if ((*iter).second->GetDeadCheck() && 
+				!(*iter).second->GetNotDeadCheck())
 			{
 				delete (*iter).second;
 				(*iter).second = nullptr;

@@ -13,5 +13,6 @@ public:
 
 protected:
 	bool m_onceCheck = false;
+	float m_timeStack = 0.f;
 };
 

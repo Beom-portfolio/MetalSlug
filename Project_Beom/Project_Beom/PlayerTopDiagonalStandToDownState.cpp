@@ -74,7 +74,7 @@ void PlayerTopDiagonalStandToDownState::Update(GameObject* object, const float& 
 			T.Y += object->GetInfo().Pos_Y;
 			bullet->SetPosition(T.X, T.Y);
 			bullet->SetAngle(angle);
-			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+			GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 			++m_count;
 		}
 	}

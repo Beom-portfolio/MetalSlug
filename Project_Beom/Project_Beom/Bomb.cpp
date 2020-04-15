@@ -14,7 +14,7 @@ bool Bomb::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 40, 40 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 30, 30 };
-	m_ObjType = OBJ_BULLET;
+	m_ObjType = OBJ_PLAYER_BULLET;
 	m_RenderType = RENDER_OBJ;
 	m_SpriteInfo.key = L"bomb_bullet";
 	m_SpriteInfo.MaxFrame = 32;
@@ -133,7 +133,7 @@ void Bomb::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 			{
 				GameObject* effect = AbstractFactory<GranadeExplosion>::CreateObj();
 				effect->SetPosition(m_Info.Pos_X, m_Info.Pos_Y - 80.f);
-				GETMGR(ObjectManager)->AddObject(effect, OBJ_BULLET);
+				GETMGR(ObjectManager)->AddObject(effect, OBJ_PLAYER_BULLET);
 				m_isDead = true;
 			}
 		}
@@ -143,5 +143,13 @@ void Bomb::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 		if(m_isCollide)
 			if (dir & DIR_LEFT || dir & DIR_RIGHT)
 				m_Speed = 0.f;
+
+		if (dir & DIR_TOP)
+		{
+			GameObject* effect = AbstractFactory<GranadeExplosion>::CreateObj();
+			effect->SetPosition(m_Info.Pos_X, m_Info.Pos_Y - 80.f);
+			GETMGR(ObjectManager)->AddObject(effect, OBJ_PLAYER_BULLET);
+			m_isDead = true;
+		}
 	}
 }

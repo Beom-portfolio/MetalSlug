@@ -126,7 +126,7 @@ void PlayerTopJumpAttState::Update(GameObject* object, const float& TimeDelta)
 			bullet->SetDirection(m_originDir);
 			bullet->SetPosition(posX, posY);
 			bullet->SetSpeed(bullet->GetSpeed() + object->GetSpeed());
-			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+			GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 
 			m_onceCheck = true;
 		}
@@ -157,7 +157,7 @@ void PlayerTopJumpAttState::Update(GameObject* object, const float& TimeDelta)
 				bullet->SetDirection(m_originDir);
 				bullet->SetPosition(posX, posY);
 				bullet->SetSpeed(bullet->GetSpeed() + object->GetSpeed());
-				GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 				++m_count;
 			}
 		}

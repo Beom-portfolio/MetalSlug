@@ -21,8 +21,13 @@ public:
 public:
 	virtual void CollisionActivate(GameObject* collideTarget);
 	virtual void CollisionDeactivate(GameObject* collideTarget);
+
+private:
+	int UpdateInput(const float& TimeDelta);
+
 private:
 	GameObject* m_Bottom = nullptr;
 	GameObject* m_Top = nullptr;
+	bool m_spawnCheck = false;
 };
 

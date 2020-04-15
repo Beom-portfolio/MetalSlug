@@ -135,7 +135,7 @@ void PlayerTopUpAttState::Update(GameObject* object, const float& TimeDelta)
 			posY = (float)object->GetOriginCollideRect().top;
 			bullet->SetDirection(DIR_TOP);
 			bullet->SetPosition(posX, posY);
-			GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+			GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 
 			m_onceCheck = true;
 		}
@@ -158,7 +158,7 @@ void PlayerTopUpAttState::Update(GameObject* object, const float& TimeDelta)
 				bullet->SetAngle(90.f);
 				bullet->SetDirection(DIR_TOP);
 				bullet->SetPosition(posX, posY);
-				GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 				++m_count;
 			}
 		}

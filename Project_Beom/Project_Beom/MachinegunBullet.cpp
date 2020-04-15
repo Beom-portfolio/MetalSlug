@@ -18,7 +18,7 @@ bool MachinegunBullet::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 60, 60 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 20 };
-	m_ObjType = OBJ_BULLET;
+	m_ObjType = OBJ_PLAYER_BULLET;
 	m_RenderType = RENDER_OBJ;
 	m_SpriteInfo.key = L"machinegun_bullet";
 
@@ -91,4 +91,9 @@ void MachinegunBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget
 		GETMGR(ObjectManager)->AddObject(effect, OBJ_EFFECT);
 		m_isDead = true;
 	}
+}
+
+void MachinegunBullet::CollisionActivate(GameObject* collideTarget)
+{
+	m_isDead = true;
 }

@@ -142,9 +142,6 @@
     <Filter Include="02.GameObejct\Player\Top\State\Attack\Knife">
       <UniqueIdentifier>{55555c8d-18c2-4b36-a206-f801684d97ce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObejct\Player\Bottom\Att">
-      <UniqueIdentifier>{2edb2271-ecff-4cfc-88d8-527c42328a39}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Bullet">
       <UniqueIdentifier>{84f66ac9-a349-4e9d-a368-c93e662aa99b}</UniqueIdentifier>
     </Filter>
@@ -157,9 +154,6 @@
     <Filter Include="02.GameObejct\Player\Top\State\Attack\Gun">
       <UniqueIdentifier>{2c4f88dd-8cba-46c3-a33d-11c7ace654c7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObejct\Player\Bottom\Att\Gun">
-      <UniqueIdentifier>{c90b504c-bcdb-4210-a697-05243da4bbcd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Bullet\Machinegun">
       <UniqueIdentifier>{53f62d16-8a6a-4038-90c3-8c9a00c6c07b}</UniqueIdentifier>
     </Filter>
@@ -169,20 +163,35 @@
     <Filter Include="02.GameObejct\Effect\Machinegun">
       <UniqueIdentifier>{df07d384-62dd-4041-b9e6-df2e3e09fabe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObejct\Player\Bottom\Att\Knife">
-      <UniqueIdentifier>{1d182cb2-104d-4314-9bc6-accf6cd80b81}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Player\Top\State\Attack\Bomb">
       <UniqueIdentifier>{c9151e79-7db9-4a16-be8f-1c43135e1124}</UniqueIdentifier>
     </Filter>
     <Filter Include="02.GameObejct\Player\Top\State\Attack\Machinegun">
       <UniqueIdentifier>{10d275ae-fba5-48b8-8395-83076d5c3565}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02.GameObejct\Player\Bottom\Att\Bomb">
-      <UniqueIdentifier>{209d1ff1-2775-4f84-96cc-85dfcb714482}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Bullet\Bomb">
       <UniqueIdentifier>{992706c1-6afb-4a56-bb1b-5d553ca322e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Soldier">
+      <UniqueIdentifier>{64523efb-60a2-457c-a395-ddc4aa0dbd28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Attack">
+      <UniqueIdentifier>{2edb2271-ecff-4cfc-88d8-527c42328a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Attack\Gun">
+      <UniqueIdentifier>{c90b504c-bcdb-4210-a697-05243da4bbcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Attack\Knife">
+      <UniqueIdentifier>{1d182cb2-104d-4314-9bc6-accf6cd80b81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Player\Bottom\State\Attack\Bomb">
+      <UniqueIdentifier>{209d1ff1-2775-4f84-96cc-85dfcb714482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Soldier\State">
+      <UniqueIdentifier>{aadb9dfb-f8d5-4c1a-8fc4-b23a278e51e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Effect\Blood">
+      <UniqueIdentifier>{eb1f2bdf-897d-4401-a496-e15376fb68fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -352,7 +361,7 @@
       <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBottomDownAttState.h">
-      <Filter>02.GameObejct\Player\Bottom\Att\Gun</Filter>
+      <Filter>02.GameObejct\Player\Bottom\State\Attack\Gun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopRunJumpAttState.h">
       <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
@@ -385,7 +394,7 @@
       <Filter>02.GameObejct\Player\Top\State\Attack\Knife</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBottomKnifeAttState.h">
-      <Filter>02.GameObejct\Player\Bottom\Att\Knife</Filter>
+      <Filter>02.GameObejct\Player\Bottom\State\Attack\Knife</Filter>
     </ClInclude>
     <ClInclude Include="PlayerTopBombAttState.h">
       <Filter>02.GameObejct\Player\Top\State\Attack\Bomb</Filter>
@@ -406,10 +415,34 @@
       <Filter>02.GameObejct\Player\Top\State\Attack\Machinegun</Filter>
     </ClInclude>
     <ClInclude Include="PlayerBottomBombAttState.h">
-      <Filter>02.GameObejct\Player\Bottom\Att\Bomb</Filter>
+      <Filter>02.GameObejct\Player\Bottom\State\Attack\Bomb</Filter>
     </ClInclude>
     <ClInclude Include="Bomb.h">
       <Filter>02.GameObejct\Bullet\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="Soldier.h">
+      <Filter>02.GameObejct\Monster\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierIdleState.h">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierBombAttState.h">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierDieState.h">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierKnifeState.h">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierRunState.h">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SoldierBomb.h">
+      <Filter>02.GameObejct\Bullet\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="Blood.h">
+      <Filter>99.Default\헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -546,7 +579,7 @@
       <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBottomDownAttState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\Att\Gun</Filter>
+      <Filter>02.GameObejct\Player\Bottom\State\Attack\Gun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopRunJumpAttState.cpp">
       <Filter>02.GameObejct\Player\Top\State\Attack\Gun</Filter>
@@ -579,7 +612,7 @@
       <Filter>02.GameObejct\Player\Top\State\Attack\Knife</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBottomKnifeAttState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\Att\Knife</Filter>
+      <Filter>02.GameObejct\Player\Bottom\State\Attack\Knife</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopBombAttState.cpp">
       <Filter>02.GameObejct\Player\Top\State\Attack\Bomb</Filter>
@@ -600,10 +633,34 @@
       <Filter>02.GameObejct\Player\Top\State\Attack\Machinegun</Filter>
     </ClCompile>
     <ClCompile Include="PlayerBottomBombAttState.cpp">
-      <Filter>02.GameObejct\Player\Bottom\Att\Bomb</Filter>
+      <Filter>02.GameObejct\Player\Bottom\State\Attack\Bomb</Filter>
     </ClCompile>
     <ClCompile Include="Bomb.cpp">
       <Filter>02.GameObejct\Bullet\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="Soldier.cpp">
+      <Filter>02.GameObejct\Monster\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierIdleState.cpp">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierBombAttState.cpp">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierDieState.cpp">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierKnifeState.cpp">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierRunState.cpp">
+      <Filter>02.GameObejct\Monster\Soldier\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SoldierBomb.cpp">
+      <Filter>02.GameObejct\Bullet\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="Blood.cpp">
+      <Filter>99.Default\소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

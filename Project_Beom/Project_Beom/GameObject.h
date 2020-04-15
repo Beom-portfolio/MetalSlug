@@ -12,11 +12,13 @@ public:
 	const RECT& GetCollideRect() { return m_CollideRect; }
 	const RECT& GetOriginCollideRect() { return m_OriginCollideRect; }
 	const RENDERTYPE& GetRenderType() { return m_RenderType; }
-	const bool& GetState() { return m_isDead; }
+	const bool& GetDeadCheck() { return m_isDead; }
+	const bool& GetNotDeadCheck() { return m_isNotDead; }
 	const bool& GetRenderCheck() { return m_renderCheck; }
 	const bool& GetFallCheck() { return m_fallCheck; }
 	const bool& GetCullingCheck() { return m_cullingCheck; }
 	const bool& GetCollideCheck() { return m_isCollide; }
+	const bool& GetCollideOnCheck() { return m_isCollideOn; }
 	const float& GetAngle() { return m_Angle; }
 	const float& GetSpeed() { return m_Speed; }
 	const float& GetGravity() { return m_GravitySpeed; }
@@ -24,6 +26,7 @@ public:
 	const SPRITEINFO& GetSpriteInfo() { return m_SpriteInfo; }
 	const DIRECTION& GetDirection() { return m_Direction; }
 	const OBJTYPE& GetObjectType() { return m_ObjType; }
+	const POSITION GetPosition() { return POSITION{m_Info.Pos_X, m_Info.Pos_Y}; }
 	const POSITION& GetTotalPosition() { return m_TotalPos; }
 	const POSITION& GetOriginCollidePosition() { return m_OriginCollidePos; }
 
@@ -33,6 +36,7 @@ public:
 	void SetCollideInfo(const GAMEOBJINFO& info);
 	void SetAngle(float angle);
 	void SetSpeed(float speed);
+	void SetDead(float state);
 	void SetGravitySpeed(float gravitySpeed);
 	void SetCollideOn(bool on);
 	void SetFall(bool fall);
@@ -65,7 +69,7 @@ protected:
 protected:
 	GAMEOBJINFO		m_Info;
 	SPRITEINFO		m_SpriteInfo;
-	RENDERTYPE		m_RenderType = RENDER_END;
+	RENDERTYPE		m_RenderType = RENDER_OBJ;
 	DIRECTION		m_Direction = DIR_END;
 	DWORD			m_Dir = 0;
 
@@ -82,6 +86,7 @@ protected:
 
 	bool			m_isNoScroll = false;
 	bool			m_isDead = false;
+	bool			m_isNotDead = false;
 	bool			m_isCollideOn = true;
 	bool			m_fallCheck = true;
 	bool			m_renderCheck = true;
@@ -97,9 +102,9 @@ protected:
 	float			m_Speed = 0.f;
 	float			m_GravitySpeed = 0.f;
 	float			m_GravityTime = 0.f;
+	float			m_TimeStack = 0.f;
 
 	int				m_Damage = 0;
-
 	POSITION        m_TotalPos;
 
 	// 따라다녀야 할 오브젝트

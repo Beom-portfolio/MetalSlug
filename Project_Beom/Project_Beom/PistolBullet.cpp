@@ -15,7 +15,7 @@ bool PistolBullet::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 20, 20 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 20 };
-	m_ObjType = OBJ_BULLET;
+	m_ObjType = OBJ_PLAYER_BULLET;
 	m_RenderType = RENDER_OBJ;
 	m_SpriteInfo.key = L"pistol_bullet";
 

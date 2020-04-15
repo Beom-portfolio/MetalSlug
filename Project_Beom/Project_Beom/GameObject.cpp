@@ -51,6 +51,11 @@ void GameObject::SetSpeed(float speed)
 	m_Speed = speed;
 }
 
+void GameObject::SetDead(float state)
+{
+	m_isDead = state;
+}
+
 void GameObject::SetGravitySpeed(float gravitySpeed)
 {
 	m_GravitySpeed = gravitySpeed;
@@ -206,12 +211,12 @@ bool GameObject::LoadPixelCollider(const char* pFilePath, unsigned char r, unsig
 
 int GameObject::Update(const float& TimeDelta)
 {
+	m_TimeStack += TimeDelta;
+
 	POSITION CamPos = GET_MANAGER<CameraManager>()->GetPos();
 
-	if (true == m_isNoScroll)
-	{
+	if (m_isNoScroll)
 		ZeroMemory(&CamPos, sizeof(POSITION));
-	}
 
 	m_TotalPos = POSITION{ m_Info.Pos_X + CamPos.X , m_Info.Pos_Y + CamPos.Y };
 
@@ -226,6 +231,7 @@ int GameObject::Update(const float& TimeDelta)
 	m_CollideRect.top = (int)(m_TotalPos.Y + m_CollideInfo.Pos_Y) - m_CollideInfo.Size_Y / 2;
 	m_CollideRect.right = (int)(m_TotalPos.X + m_CollideInfo.Pos_X) + m_CollideInfo.Size_X / 2;
 	m_CollideRect.bottom = (int)(m_TotalPos.Y + m_CollideInfo.Pos_Y) + m_CollideInfo.Size_Y / 2;
+
 
 	// 카메라 좌표 포함
 	m_OriginCollideRect.left = (int)(m_Info.Pos_X + m_CollideInfo.Pos_X) - m_CollideInfo.Size_X / 2;

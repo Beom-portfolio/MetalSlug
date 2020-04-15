@@ -89,7 +89,7 @@ void PlayerTopJumpBombAttState::Update(GameObject* object, const float& TimeDelt
 		bullet->SetPosition(posX, posY);
 		bullet->SetGravitySpeed(-190);
 		bullet->SetSpeed(390.f + object->GetSpeed() * 0.2f);
-		GETMGR(ObjectManager)->AddObject(bullet, OBJ_BULLET);
+		GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
 		m_onceCheck = true;
 	}
 
