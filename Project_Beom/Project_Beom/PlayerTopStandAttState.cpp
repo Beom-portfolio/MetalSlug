@@ -58,7 +58,7 @@ void PlayerTopStandAttState::Enter(GameObject* object)
 		}
 	}
 	info.Type = SPRITE_ONCE;
-	info.Speed = 20.f;
+	info.Speed = GUN_SPEED;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
 

@@ -137,7 +137,7 @@ void Soldier::CollisionActivate(GameObject* collideTarget)
 
 void Soldier::AI()
 {
-	State* state = m_State->HandleInput(this, GETMGR(KeyManager));
+	State* state = m_State->HandleInput(this, nullptr);
 	if (nullptr != state)
 	{
 		SAFE_DELETE(m_State);

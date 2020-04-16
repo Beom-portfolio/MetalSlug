@@ -4,6 +4,7 @@
 #include "PlayerTopDownState.h"
 #include "PlayerTopJumpState.h"
 #include "GameObject.h"
+#include "KnifeBullet.h"
 
 PlayerTopKnifeAttState::PlayerTopKnifeAttState()
 {
@@ -67,5 +68,19 @@ void PlayerTopKnifeAttState::Update(GameObject* object, const float& TimeDelta)
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 	info.SpriteIndex += info.Speed * TimeDelta;
+
+	if (!m_onceCheck && 1.f <= info.SpriteIndex)
+	{
+		GameObject* bullet = AbstractFactory<KnifeBullet>::CreateObj();
+		bullet->SetPosition(object->GetPosition().X, object->GetPosition().Y);
+		if (DIR_RIGHT == m_originDir)
+			bullet->SetCollideInfo(GAMEOBJINFO{ 20, 0, 75, 90 });
+		else
+			bullet->SetCollideInfo(GAMEOBJINFO{ -20, 0, 75, 90 });
+
+		GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
+		m_onceCheck = true;
+	}
+
 	object->SetSpriteInfo(info);
 }

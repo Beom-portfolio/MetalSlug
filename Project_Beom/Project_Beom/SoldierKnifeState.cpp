@@ -2,6 +2,7 @@
 #include "SoldierKnifeState.h"
 #include "SoldierIdleState.h"
 #include "GameObject.h"
+#include "KnifeBullet.h"
 
 SoldierKnifeState::SoldierKnifeState()
 {
@@ -50,6 +51,19 @@ void SoldierKnifeState::Update(GameObject* object, const float& TimeDelta)
 	{
 		info.SpriteIndex = (float)(info.MaxFrame - 1);
 		m_SpriteReverseCheck = true;
+	}
+
+	if (!m_onceCheck && 7.f <= info.SpriteIndex)
+	{
+		GameObject* bullet = AbstractFactory<KnifeBullet>::CreateObj();
+		bullet->SetPosition(object->GetPosition().X, object->GetPosition().Y);
+		if (DIR_RIGHT == object->GetDirection())
+			bullet->SetCollideInfo(GAMEOBJINFO{ 60, 0, 65, 60 });
+		else
+			bullet->SetCollideInfo(GAMEOBJINFO{ -60, 0, 65, 60 });
+
+		GETMGR(ObjectManager)->AddObject(bullet, OBJ_MONSTER_BULLET);
+		m_onceCheck = true;
 	}
 
 	object->SetSpriteInfo(info);

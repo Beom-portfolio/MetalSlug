@@ -9,6 +9,7 @@
 #include "PistolBullet.h"
 #include "Monster.h"
 #include "Soldier.h"
+#include "Tank.h"
 
 TestScene::TestScene()
 {
@@ -23,13 +24,13 @@ bool TestScene::Initialize()
 	GameObject* player = AbstractFactory<Player>::CreateObj();
 	m_CamManager->SetTarget(player);
 	m_CamManager->SetResolution(4200, 600);
-	m_CamManager->SetOffset(50, 50, 50, 50);
-	m_CamManager->SetFixPos(400, 300);
+	m_CamManager->SetOffset(10, 10, 10, 10);
+	m_CamManager->SetFixPos(300, 300);
 
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
 	m_ObjManager->AddObject(L"Background", AbstractFactory<Background>::CreateObj(), OBJ_BACK);
-	m_ObjManager->AddObject(L"Monster", AbstractFactory<Soldier>::CreateObj(600, 300), OBJ_MONSTER);
+	m_ObjManager->AddObject(L"Monster", AbstractFactory<Tank>::CreateObj(600, 300), OBJ_MONSTER);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Monster>::CreateObj(500, 300), OBJ_MONSTER);
 	return true;
 }

@@ -17,3 +17,11 @@ inline const POSITION AnglePos(const float& posX, const float& posY, const float
 	return POSITION{posX + (cosf(ToRadian(angle)) * (float)length),
 					posY - (sinf(ToRadian(angle)) * (float)length)};
 }
+
+inline const float GetDistance(const POSITION& a, const POSITION& b)
+{
+	float distX = abs(a.X - b.X);
+	float distY = abs(a.Y - b.Y);
+
+	return sqrtf(distX * distX + distY * distY);
+}

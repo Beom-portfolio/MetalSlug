@@ -18,9 +18,9 @@ Player::~Player()
 bool Player::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 400, 300, 400, 267 };
-	m_CollideInfo = GAMEOBJINFO{ 0, 10, 55, 90 };
+	m_CollideInfo = GAMEOBJINFO{ 0, 10, 65, 90 };
 
-	m_Speed = 300.f;
+	m_Speed = 250.f;
 	m_RenderType = RENDER_OBJ;
 
 	m_Bottom = AbstractFactory<PlayerBottom>::CreateObj();
@@ -50,6 +50,7 @@ bool Player::Initialize()
 
 int Player::Update(const float& TimeDelta)
 {
+	// 죽음 모션
 	if (m_isDead)
 	{
 		m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
@@ -90,6 +91,7 @@ int Player::Update(const float& TimeDelta)
 		}
 	}
 
+	// 스폰 모션
 	if (!m_fallCheck && m_spawnCheck)
 	{
 		m_renderCheck = true;
@@ -101,16 +103,18 @@ int Player::Update(const float& TimeDelta)
 		}
 	}
 
+	// 중력
 	{
 		if (m_fallCheck)
 		{
 			m_GravityTime += TimeDelta;
-			m_GravitySpeed += GRAVITY_ACC * m_GravityTime;
+			m_GravitySpeed += GRAVITY_ACC * 1.5f * m_GravityTime;
 			m_Info.Pos_Y += m_GravitySpeed * TimeDelta;
 		}
 	}
 
 	// update part
+	// 상 하체 업데이트
 	if(!m_isDead && !m_spawnCheck)
 	{ 	
 		if (m_TimeStack <= 2.f)
@@ -293,7 +297,7 @@ int Player::UpdateInput(const float& TimeDelta)
 			m_Direction = DIR_RIGHT;
 	}
 
-	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'S'))
+	if (!m_fallCheck && GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'S'))
 	{
 		SetFall(true);
 		m_GravitySpeed = -300.f;

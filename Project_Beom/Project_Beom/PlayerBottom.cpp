@@ -26,7 +26,7 @@ int PlayerBottom::Update(const float& TimeDelta)
 {
 	m_State->Update(this, TimeDelta);
 	HandleInput();
-
+	m_isCollide = false;
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;
 

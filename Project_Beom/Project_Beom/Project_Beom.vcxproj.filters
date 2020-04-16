@@ -193,6 +193,15 @@
     <Filter Include="02.GameObejct\Effect\Blood">
       <UniqueIdentifier>{eb1f2bdf-897d-4401-a496-e15376fb68fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Bullet\Knife">
+      <UniqueIdentifier>{5524ffd9-14ad-41d9-81d8-4e2b903822c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Tank">
+      <UniqueIdentifier>{ba7f4c2b-ddf7-4590-a5af-99bef9066927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Tank\State">
+      <UniqueIdentifier>{8ccf712c-d6e8-4d6e-91d6-454ee2039d5f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -442,7 +451,25 @@
       <Filter>02.GameObejct\Bullet\Bomb</Filter>
     </ClInclude>
     <ClInclude Include="Blood.h">
-      <Filter>99.Default\헤더 파일</Filter>
+      <Filter>02.GameObejct\Effect\Blood</Filter>
+    </ClInclude>
+    <ClInclude Include="KnifeBullet.h">
+      <Filter>02.GameObejct\Bullet\Knife</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>02.GameObejct\Monster\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="TankDieState.h">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClInclude>
+    <ClInclude Include="TankIdleState.h">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClInclude>
+    <ClInclude Include="TankPrepareState.h">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClInclude>
+    <ClInclude Include="TankRunState.h">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -660,7 +687,25 @@
       <Filter>02.GameObejct\Bullet\Bomb</Filter>
     </ClCompile>
     <ClCompile Include="Blood.cpp">
-      <Filter>99.Default\소스 파일</Filter>
+      <Filter>02.GameObejct\Effect\Blood</Filter>
+    </ClCompile>
+    <ClCompile Include="KnifeBullet.cpp">
+      <Filter>02.GameObejct\Bullet\Knife</Filter>
+    </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>02.GameObejct\Monster\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="TankDieState.cpp">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TankIdleState.cpp">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TankPrepareState.cpp">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TankRunState.cpp">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

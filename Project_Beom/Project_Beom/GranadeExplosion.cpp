@@ -12,7 +12,7 @@ GranadeExplosion::~GranadeExplosion()
 bool GranadeExplosion::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 100, 200 };
-	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
+	m_CollideInfo = GAMEOBJINFO{ 0, 0, 100, 200 };
 	m_ObjType = OBJ_EFFECT;
 	m_RenderType = RENDER_EFFECT;
 	m_SpriteInfo.key = L"effect_granade_explosion";
@@ -24,6 +24,9 @@ bool GranadeExplosion::Initialize()
 
 int GranadeExplosion::Update(const float& TimeDelta)
 {
+	if (m_TimeStack > 0.1f)
+		m_isCollideOn = false;
+
 	m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
 
 	if ((float)m_SpriteInfo.MaxFrame <= m_SpriteInfo.SpriteIndex)
@@ -38,6 +41,10 @@ int GranadeExplosion::Update(const float& TimeDelta)
 void GranadeExplosion::Render(HDC hdc)
 {
 	HDC hMemDC = GET_MANAGER<GdiManager>()->FindImage(m_SpriteInfo.key)->GetGdiImageDefault();
+
+	// for test
+	if (m_isCollideOn && true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
+		Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
 
 	TransparentBlt(hdc, m_Rect.left, m_Rect.top, m_Info.Size_X, m_Info.Size_Y,
 		hMemDC,

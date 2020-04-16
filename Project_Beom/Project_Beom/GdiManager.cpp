@@ -144,6 +144,17 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 			//soldier
 			LoadGdiImage(L"soldier_l", L"../Resources/Monster/Monster_Left.bmp");
 			LoadGdiImage(L"soldier_r", L"../Resources/Monster/Monster_Right.bmp");
+			//tank
+			LoadGdiImage(L"tank_stand_r", L"../Resources/Monster/Tank/Right/stand.bmp");
+			LoadGdiImage(L"tank_stand_l", L"../Resources/Monster/Tank/Left/stand.bmp");
+			LoadGdiImage(L"tank_run_r", L"../Resources/Monster/Tank/Right/run.bmp");
+			LoadGdiImage(L"tank_run_l", L"../Resources/Monster/Tank/Left/run.bmp");
+			LoadGdiImage(L"tank_shot_r", L"../Resources/Monster/Tank/Right/shot.bmp");
+			LoadGdiImage(L"tank_shot_l", L"../Resources/Monster/Tank/Left/shot.bmp");
+			LoadGdiImage(L"tank_prepare_r", L"../Resources/Monster/Tank/Right/shot_preparing.bmp");
+			LoadGdiImage(L"tank_prepare_l", L"../Resources/Monster/Tank/Left/shot_preparing.bmp");
+			LoadGdiImage(L"tank_dead_r", L"../Resources/Monster/Tank/Right/dead.bmp");
+			LoadGdiImage(L"tank_dead_l", L"../Resources/Monster/Tank/Left/dead.bmp");
 		}
 		// bullet
 		LoadGdiImage(L"pistol_bullet", L"../Resources/Weapon/Pistol/Pistol.bmp");

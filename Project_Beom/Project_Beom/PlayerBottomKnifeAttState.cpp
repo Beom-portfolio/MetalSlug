@@ -5,6 +5,7 @@
 #include "PlayerBottomDownMoveState.h"
 #include "PlayerBottomStandState.h"
 #include "GameObject.h"
+#include "KnifeBullet.h"
 
 PlayerBottomKnifeAttState::PlayerBottomKnifeAttState()
 {
@@ -83,5 +84,19 @@ void PlayerBottomKnifeAttState::Update(GameObject* object, const float& TimeDelt
 {
 	SPRITEINFO info = object->GetSpriteInfo();
 	info.SpriteIndex += info.Speed * TimeDelta;
+
+	if (!m_onceCheck && 1.f <= info.SpriteIndex)
+	{
+		GameObject* bullet = AbstractFactory<KnifeBullet>::CreateObj();
+		bullet->SetPosition(object->GetPosition().X, object->GetPosition().Y);
+		if (DIR_RIGHT == m_originDir)
+			bullet->SetCollideInfo(GAMEOBJINFO{ 20, 0, 75, 75 });
+		else
+			bullet->SetCollideInfo(GAMEOBJINFO{ -20, 0, 75, 75 });
+
+		GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
+		m_onceCheck = true;
+	}
+
 	object->SetSpriteInfo(info);
 }

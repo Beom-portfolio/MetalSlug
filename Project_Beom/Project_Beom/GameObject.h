@@ -105,6 +105,7 @@ protected:
 	float			m_TimeStack = 0.f;
 
 	int				m_Damage = 0;
+	int				m_Hp = 0;
 	POSITION        m_TotalPos;
 
 	// 따라다녀야 할 오브젝트

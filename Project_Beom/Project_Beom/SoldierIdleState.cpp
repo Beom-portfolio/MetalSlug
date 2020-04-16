@@ -37,16 +37,19 @@ State* SoldierIdleState::HandleInput(GameObject* object, KeyManager* input)
 	if (m_Player->GetDeadCheck())
 		return nullptr;
 	
-	GAMEOBJINFO playerInfo = m_Player->GetInfo();
-	GAMEOBJINFO myInfo = object->GetInfo();
+	POSITION playerPos = m_Player->GetPosition();
+	POSITION myPos = object->GetPosition();
 
-	if (myInfo.Pos_X < playerInfo.Pos_X)
+	if (600.f < GetDistance(playerPos, myPos))
+		return nullptr;
+
+	if (myPos.X < playerPos.X)
 		object->SetDirection(DIR_RIGHT);
 	else
 		object->SetDirection(DIR_LEFT);
 
 	// 너무 벌어졌으면 계속 간다.
-	if (400 < abs(playerInfo.Pos_X - myInfo.Pos_X))
+	if (400 < GetDistance(playerPos, myPos))
 		return new SoldierRunState();
 
 	// 그외
@@ -58,7 +61,7 @@ State* SoldierIdleState::HandleInput(GameObject* object, KeyManager* input)
 			return new SoldierRunState();
 		case 1: case 2: case 3:
 			// 가까이 붙어있으면 칼빵을 날린다.
-			if (145 > abs(playerInfo.Pos_X - myInfo.Pos_X))
+			if (145 > abs(playerPos.X - myPos.X))
 				return new SoldierKnifeState();
 			else
 				return new SoldierBombAttState();

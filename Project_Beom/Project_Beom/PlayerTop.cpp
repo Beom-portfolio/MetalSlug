@@ -23,6 +23,7 @@ int PlayerTop::Update(const float& TimeDelta)
 {
 	m_State->Update(this, TimeDelta);
 	HandleInput();
+	m_isCollide = false;
 
 	// ÃÑ¾Ë ¼Óµµ¿ë
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT) ||
