@@ -15,7 +15,7 @@ bool KnifeBullet::Initialize()
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 20 };
 	m_ObjType = OBJ_PLAYER_BULLET;
 	m_RenderType = RENDER_OBJ;
-
+	m_Damage = 2;
 	return true;
 }
 
@@ -42,4 +42,5 @@ void KnifeBullet::Release()
 
 void KnifeBullet::CollisionActivate(GameObject* collideTarget)
 {
+	collideTarget->Hit(m_Damage);
 }

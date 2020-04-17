@@ -41,6 +41,7 @@ int PistolBullet::Update(const float& TimeDelta)
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;
 
+	m_Damage = 1;
 	return 0;
 }
 
@@ -68,4 +69,12 @@ void PistolBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 			AbstractFactory<PistolEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y), OBJ_EFFECT);
 		m_isDead = true;
 	}
+}
+
+void PistolBullet::CollisionActivate(GameObject* collideTarget)
+{
+	collideTarget->Hit(m_Damage);
+	GETMGR(ObjectManager)->AddObject(
+		AbstractFactory<PistolEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y), OBJ_EFFECT);
+	m_isDead = true;
 }

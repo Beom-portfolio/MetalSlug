@@ -49,8 +49,9 @@ void PlayerBottomKnifeAttState::Enter(GameObject* object)
 	info.Speed = 20.f;
 	info.SpriteIndex = 0.f;
 	info.StateIndex = 0;
-
+	
 	object->SetSpriteInfo(info);
+	object->SetSpeed(0.f);			// 플레이어 공격시에는 못움직이게 하기 위함
 }
 
 State* PlayerBottomKnifeAttState::HandleInput(GameObject* object, KeyManager* input)
@@ -59,10 +60,16 @@ State* PlayerBottomKnifeAttState::HandleInput(GameObject* object, KeyManager* in
 
 	// 점프
 	if (object->GetFallCheck() || input->GetKeyState(STATE_DOWN, 'S'))
+	{
+		object->SetSpeed(1.f);
 		return  new PlayerBottomJumpState();
+	}
 
 	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
+	{
+		object->SetSpeed(1.f);
 		return new PlayerBottomStandState;
+	}
 
 	if ((float)info.MaxFrame <= info.SpriteIndex)
 	{
@@ -75,7 +82,10 @@ State* PlayerBottomKnifeAttState::HandleInput(GameObject* object, KeyManager* in
 
 	// 모두 재생하면 종료
 	if ((float)info.MaxFrame <= info.SpriteIndex)
+	{
+		object->SetSpeed(1.f);
 		return new PlayerBottomDownState();
+	}
 
 	return nullptr;
 }

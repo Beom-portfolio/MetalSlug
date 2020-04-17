@@ -149,20 +149,38 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 			LoadGdiImage(L"tank_stand_l", L"../Resources/Monster/Tank/Left/stand.bmp");
 			LoadGdiImage(L"tank_run_r", L"../Resources/Monster/Tank/Right/run.bmp");
 			LoadGdiImage(L"tank_run_l", L"../Resources/Monster/Tank/Left/run.bmp");
-			LoadGdiImage(L"tank_shot_r", L"../Resources/Monster/Tank/Right/shot.bmp");
-			LoadGdiImage(L"tank_shot_l", L"../Resources/Monster/Tank/Left/shot.bmp");
+			LoadGdiImage(L"tank_att_r", L"../Resources/Monster/Tank/Right/shot.bmp");
+			LoadGdiImage(L"tank_att_l", L"../Resources/Monster/Tank/Left/shot.bmp");
 			LoadGdiImage(L"tank_prepare_r", L"../Resources/Monster/Tank/Right/shot_preparing.bmp");
 			LoadGdiImage(L"tank_prepare_l", L"../Resources/Monster/Tank/Left/shot_preparing.bmp");
 			LoadGdiImage(L"tank_dead_r", L"../Resources/Monster/Tank/Right/dead.bmp");
 			LoadGdiImage(L"tank_dead_l", L"../Resources/Monster/Tank/Left/dead.bmp");
+			//toma
+			LoadGdiImage(L"toma_r", L"../Resources/Monster/Toma/Right/stand.bmp");
+			LoadGdiImage(L"toma_l", L"../Resources/Monster/Toma/Left/stand.bmp");
+			//sarubi
+			LoadGdiImage(L"saru_stand_r", L"../Resources/Monster/Sarubia/Right/stand.bmp");
+			LoadGdiImage(L"saru_stand_l", L"../Resources/Monster/Sarubia/Left/stand.bmp");
+			LoadGdiImage(L"saru_run_r", L"../Resources/Monster/Sarubia/Right/run.bmp");
+			LoadGdiImage(L"saru_run_l", L"../Resources/Monster/Sarubia/Left/run.bmp");
+			LoadGdiImage(L"saru_shot_r", L"../Resources/Monster/Sarubia/Right/shot.bmp");
+			LoadGdiImage(L"saru_shot_l", L"../Resources/Monster/Sarubia/Left/shot.bmp");
+			LoadGdiImage(L"saru_dead_r", L"../Resources/Monster/Sarubia/Right/dead.bmp");
+			LoadGdiImage(L"saru_dead_l", L"../Resources/Monster/Sarubia/Left/dead.bmp");
+			LoadGdiImage(L"saru_chip", L"../Resources/Monster/Sarubia/chip.bmp");
 		}
 		// bullet
 		LoadGdiImage(L"pistol_bullet", L"../Resources/Weapon/Pistol/Pistol.bmp");
 		LoadGdiImage(L"machinegun_bullet", L"../Resources/Weapon/HeavyMachine/Heavy.bmp");
 		LoadGdiImage(L"bomb_bullet", L"../Resources/Weapon/Bomb/Bomb.bmp");
 		LoadGdiImage(L"soldier_bomb_bullet", L"../Resources/MonsterBullet/Boom_Bullet.bmp");
+		LoadGdiImage(L"tank_bullet_l", L"../Resources/MonsterBullet/left/tank_bullet.bmp");
+		LoadGdiImage(L"tank_bullet_r", L"../Resources/MonsterBullet/right/tank_bullet.bmp");
+		LoadGdiImage(L"toma_bullet", L"../Resources/Weapon/All/toma_bullet.bmp");
+		LoadGdiImage(L"saru_bullet", L"../Resources/Weapon/All/saru_bullet.bmp");
 		// effect
 		LoadGdiImage(L"effect_pistol", L"../Resources/Effect/Normal.bmp");
+		LoadGdiImage(L"effect_explosion", L"../Resources/Effect/explosion.bmp");
 		LoadGdiImage(L"effect_medium_explosion", L"../Resources/Effect/medium_explosion.bmp");
 		LoadGdiImage(L"effect_big_explosion", L"../Resources/Effect/big_explosion.bmp");
 		LoadGdiImage(L"effect_granade_explosion", L"../Resources/Effect/player_bomb.bmp");
@@ -172,6 +190,9 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"effect_machinegun_right", L"../Resources/Effect/pong_right.bmp");
 		LoadGdiImage(L"effect_blood_right", L"../Resources/Effect/Blood_Right.bmp");
 		LoadGdiImage(L"effect_blood_left", L"../Resources/Effect/Blood_Left.bmp");
+		LoadGdiImage(L"effect_tank_att_left", L"../Resources/Effect/tank_left_pung.bmp");
+		LoadGdiImage(L"effect_tank_att_right", L"../Resources/Effect/tank_right_pung.bmp");
+		LoadGdiImage(L"effect_saru_explosion", L"../Resources/Effect/slug_bomb.bmp");
 		break;
 	case SCENESTATE::SCENE_MAIN:
 		// Load Image

@@ -10,6 +10,8 @@
 #include "Monster.h"
 #include "Soldier.h"
 #include "Tank.h"
+#include "Toma.h"
+#include "Sarubia.h"
 
 TestScene::TestScene()
 {
@@ -30,7 +32,9 @@ bool TestScene::Initialize()
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
 	m_ObjManager->AddObject(L"Background", AbstractFactory<Background>::CreateObj(), OBJ_BACK);
-	m_ObjManager->AddObject(L"Monster", AbstractFactory<Tank>::CreateObj(600, 300), OBJ_MONSTER);
+	m_ObjManager->AddObject(L"Monster", AbstractFactory<Sarubia>::CreateObj(1000, 300), OBJ_BLOCK);
+	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Toma>::CreateObj(1000, 200), OBJ_MONSTER);
+	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Tank>::CreateObj(1000, 300), OBJ_BLOCK);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Monster>::CreateObj(500, 300), OBJ_MONSTER);
 	return true;
 }
@@ -48,7 +52,9 @@ int TestScene::Update(const float& TimeDelta)
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F3))
 	{
-		m_ObjManager->AddObject(L"Monster", AbstractFactory<Soldier>::CreateObj(500 + rand() % 100 - rand() % 100, 300), OBJ_MONSTER);
+		m_ObjManager->AddObject(AbstractFactory<Sarubia>::CreateObj(1000 + rand() % 500 - rand() % 100, 300), OBJ_BLOCK);
+		//m_ObjManager->AddObject(L"Monster", AbstractFactory<Soldier>::CreateObj(500 + rand() % 100 - rand() % 100, 300), OBJ_MONSTER);
+		//m_ObjManager->AddObject(AbstractFactory<Tank>::CreateObj(1000 + rand() % 500 - rand() % 100, 300), OBJ_BLOCK);
 	}
 
 	return 0;

@@ -22,6 +22,7 @@ public:
 	const float& GetAngle() { return m_Angle; }
 	const float& GetSpeed() { return m_Speed; }
 	const float& GetGravity() { return m_GravitySpeed; }
+	const int& GetDamage() { return m_Damage; }
 	const PIXELCOLLIDERINFO* GetPixelCollider() { return m_PixelInfo; }
 	const SPRITEINFO& GetSpriteInfo() { return m_SpriteInfo; }
 	const DIRECTION& GetDirection() { return m_Direction; }
@@ -47,6 +48,7 @@ public:
 	void SetObjectType(OBJTYPE type);
 	void SetFollowedObj(GameObject* obj);
 	void SetHypotenuse(float hypotenuse);
+	void Hit(int damage);
 
 	virtual void SetDirection(DIRECTION dir);
 

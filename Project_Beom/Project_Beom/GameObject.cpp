@@ -124,6 +124,11 @@ void GameObject::SetHypotenuse(float hypotenuse)
 	SetAngle(m_Angle);
 }
 
+void GameObject::Hit(int damage)
+{
+	m_Hp -= damage;
+}
+
 bool GameObject::LoadPixelCollider(const char* pFilePath, unsigned char r, unsigned char g, unsigned char b)
 {
 	if (nullptr != m_PixelInfo)

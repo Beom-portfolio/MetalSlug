@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "TankIdleState.h"
 #include "TankRunState.h"
+#include "TankPrepareState.h"
 #include "GameObject.h"
 
 TankIdleState::TankIdleState()
@@ -26,7 +27,7 @@ void TankIdleState::Enter(GameObject* object)
 
 	object->SetSpriteInfo(info);
 
-	m_waitTime = 1.f + ((rand() % 10) / 10.f);
+	m_waitTime = 1.f + ((rand() % 20) / 10.f);
 	m_Player = GETMGR(ObjectManager)->GetObjFromTag(L"Player", OBJ_PLAYER);
 }
 
@@ -38,16 +39,19 @@ State* TankIdleState::HandleInput(GameObject* object, KeyManager* input)
 	POSITION playerPos = m_Player->GetPosition();
 	POSITION myPos = object->GetPosition();
 
-	if (600.f < GetDistance(playerPos, myPos))
+	if (800.f < GetDistance(playerPos, myPos))
 		return nullptr;
 
-	if (400.f < GetDistance(playerPos, myPos))
+	if (500.f < GetDistance(playerPos, myPos))
 		return new TankRunState();
 
 	if (myPos.X < playerPos.X)
 		object->SetDirection(DIR_RIGHT);
 	else
 		object->SetDirection(DIR_LEFT);
+
+	if (m_waitTime <= m_runTime)
+		return new TankPrepareState();
 
 	return nullptr;
 }

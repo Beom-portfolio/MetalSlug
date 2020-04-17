@@ -57,6 +57,9 @@ int SoldierBomb::Update(const float& TimeDelta)
 	if ((float)m_SpriteInfo.MaxFrame <= m_SpriteInfo.SpriteIndex)
 		m_SpriteInfo.SpriteIndex = 0.f;
 
+	if (m_cullingCheck)
+		m_isDead = true;
+
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;
 

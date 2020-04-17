@@ -22,7 +22,7 @@ bool Bomb::Initialize()
 	m_SpriteInfo.Speed = 50.f;
 
 	m_Speed = 330.f;
-
+	m_Damage = 5;
 	return true;
 }
 
@@ -49,7 +49,6 @@ int Bomb::Update(const float& TimeDelta)
 
 	if (m_cullingCheck)
 		m_isDead = true;
-
 
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;
@@ -156,6 +155,7 @@ void Bomb::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 
 void Bomb::CollisionActivate(GameObject* collideTarget)
 {
+	collideTarget->Hit(m_Damage);
 	GameObject* effect = AbstractFactory<GranadeExplosion>::CreateObj();
 	effect->SetPosition(m_Info.Pos_X, m_Info.Pos_Y - 80.f);
 	GETMGR(ObjectManager)->AddObject(effect, OBJ_PLAYER_BULLET);

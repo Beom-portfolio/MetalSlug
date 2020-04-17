@@ -61,15 +61,21 @@ void ObjectManager::Update(const float& TimeDelta)
 {
 	// Collision
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
+
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_PLAYER_BULLET]);
+	
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_BLOCK], &m_mapObj[OBJ_PLAYER_BULLET]);
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER_BULLET]);
-	//GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
+	
+	GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_BLOCK]);
+	GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_BLOCK]);
 
 	// 지형
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_MONSTER]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER_BULLET]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_MONSTER_BULLET]);
+	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_BLOCK]);
 
 	// Culling Check
 	POSITION CamPos = GETMGR(CameraManager)->GetPos();
@@ -119,8 +125,8 @@ void ObjectManager::Render(HDC hDC)
 	}
 
 	// Y축 기준으로 render 순서 정렬
-	sort(m_vecRender[RENDER_OBJ].begin(), m_vecRender[RENDER_OBJ].end(),
-		[](GameObject* a, GameObject* b) { return a->GetInfo().Pos_Y > b->GetInfo().Pos_Y; });
+	/*sort(m_vecRender[RENDER_OBJ].begin(), m_vecRender[RENDER_OBJ].end(),
+		[](GameObject* a, GameObject* b) { return a->GetInfo().Pos_Y > b->GetInfo().Pos_Y; });*/
 
 	for (auto i = 0; i < RENDER_END; ++i)
 	{

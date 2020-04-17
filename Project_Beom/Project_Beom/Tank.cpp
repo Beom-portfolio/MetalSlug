@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Tank.h"
 #include "TankIdleState.h"
+#include "TankDieState.h"
 
 Tank::Tank()
 {
@@ -14,11 +15,14 @@ bool Tank::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 300, 200 };
 	m_CollideInfo = GAMEOBJINFO{ 0, -10, 140, 110 };
+	m_ObjType = OBJ_BLOCK;
+	m_RenderType = RENDER_OBJ;
 
 	m_State = new TankIdleState;
 	m_State->Enter(this);
 	m_Speed = 75.f;
 
+	m_Hp = 100;
 	return true;
 }
 
@@ -123,7 +127,17 @@ void Tank::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 
 void Tank::CollisionActivate(GameObject* collideTarget)
 {
-	
+	if (!m_isCollide && OBJ_PLAYER_BULLET == collideTarget->GetObjectType())
+	{
+		if (0 >= m_Hp)
+		{
+			SAFE_DELETE(m_State);
+			m_State = new TankDieState();
+			m_State->Enter(this);
+			m_isCollide = true;
+			m_isCollideOn = false;
+		}
+	}
 }
 
 void Tank::AI()

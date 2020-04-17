@@ -46,11 +46,14 @@ State* PlayerBottomDownState::HandleInput(GameObject* object, KeyManager* input)
 	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerBottomStandState;
 
-	if (input->GetKeyState(STATE_PUSH, VK_LEFT))
-		return new PlayerBottomDownMoveState();
+	if (!object->GetFallCheck())
+	{
+		if (input->GetKeyState(STATE_PUSH, VK_LEFT))
+			return new PlayerBottomDownMoveState();
 
-	if (input->GetKeyState(STATE_PUSH, VK_RIGHT))
-		return new PlayerBottomDownMoveState();
+		if (input->GetKeyState(STATE_PUSH, VK_RIGHT))
+			return new PlayerBottomDownMoveState();
+	}
 
 	if (input->GetKeyState(STATE_DOWN, 'A'))
 	{

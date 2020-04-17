@@ -18,7 +18,7 @@ bool PlayerBottom::Initialize()
 	m_Direction = DIR_RIGHT;
 	m_State = new PlayerBottomStandState;
 	m_State->Enter(this);
-
+	m_Speed = 1.f;
 	return true;
 }
 

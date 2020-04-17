@@ -39,12 +39,16 @@ void PlayerBottomDownMoveState::Enter(GameObject* object)
 	info.StateIndex = 0;
 
 	object->SetSpriteInfo(info);
+	object->SetSpeed(-1.f);
 }
 
 State* PlayerBottomDownMoveState::HandleInput(GameObject* object, KeyManager* input)
 {
 	if (!input->GetKeyState(STATE_PUSH, VK_DOWN))
+	{
+		object->SetSpeed(1.f);
 		return new PlayerBottomStandState();
+	}
 
 	int upCheck = 0;
 
@@ -54,7 +58,10 @@ State* PlayerBottomDownMoveState::HandleInput(GameObject* object, KeyManager* in
 		upCheck |= DIR_RIGHT;
 
 	if ((upCheck & DIR_RIGHT) && (upCheck & DIR_LEFT))
+	{
+		object->SetSpeed(1.f);
 		return new PlayerBottomDownState();
+	}
 
 	if (input->GetKeyState(STATE_DOWN, 'A'))
 	{
@@ -65,11 +72,17 @@ State* PlayerBottomDownMoveState::HandleInput(GameObject* object, KeyManager* in
 	}
 
 	if (input->GetKeyState(STATE_DOWN, 'S'))
+	{
+		object->SetSpeed(1.f);
 		return new PlayerBottomJumpState();
+	}
 
 	// АјАн
 	if (input->GetKeyState(STATE_DOWN, 'D'))
+	{
+		object->SetSpeed(1.f);
 		return new PlayerBottomBombAttState();
+	}
 
 	return nullptr;
 }

@@ -202,6 +202,33 @@
     <Filter Include="02.GameObejct\Monster\Tank\State">
       <UniqueIdentifier>{8ccf712c-d6e8-4d6e-91d6-454ee2039d5f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Bullet\Tank">
+      <UniqueIdentifier>{8af88c1d-3502-4746-95f8-3964a84e8b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Effect\Tank">
+      <UniqueIdentifier>{0f74983a-fa4c-4606-8a78-ab0d4509e52e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Toma">
+      <UniqueIdentifier>{cc82ab84-d96f-41fd-86b6-bed063427484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Sarubia">
+      <UniqueIdentifier>{c25b1af9-0931-45cd-92ea-18d846f9a5c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Toma\State">
+      <UniqueIdentifier>{8d1c8229-77fe-434d-9c0c-7cc3d39f8b2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Sarubia\State">
+      <UniqueIdentifier>{61e8e842-d256-4de4-9c3f-7e341aa219f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Bullet\Toma">
+      <UniqueIdentifier>{8587f3d1-6b15-4c25-bd52-a22a5f5afc8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Bullet\Saru">
+      <UniqueIdentifier>{89cfa085-a7dd-456a-81ab-753a4f6dad28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Effect\Saru">
+      <UniqueIdentifier>{51967b90-dce1-4f7d-8373-141df82aed82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -471,6 +498,57 @@
     <ClInclude Include="TankRunState.h">
       <Filter>02.GameObejct\Monster\Tank\State</Filter>
     </ClInclude>
+    <ClInclude Include="TankAttState.h">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClInclude>
+    <ClInclude Include="TankBullet.h">
+      <Filter>02.GameObejct\Bullet\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="TankEffect.h">
+      <Filter>02.GameObejct\Effect\Tank</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClInclude>
+    <ClInclude Include="Toma.h">
+      <Filter>02.GameObejct\Monster\Toma</Filter>
+    </ClInclude>
+    <ClInclude Include="TomaRunState.h">
+      <Filter>02.GameObejct\Monster\Toma\State</Filter>
+    </ClInclude>
+    <ClInclude Include="TomaAttState.h">
+      <Filter>02.GameObejct\Monster\Toma\State</Filter>
+    </ClInclude>
+    <ClInclude Include="TomaIdleState.h">
+      <Filter>02.GameObejct\Monster\Toma\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Sarubia.h">
+      <Filter>02.GameObejct\Monster\Sarubia</Filter>
+    </ClInclude>
+    <ClInclude Include="SarubiaRunState.h">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SarubiaIdleState.h">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SarubiaAttState.h">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClInclude>
+    <ClInclude Include="TomaBullet.h">
+      <Filter>02.GameObejct\Bullet\Toma</Filter>
+    </ClInclude>
+    <ClInclude Include="SaruBullet.h">
+      <Filter>02.GameObejct\Bullet\Saru</Filter>
+    </ClInclude>
+    <ClInclude Include="SaruExplosion.h">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClInclude>
+    <ClInclude Include="SaruChip.h">
+      <Filter>02.GameObejct\Effect\Saru</Filter>
+    </ClInclude>
+    <ClInclude Include="SarubiaDieState.h">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -706,6 +784,57 @@
     </ClCompile>
     <ClCompile Include="TankRunState.cpp">
       <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TankAttState.cpp">
+      <Filter>02.GameObejct\Monster\Tank\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TankBullet.cpp">
+      <Filter>02.GameObejct\Bullet\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="TankEffect.cpp">
+      <Filter>02.GameObejct\Effect\Tank</Filter>
+    </ClCompile>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClCompile>
+    <ClCompile Include="Toma.cpp">
+      <Filter>02.GameObejct\Monster\Toma</Filter>
+    </ClCompile>
+    <ClCompile Include="TomaRunState.cpp">
+      <Filter>02.GameObejct\Monster\Toma\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TomaIdleState.cpp">
+      <Filter>02.GameObejct\Monster\Toma\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TomaAttState.cpp">
+      <Filter>02.GameObejct\Monster\Toma\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Sarubia.cpp">
+      <Filter>02.GameObejct\Monster\Sarubia</Filter>
+    </ClCompile>
+    <ClCompile Include="SarubiaRunState.cpp">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SarubiaIdleState.cpp">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SarubiaAttState.cpp">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClCompile>
+    <ClCompile Include="TomaBullet.cpp">
+      <Filter>02.GameObejct\Bullet\Toma</Filter>
+    </ClCompile>
+    <ClCompile Include="SaruBullet.cpp">
+      <Filter>02.GameObejct\Bullet\Saru</Filter>
+    </ClCompile>
+    <ClCompile Include="SaruExplosion.cpp">
+      <Filter>02.GameObejct\Effect\Explosion</Filter>
+    </ClCompile>
+    <ClCompile Include="SaruChip.cpp">
+      <Filter>02.GameObejct\Effect\Saru</Filter>
+    </ClCompile>
+    <ClCompile Include="SarubiaDieState.cpp">
+      <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

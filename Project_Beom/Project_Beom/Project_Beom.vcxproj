@@ -161,6 +161,7 @@
     <ClInclude Include="Constant.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enum.h" />
+    <ClInclude Include="Explosion.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Frame.h" />
@@ -218,6 +219,14 @@
     <ClInclude Include="PlayerTopUpState.h" />
     <ClInclude Include="Project_Beom.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Sarubia.h" />
+    <ClInclude Include="SarubiaAttState.h" />
+    <ClInclude Include="SarubiaDieState.h" />
+    <ClInclude Include="SarubiaIdleState.h" />
+    <ClInclude Include="SarubiaRunState.h" />
+    <ClInclude Include="SaruBullet.h" />
+    <ClInclude Include="SaruChip.h" />
+    <ClInclude Include="SaruExplosion.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="PlayerBottomStandState.h" />
@@ -232,7 +241,10 @@
     <ClInclude Include="Struct.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Tank.h" />
+    <ClInclude Include="TankAttState.h" />
+    <ClInclude Include="TankBullet.h" />
     <ClInclude Include="TankDieState.h" />
+    <ClInclude Include="TankEffect.h" />
     <ClInclude Include="TankIdleState.h" />
     <ClInclude Include="TankPrepareState.h" />
     <ClInclude Include="TankRunState.h" />
@@ -240,6 +252,11 @@
     <ClInclude Include="TestScene.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TimerManager.h" />
+    <ClInclude Include="Toma.h" />
+    <ClInclude Include="TomaAttState.h" />
+    <ClInclude Include="TomaBullet.h" />
+    <ClInclude Include="TomaIdleState.h" />
+    <ClInclude Include="TomaRunState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
@@ -248,6 +265,7 @@
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="FrameManager.cpp" />
@@ -305,6 +323,14 @@
     <ClCompile Include="PlayerTopUpAttState.cpp" />
     <ClCompile Include="PlayerTopUpState.cpp" />
     <ClCompile Include="Project_Beom.cpp" />
+    <ClCompile Include="Sarubia.cpp" />
+    <ClCompile Include="SarubiaAttState.cpp" />
+    <ClCompile Include="SarubiaDieState.cpp" />
+    <ClCompile Include="SarubiaIdleState.cpp" />
+    <ClCompile Include="SarubiaRunState.cpp" />
+    <ClCompile Include="SaruBullet.cpp" />
+    <ClCompile Include="SaruChip.cpp" />
+    <ClCompile Include="SaruExplosion.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="PlayerBottomStandState.cpp" />
@@ -318,13 +344,21 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="TankAttState.cpp" />
+    <ClCompile Include="TankBullet.cpp" />
     <ClCompile Include="TankDieState.cpp" />
+    <ClCompile Include="TankEffect.cpp" />
     <ClCompile Include="TankIdleState.cpp" />
     <ClCompile Include="TankPrepareState.cpp" />
     <ClCompile Include="TankRunState.cpp" />
     <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TimerManager.cpp" />
+    <ClCompile Include="Toma.cpp" />
+    <ClCompile Include="TomaAttState.cpp" />
+    <ClCompile Include="TomaBullet.cpp" />
+    <ClCompile Include="TomaIdleState.cpp" />
+    <ClCompile Include="TomaRunState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project_Beom.rc" />

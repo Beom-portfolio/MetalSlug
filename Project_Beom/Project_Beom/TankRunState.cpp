@@ -42,7 +42,7 @@ State* TankRunState::HandleInput(GameObject* object, KeyManager* input)
 	POSITION playerPos = m_Player->GetPosition();
 	POSITION myPos = object->GetPosition();
 
-	if (200.f >= GetDistance(playerPos, myPos))
+	if (300.f >= GetDistance(playerPos, myPos))
 		return new TankIdleState();
 
 	return nullptr;

@@ -118,9 +118,14 @@ int Player::Update(const float& TimeDelta)
 	if(!m_isDead && !m_spawnCheck)
 	{ 	
 		if (m_TimeStack <= 2.f)
+		{
 			(m_renderCheck) ? (m_renderCheck = false) : (m_renderCheck = true);
+		}
 		else
+		{
+			m_isCollideOn = true;
 			m_renderCheck = true;
+		}
 
 		UpdateInput(TimeDelta);
 
@@ -261,6 +266,7 @@ void Player::CollisionActivate(GameObject* collideTarget)
 		m_SpriteInfo.Speed = 10.f;
 		m_TimeStack = 0.f;
 		m_isDead = true;
+		m_isCollideOn = false;
 		break;
 	}
 }
@@ -281,6 +287,13 @@ int Player::UpdateInput(const float& TimeDelta)
 	else
 		m_CollideInfo = GAMEOBJINFO{ 0, 10, 55, 90 };
 
+	if (-1 == (int)m_Bottom->GetSpeed())
+		m_Speed = 100.f;
+	else if (0 == (int)m_Bottom->GetSpeed())
+		m_Speed = 0.f;
+	else
+		m_Speed = 250.f;
+
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
 	{
 		m_Info.Pos_X -= m_Speed * TimeDelta;
@@ -291,11 +304,13 @@ int Player::UpdateInput(const float& TimeDelta)
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
 	{
+
 		m_Info.Pos_X += m_Speed * TimeDelta;
 
 		if (!m_fallCheck)
 			m_Direction = DIR_RIGHT;
 	}
+
 
 	if (!m_fallCheck && GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'S'))
 	{

@@ -33,7 +33,7 @@ State* PlayerBottomRunState::HandleInput(GameObject* object, KeyManager* input)
 {
 	int upCheck = 0;
 
-	if (input->GetKeyState(STATE_PUSH, VK_DOWN))
+	if (!object->GetFallCheck() && input->GetKeyState(STATE_PUSH, VK_DOWN))
 		return new PlayerBottomDownMoveState();
 
 	if (!input->GetKeyState(STATE_PUSH, VK_LEFT))

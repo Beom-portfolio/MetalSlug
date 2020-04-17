@@ -5,6 +5,7 @@
 #include "BigExplosion.h"
 #include "GranadeExplosion.h"
 #include "MachinegunEffect.h"
+#include "PistolEffect.h"
 
 MachinegunBullet::MachinegunBullet()
 {
@@ -23,6 +24,7 @@ bool MachinegunBullet::Initialize()
 	m_SpriteInfo.key = L"machinegun_bullet";
 
 	m_Speed = 1000.f;
+	m_Damage = 2;
 
 	return true;
 }
@@ -95,5 +97,8 @@ void MachinegunBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget
 
 void MachinegunBullet::CollisionActivate(GameObject* collideTarget)
 {
+	collideTarget->Hit(m_Damage);
+	GETMGR(ObjectManager)->AddObject(
+		AbstractFactory<PistolEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y), OBJ_EFFECT);
 	m_isDead = true;
 }

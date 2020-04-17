@@ -18,13 +18,13 @@ bool GranadeExplosion::Initialize()
 	m_SpriteInfo.key = L"effect_granade_explosion";
 	m_SpriteInfo.MaxFrame = 23;
 	m_SpriteInfo.Speed = 35.f;
-
+	m_Damage = 5;
 	return true;
 }
 
 int GranadeExplosion::Update(const float& TimeDelta)
 {
-	if (m_TimeStack > 0.1f)
+	if (m_TimeStack > 1.f / 60.f)
 		m_isCollideOn = false;
 
 	m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
@@ -55,4 +55,9 @@ void GranadeExplosion::Render(HDC hdc)
 
 void GranadeExplosion::Release()
 {
+}
+
+void GranadeExplosion::CollisionActivate(GameObject* collideTarget)
+{
+	collideTarget->Hit(m_Damage);
 }

@@ -16,5 +16,6 @@ public:
 
 public:
 	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+	virtual void CollisionActivate(GameObject* collideTarget);
 };
 
