@@ -66,7 +66,8 @@ void ObjectManager::Update(const float& TimeDelta)
 	
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_BLOCK], &m_mapObj[OBJ_PLAYER_BULLET]);
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER_BULLET]);
-	
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_SLUG]);
+
 	GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_BLOCK]);
 	GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_BLOCK]);
 
@@ -76,6 +77,7 @@ void ObjectManager::Update(const float& TimeDelta)
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_PLAYER_BULLET]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_MONSTER_BULLET]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_BLOCK]);
+	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_SLUG]);
 
 	// Culling Check
 	POSITION CamPos = GETMGR(CameraManager)->GetPos();
@@ -100,8 +102,7 @@ void ObjectManager::Update(const float& TimeDelta)
 			if ((*iter).second->GetDeadCheck() && 
 				!(*iter).second->GetNotDeadCheck())
 			{
-				delete (*iter).second;
-				(*iter).second = nullptr;
+				SAFE_RELEASE((*iter).second);
 				iter = m_mapObj[i].erase(iter);
 			}
 			else
@@ -157,8 +158,7 @@ void ObjectManager::ReleaseFromType(OBJTYPE ObjType)
 	{
 		if (nullptr != obj.second)
 		{
-			delete obj.second;
-			obj.second = nullptr;
+			SAFE_RELEASE(obj.second);
 		}
 	}
 	m_mapObj[ObjType].clear();
@@ -174,8 +174,7 @@ void ObjectManager::ReleaseObjFromTag(const TCHAR* tag, OBJTYPE ObjType)
 
 	if (nullptr != iter->second)
 	{
-		delete iter->second;
-		iter->second = nullptr;
+		SAFE_RELEASE(iter->second);
 	}
 
 	m_mapObj[ObjType].erase(iter);

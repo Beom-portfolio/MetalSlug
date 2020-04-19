@@ -156,6 +156,11 @@
     <ClInclude Include="BigExplosion.h" />
     <ClInclude Include="Blood.h" />
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Camel.h" />
+    <ClInclude Include="CamelCannon.h" />
+    <ClInclude Include="CamelIdleState.h" />
+    <ClInclude Include="CamelRestState.h" />
+    <ClInclude Include="CamelRunState.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constant.h" />
@@ -263,6 +268,11 @@
     <ClCompile Include="BigExplosion.cpp" />
     <ClCompile Include="Blood.cpp" />
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Camel.cpp" />
+    <ClCompile Include="CamelCannon.cpp" />
+    <ClCompile Include="CamelIdleState.cpp" />
+    <ClCompile Include="CamelRestState.cpp" />
+    <ClCompile Include="CamelRunState.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Explosion.cpp" />

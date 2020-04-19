@@ -41,7 +41,7 @@ void SarubiaDieState::Update(GameObject* object, const float& TimeDelta)
 	if (!m_onceCheck)
 	{
 		POSITION objPos = object->GetPosition();
-		for (int i = 0; i < 5; ++i)
+		for (int i = 0; i < 10; ++i)
 		{
 			GameObject* chip = AbstractFactory<SaruChip>::CreateObj();
 			float posX = objPos.X + rand() % 200 - rand() % 200;

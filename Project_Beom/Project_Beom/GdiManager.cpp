@@ -169,6 +169,12 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 			LoadGdiImage(L"saru_dead_l", L"../Resources/Monster/Sarubia/Left/dead.bmp");
 			LoadGdiImage(L"saru_chip", L"../Resources/Monster/Sarubia/chip.bmp");
 		}
+
+		LoadGdiImage(L"camel_rest", L"../Resources/Camel/Idle_Not_Ride.bmp");
+		LoadGdiImage(L"camel_run", L"../Resources/Camel/Run.bmp");
+		LoadGdiImage(L"camel_idle", L"../Resources/Camel/Idle.bmp");
+		LoadGdiImage(L"player_ride", L"../Resources/Player/Ride.bmp");
+
 		// bullet
 		LoadGdiImage(L"pistol_bullet", L"../Resources/Weapon/Pistol/Pistol.bmp");
 		LoadGdiImage(L"machinegun_bullet", L"../Resources/Weapon/HeavyMachine/Heavy.bmp");

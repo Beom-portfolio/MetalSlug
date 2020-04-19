@@ -14,7 +14,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
 // 현재 사용할 제한 프레임
-const TCHAR* strFrame = L"Frame_60";
+const TCHAR* strFrame = L"Frame_75";
 
 System::System()
 {
@@ -44,11 +44,11 @@ bool System::Initialize(HINSTANCE hInstance, int nCmdShow)
 
 	m_FrameManager = GETMGR(FrameManager);
 
-	// 각각 30, 75, 200 프레임으로 제한을 거는 프레임을 만들어 추가한다.
-	if (false == m_FrameManager->Add_Frame(L"Frame_30", 30.f))
+	// 각각 60, 75, 200 프레임으로 제한을 거는 프레임을 만들어 추가한다.
+	if (false == m_FrameManager->Add_Frame(L"Frame_60", 60.f))
 		return FALSE;
 
-	if (false == m_FrameManager->Add_Frame(L"Frame_60", 60.f))
+	if (false == m_FrameManager->Add_Frame(L"Frame_75", 75.f))
 		return FALSE;
 
 	if (false == m_FrameManager->Add_Frame(L"Frame_200", 200.f))

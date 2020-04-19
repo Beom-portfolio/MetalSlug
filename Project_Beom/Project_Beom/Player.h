@@ -28,6 +28,8 @@ private:
 private:
 	GameObject* m_Bottom = nullptr;
 	GameObject* m_Top = nullptr;
+	GameObject* m_Slug = nullptr;
+	bool m_rideCheck = false;
 	bool m_spawnCheck = false;
 };
 

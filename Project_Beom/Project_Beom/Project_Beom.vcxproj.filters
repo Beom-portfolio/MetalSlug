@@ -229,6 +229,12 @@
     <Filter Include="02.GameObejct\Effect\Saru">
       <UniqueIdentifier>{51967b90-dce1-4f7d-8373-141df82aed82}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Slug">
+      <UniqueIdentifier>{06a423b1-a934-41ae-b691-a9d706fd5a8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Slug\State">
+      <UniqueIdentifier>{27154826-fc5b-48fb-908f-61886083caff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -549,6 +555,21 @@
     <ClInclude Include="SarubiaDieState.h">
       <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
     </ClInclude>
+    <ClInclude Include="CamelCannon.h">
+      <Filter>02.GameObejct\Slug</Filter>
+    </ClInclude>
+    <ClInclude Include="Camel.h">
+      <Filter>02.GameObejct\Slug</Filter>
+    </ClInclude>
+    <ClInclude Include="CamelRunState.h">
+      <Filter>02.GameObejct\Slug\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CamelRestState.h">
+      <Filter>02.GameObejct\Slug\State</Filter>
+    </ClInclude>
+    <ClInclude Include="CamelIdleState.h">
+      <Filter>02.GameObejct\Slug\State</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -835,6 +856,21 @@
     </ClCompile>
     <ClCompile Include="SarubiaDieState.cpp">
       <Filter>02.GameObejct\Monster\Sarubia\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CamelCannon.cpp">
+      <Filter>02.GameObejct\Slug</Filter>
+    </ClCompile>
+    <ClCompile Include="Camel.cpp">
+      <Filter>02.GameObejct\Slug</Filter>
+    </ClCompile>
+    <ClCompile Include="CamelRunState.cpp">
+      <Filter>02.GameObejct\Slug\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CamelRestState.cpp">
+      <Filter>02.GameObejct\Slug\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CamelIdleState.cpp">
+      <Filter>02.GameObejct\Slug\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

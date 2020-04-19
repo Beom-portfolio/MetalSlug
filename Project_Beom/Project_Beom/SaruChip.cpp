@@ -20,7 +20,7 @@ bool SaruChip::Initialize()
 	m_Direction = rand() % 2 ? DIR_RIGHT : DIR_LEFT;
 	m_Speed = float(rand() % 400);
 
-	m_GravitySpeed = - (rand() % 400);
+	m_GravitySpeed = -float(rand() % 400);
 	return true;
 }
 
@@ -31,12 +31,21 @@ int SaruChip::Update(const float& TimeDelta)
 		m_GravityTime += TimeDelta;
 		m_GravitySpeed += GRAVITY_ACC * m_GravityTime;
 		m_Info.Pos_Y += m_GravitySpeed * TimeDelta;
-	}
 
-	if (DIR_RIGHT == m_Direction)
-		m_Info.Pos_X += m_Speed * TimeDelta;
-	if (DIR_LEFT == m_Direction)
-		m_Info.Pos_X -= m_Speed * TimeDelta;
+		if (DIR_RIGHT == m_Direction)
+			m_Info.Pos_X += m_Speed * TimeDelta;
+		if (DIR_LEFT == m_Direction)
+			m_Info.Pos_X -= m_Speed * TimeDelta;
+
+		m_TimeStack = 0;
+	}
+	else
+	{
+		m_renderCheck ? m_renderCheck = false : m_renderCheck = true;
+		if (m_TimeStack > 0.5f)
+			m_isDead = true;
+	}
+	
 
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;
@@ -62,6 +71,7 @@ void SaruChip::Release()
 void SaruChip::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
 {
 	if (0 != dir)
-		m_isDead = true;
-	
+	{
+		SetFall(false);
+	}
 }

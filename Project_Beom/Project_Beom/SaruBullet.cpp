@@ -19,7 +19,10 @@ bool SaruBullet::Initialize()
 	m_RenderType = RENDER_OBJ;
 	m_SpriteInfo.key = L"saru_bullet";
 	m_SpriteInfo.MaxFrame = 18;
-	m_SpriteInfo.SpriteIndex = 0.f;
+	if (DIR_RIGHT == m_Direction)
+		m_SpriteInfo.SpriteIndex = 0.f;
+	else
+		m_SpriteInfo.SpriteIndex = m_SpriteInfo.MaxFrame - 1.f;
 	m_SpriteInfo.Speed = 20.f;
 	
 	m_Speed = 150.f;
@@ -38,16 +41,24 @@ int SaruBullet::Update(const float& TimeDelta)
 		}
 		else
 		{
-			m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
 			if (DIR_RIGHT == m_Direction)
+			{
+				m_SpriteInfo.SpriteIndex -= m_SpriteInfo.Speed * TimeDelta;
 				m_Info.Pos_X += m_Speed * TimeDelta;
+			}
 			if (DIR_LEFT == m_Direction)
+			{
+				m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
 				m_Info.Pos_X -= m_Speed * TimeDelta;
+			}
 		}
 	}
 
 	if ((float)m_SpriteInfo.MaxFrame <= m_SpriteInfo.SpriteIndex)
 		m_SpriteInfo.SpriteIndex = 0.f;
+	else if (0.f >= m_SpriteInfo.SpriteIndex)
+		m_SpriteInfo.SpriteIndex = (float)m_SpriteInfo.MaxFrame - 1.f;
+
 
 	if (m_cullingCheck)
 		m_isDead = true;

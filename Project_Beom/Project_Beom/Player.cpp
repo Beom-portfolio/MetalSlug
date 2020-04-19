@@ -4,6 +4,7 @@
 #include "CameraManager.h"
 #include "PlayerBottom.h"
 #include "PlayerTop.h"
+#include "Camel.h"
 
 
 Player::Player()
@@ -127,16 +128,38 @@ int Player::Update(const float& TimeDelta)
 			m_renderCheck = true;
 		}
 
-		UpdateInput(TimeDelta);
+		if (m_rideCheck)
+		{
+			// 낙타를 따라간다.
+			POSITION slugPos = m_Slug->GetPosition();
+			m_Info.Pos_X = slugPos.X - 15.f;
+			m_Info.Pos_Y = slugPos.Y - 50.f;
 
-		m_Bottom->SetDirection(m_Direction);
-		m_Top->SetDirection(m_Direction);
-		m_Bottom->SetFall(m_fallCheck);
-		m_Top->SetFall(m_fallCheck);
-		m_Bottom->Update(TimeDelta);
-		m_Top->Update(TimeDelta);
-		m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
-		m_Top->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+			if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_DOWN))
+			{
+				if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, 'S'))
+				{
+					SetFall(true);
+					m_GravitySpeed = -300.f;
+					m_rideCheck = false;
+					((Camel*)m_Slug)->SetRideCheck(false);
+					m_Slug = nullptr;
+				}
+			}
+		}
+		else
+		{
+			UpdateInput(TimeDelta);
+
+			m_Bottom->SetDirection(m_Direction);
+			m_Top->SetDirection(m_Direction);
+			m_Bottom->SetFall(m_fallCheck);
+			m_Top->SetFall(m_fallCheck);
+			m_Bottom->Update(TimeDelta);
+			m_Top->Update(TimeDelta);
+			m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+			m_Top->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+		}
 	}
 
 	if (-1 == GameObject::Update(TimeDelta))
@@ -150,7 +173,7 @@ void Player::Render(HDC hdc)
 	if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
 		Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
 
-	if (m_isDead || m_spawnCheck)
+	if (m_rideCheck || m_isDead || m_spawnCheck)
 	{
 		HDC hMemDC = GET_MANAGER<GdiManager>()->FindImage(m_SpriteInfo.key)->GetGdiImageDefault();
 		TransparentBlt(hdc, m_Rect.left, m_Rect.top, m_Info.Size_X, m_Info.Size_Y,
@@ -160,7 +183,7 @@ void Player::Render(HDC hdc)
 			m_Info.Size_X, m_Info.Size_Y, RGB(86, 177, 222));
 	}
 
-	if (!m_isDead && !m_spawnCheck)
+	if (!m_rideCheck && !m_isDead && !m_spawnCheck)
 	{
 		m_Bottom->Render(hdc);
 		m_Top->Render(hdc);
@@ -239,6 +262,24 @@ void Player::CollisionActivate(GameObject* collideTarget)
 {
 	switch (collideTarget->GetObjectType())
 	{
+	case OBJ_SLUG:
+		if (m_rideCheck) break;
+		if (m_fallCheck && 0 < m_GravitySpeed)
+		{
+			SetFall(false);
+			cout << "chekc";
+			m_Slug = collideTarget;
+			((Camel*)m_Slug)->SetRideCheck(true);
+			m_rideCheck = true;
+
+			m_SpriteInfo.key = L"player_ride";
+			m_SpriteInfo.SpriteIndex = 0.f;
+			m_SpriteInfo.StateIndex = 0;
+			m_SpriteInfo.MaxFrame = 12;
+			m_SpriteInfo.Speed = 20.f;
+			m_Info.Size_X = 400; m_Info.Size_Y = 267;
+		}
+		break;
 	case OBJ_MONSTER:
 		m_Top->SetCollideCheck(true);
 		m_Bottom->SetCollideCheck(true);
@@ -267,6 +308,7 @@ void Player::CollisionActivate(GameObject* collideTarget)
 		m_TimeStack = 0.f;
 		m_isDead = true;
 		m_isCollideOn = false;
+		m_rideCheck = false;
 		break;
 	}
 }
