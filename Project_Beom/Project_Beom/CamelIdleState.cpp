@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CamelIdleState.h"
 #include "CamelRestState.h"
+#include "CamelRunState.h"
 #include "Camel.h"
 #include "GameObject.h"
 
@@ -30,6 +31,9 @@ State* CamelIdleState::HandleInput(GameObject* object, KeyManager* input)
 {
 	if (!((Camel*)object)->GetRideCheck())
 		return new CamelRestState;
+
+	if (input->GetKeyState(STATE_PUSH, VK_LEFT) || input->GetKeyState(STATE_PUSH, VK_RIGHT))
+		return new CamelRunState;
 
 	return nullptr;
 }

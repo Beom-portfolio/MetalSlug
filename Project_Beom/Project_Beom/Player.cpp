@@ -135,6 +135,18 @@ int Player::Update(const float& TimeDelta)
 			m_Info.Pos_X = slugPos.X - 15.f;
 			m_Info.Pos_Y = slugPos.Y - 50.f;
 
+			if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT) ||
+				GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
+			{
+				m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
+				if ((float)m_SpriteInfo.MaxFrame <= m_SpriteInfo.SpriteIndex)
+					m_SpriteInfo.SpriteIndex = 0.f;
+			}
+			else
+			{
+				m_SpriteInfo.SpriteIndex = 0.f;
+			}
+
 			if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_DOWN))
 			{
 				if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, 'S'))
@@ -144,8 +156,12 @@ int Player::Update(const float& TimeDelta)
 					m_rideCheck = false;
 					((Camel*)m_Slug)->SetRideCheck(false);
 					m_Slug = nullptr;
+					m_Bottom->Update(TimeDelta);
+					m_Top->Update(TimeDelta);
 				}
 			}
+			m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
+			m_Top->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
 		}
 		else
 		{
@@ -267,7 +283,6 @@ void Player::CollisionActivate(GameObject* collideTarget)
 		if (m_fallCheck && 0 < m_GravitySpeed)
 		{
 			SetFall(false);
-			cout << "chekc";
 			m_Slug = collideTarget;
 			((Camel*)m_Slug)->SetRideCheck(true);
 			m_rideCheck = true;
@@ -276,7 +291,7 @@ void Player::CollisionActivate(GameObject* collideTarget)
 			m_SpriteInfo.SpriteIndex = 0.f;
 			m_SpriteInfo.StateIndex = 0;
 			m_SpriteInfo.MaxFrame = 12;
-			m_SpriteInfo.Speed = 20.f;
+			m_SpriteInfo.Speed = 25.f;
 			m_Info.Size_X = 400; m_Info.Size_Y = 267;
 		}
 		break;
@@ -346,7 +361,6 @@ int Player::UpdateInput(const float& TimeDelta)
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
 	{
-
 		m_Info.Pos_X += m_Speed * TimeDelta;
 
 		if (!m_fallCheck)

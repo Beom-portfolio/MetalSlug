@@ -235,6 +235,9 @@
     <Filter Include="02.GameObejct\Slug\State">
       <UniqueIdentifier>{27154826-fc5b-48fb-908f-61886083caff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Bullet\CamelCannon">
+      <UniqueIdentifier>{4080467a-5002-4c89-b531-7fa553e5274f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -570,6 +573,9 @@
     <ClInclude Include="CamelIdleState.h">
       <Filter>02.GameObejct\Slug\State</Filter>
     </ClInclude>
+    <ClInclude Include="CamelCannonBullet.h">
+      <Filter>02.GameObejct\Bullet\CamelCannon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -871,6 +877,9 @@
     </ClCompile>
     <ClCompile Include="CamelIdleState.cpp">
       <Filter>02.GameObejct\Slug\State</Filter>
+    </ClCompile>
+    <ClCompile Include="CamelCannonBullet.cpp">
+      <Filter>02.GameObejct\Bullet\CamelCannon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

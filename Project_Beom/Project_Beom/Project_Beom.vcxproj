@@ -158,6 +158,7 @@
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Camel.h" />
     <ClInclude Include="CamelCannon.h" />
+    <ClInclude Include="CamelCannonBullet.h" />
     <ClInclude Include="CamelIdleState.h" />
     <ClInclude Include="CamelRestState.h" />
     <ClInclude Include="CamelRunState.h" />
@@ -270,6 +271,7 @@
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Camel.cpp" />
     <ClCompile Include="CamelCannon.cpp" />
+    <ClCompile Include="CamelCannonBullet.cpp" />
     <ClCompile Include="CamelIdleState.cpp" />
     <ClCompile Include="CamelRestState.cpp" />
     <ClCompile Include="CamelRunState.cpp" />

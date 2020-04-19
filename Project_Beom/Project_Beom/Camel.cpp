@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Camel.h"
 #include "CamelRestState.h"
+#include "CamelCannon.h"
 
 Camel::Camel()
 {
@@ -23,6 +24,7 @@ bool Camel::Initialize()
 	m_State = new CamelRestState;
 	m_State->Enter(this);
 
+	m_Cannon = GETMGR(ObjectManager)->GetObjFromTag(L"CamelCannon", OBJ_EFFECT);
 	return true;
 }
 
@@ -30,6 +32,18 @@ int Camel::Update(const float& TimeDelta)
 {
 	m_State->Update(this, TimeDelta);
 	HandleInput();
+	UpdateInput(TimeDelta);
+
+	if (!m_rideCheck)
+	{
+		m_Cannon->SetPosition(m_Info.Pos_X - 60.f, m_Info.Pos_Y);
+		((CamelCannon*)m_Cannon)->SetSpriteY(0.f);
+	}
+	else
+	{
+		m_Cannon->SetPosition(m_Info.Pos_X - 60.f, m_Info.Pos_Y - 20.f);
+		((CamelCannon*)m_Cannon)->UpdateInput(TimeDelta);
+	}
 
 	// ม฿ทย
 	{
@@ -58,8 +72,8 @@ void Camel::Render(HDC hdc)
 		m_Info.Size_X, m_Info.Size_Y, RGB(255, 255, 255));
 
 	// for test
-	if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
-		Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
+	//if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
+		//Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
 }
 
 void Camel::Release()
@@ -139,6 +153,31 @@ void Camel::CollisionDeactivate(GameObject* collideTarget)
 
 int Camel::UpdateInput(const float& TimeDelta)
 {
+	if (!m_fallCheck)
+		m_onGroundPosY = m_Info.Pos_Y;
+
+	if (!m_rideCheck)
+	{
+		if(0 != m_onGroundPosY)
+			m_Info.Pos_Y = m_onGroundPosY;
+		return 0;
+	}
+
+	
+
+	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
+		m_Info.Pos_X -= m_Speed * TimeDelta;
+
+	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
+		m_Info.Pos_X += m_Speed * TimeDelta;
+
+	if (!m_fallCheck && GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'S'))
+	{
+		SetFall(true);
+		m_GravitySpeed = -300;
+	}
+
+
 	return 0;
 }
 

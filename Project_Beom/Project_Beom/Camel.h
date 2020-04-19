@@ -31,5 +31,7 @@ private:
 private:
 	State* m_State = nullptr;
 	bool m_rideCheck = false;
+	GameObject* m_Cannon = nullptr;
+	float m_onGroundPosY = 0.f;
 };
 

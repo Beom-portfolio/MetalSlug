@@ -13,6 +13,7 @@
 #include "Toma.h"
 #include "Sarubia.h"
 #include "Camel.h"
+#include "CamelCannon.h"
 
 TestScene::TestScene()
 {
@@ -32,8 +33,11 @@ bool TestScene::Initialize()
 
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
+	//
+	m_ObjManager->AddObject(L"CamelCannon", AbstractFactory<CamelCannon>::CreateObj(), OBJ_EFFECT);
 	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(1000, 300), OBJ_SLUG);
 	m_ObjManager->AddObject(L"Background", AbstractFactory<Background>::CreateObj(), OBJ_BACK);
+	
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Sarubia>::CreateObj(1000, 300), OBJ_BLOCK);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Toma>::CreateObj(1000, 200), OBJ_MONSTER);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Tank>::CreateObj(1000, 300), OBJ_BLOCK);

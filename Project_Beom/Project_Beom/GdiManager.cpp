@@ -174,6 +174,7 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"camel_run", L"../Resources/Camel/Run.bmp");
 		LoadGdiImage(L"camel_idle", L"../Resources/Camel/Idle.bmp");
 		LoadGdiImage(L"player_ride", L"../Resources/Player/Ride.bmp");
+		LoadGdiImage(L"camel_cannon", L"../Resources/Camel/Gun.bmp");
 
 		// bullet
 		LoadGdiImage(L"pistol_bullet", L"../Resources/Weapon/Pistol/Pistol.bmp");
@@ -184,6 +185,7 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"tank_bullet_r", L"../Resources/MonsterBullet/right/tank_bullet.bmp");
 		LoadGdiImage(L"toma_bullet", L"../Resources/Weapon/All/toma_bullet.bmp");
 		LoadGdiImage(L"saru_bullet", L"../Resources/Weapon/All/saru_bullet.bmp");
+		LoadGdiImage(L"camel_cannon_bullet", L"../Resources/Weapon/HeavyMachine/Heavy2.bmp");
 		// effect
 		LoadGdiImage(L"effect_pistol", L"../Resources/Effect/Normal.bmp");
 		LoadGdiImage(L"effect_explosion", L"../Resources/Effect/explosion.bmp");
