@@ -24,7 +24,7 @@ bool Camel::Initialize()
 	m_State = new CamelRestState;
 	m_State->Enter(this);
 
-	m_Cannon = GETMGR(ObjectManager)->GetObjFromTag(L"CamelCannon", OBJ_EFFECT);
+	m_Cannon = GETMGR(ObjectManager)->GetObjFromTag(L"CamelCannon", OBJ_AFTERPLAYER);
 	return true;
 }
 
@@ -163,8 +163,6 @@ int Camel::UpdateInput(const float& TimeDelta)
 		return 0;
 	}
 
-	
-
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
 		m_Info.Pos_X -= m_Speed * TimeDelta;
 
@@ -176,6 +174,7 @@ int Camel::UpdateInput(const float& TimeDelta)
 		SetFall(true);
 		m_GravitySpeed = -300;
 	}
+
 
 
 	return 0;

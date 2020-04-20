@@ -168,6 +168,27 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 			LoadGdiImage(L"saru_dead_r", L"../Resources/Monster/Sarubia/Right/dead.bmp");
 			LoadGdiImage(L"saru_dead_l", L"../Resources/Monster/Sarubia/Left/dead.bmp");
 			LoadGdiImage(L"saru_chip", L"../Resources/Monster/Sarubia/chip.bmp");
+			//boss
+			LoadGdiImage(L"boss_body_idle", L"../Resources/Monster/Boss/body.bmp");
+			LoadGdiImage(L"boss_body_destroy", L"../Resources/Monster/Boss/destroy.bmp");
+			LoadGdiImage(L"boss_wing_fire_prepare", L"../Resources/Monster/Boss/fire_preparing.bmp");
+			LoadGdiImage(L"boss_wing_fire_att", L"../Resources/Monster/Boss/fire_attack.bmp");
+			LoadGdiImage(L"boss_wing_fire_end", L"../Resources/Monster/Boss/fire_end.bmp");
+			LoadGdiImage(L"boss_wing_fire_idle_r", L"../Resources/Monster/Boss/right_fire_stand.bmp");
+			LoadGdiImage(L"boss_wing_fire_idle_l", L"../Resources/Monster/Boss/left_fire_stand.bmp");
+			LoadGdiImage(L"boss_smog_att", L"../Resources/Monster/Boss/smog_attack.bmp");
+			LoadGdiImage(L"boss_smog_end", L"../Resources/Monster/Boss/smog_end.bmp");
+			LoadGdiImage(L"boss_smog_prepare", L"../Resources/Monster/Boss/smog_preparing.bmp");
+			LoadGdiImage(L"boss_smog_stand", L"../Resources/Monster/Boss/smog_stand.bmp");
+
+			LoadGdiImage(L"boss_boost_l", L"../Resources/Monster/Boss/Left/boost_stand.bmp");
+			LoadGdiImage(L"boss_boost_r", L"../Resources/Monster/Boss/Right/boost_stand.bmp");
+			LoadGdiImage(L"boss_pro_att_l", L"../Resources/Monster/Boss/Left/pro_attack.bmp");
+			LoadGdiImage(L"boss_pro_att_r", L"../Resources/Monster/Boss/Right/pro_attack.bmp");
+			LoadGdiImage(L"boss_pro_damage_l", L"../Resources/Monster/Boss/Left/pro_damage.bmp");
+			LoadGdiImage(L"boss_pro_damage_r", L"../Resources/Monster/Boss/Right/pro_damage.bmp");
+			LoadGdiImage(L"boss_pro_idle_l", L"../Resources/Monster/Boss/Left/pro_stand.bmp");
+			LoadGdiImage(L"boss_pro_idle_r", L"../Resources/Monster/Boss/Right/pro_stand.bmp");
 		}
 
 		LoadGdiImage(L"camel_rest", L"../Resources/Camel/Idle_Not_Ride.bmp");

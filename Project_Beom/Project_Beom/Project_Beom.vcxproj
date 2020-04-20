@@ -156,6 +156,8 @@
     <ClInclude Include="BigExplosion.h" />
     <ClInclude Include="Blood.h" />
     <ClInclude Include="Bomb.h" />
+    <ClInclude Include="Boost.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Camel.h" />
     <ClInclude Include="CamelCannon.h" />
     <ClInclude Include="CamelCannonBullet.h" />
@@ -170,6 +172,7 @@
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="FrameManager.h" />
     <ClInclude Include="framework.h" />
@@ -181,6 +184,7 @@
     <ClInclude Include="GranadeExplosion.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="KnifeBullet.h" />
+    <ClInclude Include="LeftWing.h" />
     <ClInclude Include="MachinegunBullet.h" />
     <ClInclude Include="MachinegunEffect.h" />
     <ClInclude Include="Macro.h" />
@@ -223,8 +227,10 @@
     <ClInclude Include="PlayerTopUnderState.h" />
     <ClInclude Include="PlayerTopUpAttState.h" />
     <ClInclude Include="PlayerTopUpState.h" />
+    <ClInclude Include="Pro.h" />
     <ClInclude Include="Project_Beom.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RightWing.h" />
     <ClInclude Include="Sarubia.h" />
     <ClInclude Include="SarubiaAttState.h" />
     <ClInclude Include="SarubiaDieState.h" />
@@ -236,6 +242,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="PlayerBottomStandState.h" />
+    <ClInclude Include="Smog.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="SoldierBomb.h" />
     <ClInclude Include="SoldierBombAttState.h" />
@@ -269,6 +276,8 @@
     <ClCompile Include="BigExplosion.cpp" />
     <ClCompile Include="Blood.cpp" />
     <ClCompile Include="Bomb.cpp" />
+    <ClCompile Include="Boost.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Camel.cpp" />
     <ClCompile Include="CamelCannon.cpp" />
     <ClCompile Include="CamelCannonBullet.cpp" />
@@ -279,6 +288,7 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="FrameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -289,6 +299,7 @@
     <ClCompile Include="GranadeExplosion.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="KnifeBullet.cpp" />
+    <ClCompile Include="LeftWing.cpp" />
     <ClCompile Include="MachinegunBullet.cpp" />
     <ClCompile Include="MachinegunEffect.cpp" />
     <ClCompile Include="Maingame.cpp" />
@@ -334,7 +345,9 @@
     <ClCompile Include="PlayerTopUnderState.cpp" />
     <ClCompile Include="PlayerTopUpAttState.cpp" />
     <ClCompile Include="PlayerTopUpState.cpp" />
+    <ClCompile Include="Pro.cpp" />
     <ClCompile Include="Project_Beom.cpp" />
+    <ClCompile Include="RightWing.cpp" />
     <ClCompile Include="Sarubia.cpp" />
     <ClCompile Include="SarubiaAttState.cpp" />
     <ClCompile Include="SarubiaDieState.cpp" />
@@ -346,6 +359,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="PlayerBottomStandState.cpp" />
+    <ClCompile Include="Smog.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="SoldierBomb.cpp" />
     <ClCompile Include="SoldierBombAttState.cpp" />

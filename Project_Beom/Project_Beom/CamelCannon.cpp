@@ -41,7 +41,7 @@ int CamelCannon::Update(const float& TimeDelta)
 
 	m_SpriteInfo.StateIndex = (int)m_spriteIndexY;
 
-	POSITION pos = AnglePos(0.f, 0.f, 11.25f * count, 60);
+	POSITION pos = AnglePos(0.f, 0.f, 11.25f * count, 30);
 	m_CollideInfo.Pos_X = pos.X;
 	m_CollideInfo.Pos_Y = pos.Y;
 
@@ -71,8 +71,6 @@ void CamelCannon::Release()
 
 int CamelCannon::UpdateInput(const float& TimeDelta)
 {
-	cout << "LeftCheck : " << m_leftCheck << ", UpCheck : " << m_upCheck << endl;
-
 	if (m_Angle >= 90.f && m_Angle < 270.f)
 		m_leftCheck = true;
 	else if(m_Angle <= 90.f || m_Angle >= 270.f)
@@ -82,6 +80,7 @@ int CamelCannon::UpdateInput(const float& TimeDelta)
 		m_upCheck = true;
 	else if (m_Angle <= 360.f && m_Angle >= 180.f)
 		m_upCheck = false;
+
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
 	{
@@ -149,7 +148,7 @@ int CamelCannon::UpdateInput(const float& TimeDelta)
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, 'A'))
 	{
-		if (m_TimeStack > 0.065f)
+		if (m_TimeStack > 0.045f)
 		{
 			GameObject* bullet = AbstractFactory<CamelCannonBullet>::CreateObj();
 			bullet->SetPosition(m_OriginCollidePos.X, m_OriginCollidePos.Y);
@@ -168,7 +167,6 @@ int CamelCannon::UpdateInput(const float& TimeDelta)
 		m_spriteIndexY = 0.f;
 	}
 	
-
 	if (m_Angle < 0.f)
 		m_Angle += 360.f;
 

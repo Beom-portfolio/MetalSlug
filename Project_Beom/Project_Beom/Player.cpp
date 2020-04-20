@@ -5,6 +5,7 @@
 #include "PlayerBottom.h"
 #include "PlayerTop.h"
 #include "Camel.h"
+#include "Bomb.h"
 
 
 Player::Player()
@@ -158,8 +159,21 @@ int Player::Update(const float& TimeDelta)
 					m_Slug = nullptr;
 					m_Bottom->Update(TimeDelta);
 					m_Top->Update(TimeDelta);
+					m_TimeStack = 0.f;
 				}
 			}
+
+			if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'D'))
+			{
+				POSITION aPos = AnglePos(m_OriginCollidePos.X, m_OriginCollidePos.Y, 65.f, 60);
+
+				GameObject* bullet = AbstractFactory<Bomb>::CreateObj();
+				bullet->SetDirection(DIR_RIGHT);
+				bullet->SetPosition(aPos.X, aPos.Y);
+				bullet->SetGravitySpeed(-300);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
+			}
+
 			m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
 			m_Top->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
 		}
@@ -279,7 +293,7 @@ void Player::CollisionActivate(GameObject* collideTarget)
 	switch (collideTarget->GetObjectType())
 	{
 	case OBJ_SLUG:
-		if (m_rideCheck) break;
+		if (m_rideCheck || 1.f > m_TimeStack) break;
 		if (m_fallCheck && 0 < m_GravitySpeed)
 		{
 			SetFall(false);
@@ -323,7 +337,14 @@ void Player::CollisionActivate(GameObject* collideTarget)
 		m_TimeStack = 0.f;
 		m_isDead = true;
 		m_isCollideOn = false;
-		m_rideCheck = false;
+		if (m_rideCheck)
+		{
+			m_rideCheck = false;
+			((Camel*)m_Slug)->SetRideCheck(false);
+			m_Slug = nullptr;
+			m_Bottom->Update(0.f);
+			m_Top->Update(0.f);
+		}
 		break;
 	}
 }

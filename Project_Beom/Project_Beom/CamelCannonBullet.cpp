@@ -19,7 +19,7 @@ bool CamelCannonBullet::Initialize()
 	m_RenderType = RENDER_OBJ;
 	m_SpriteInfo.key = L"camel_cannon_bullet";
 
-	m_Speed = 1000.f;
+	m_Speed = 1500.f;
 	m_Damage = 2;
 
 	return true;

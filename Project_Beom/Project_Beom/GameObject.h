@@ -60,6 +60,7 @@ public:
 	virtual bool Initialize() PURE;
 	virtual int  Update(const float& TimeDelta);
 	virtual void Render(HDC hdc) PURE;
+	virtual void RenderAfter(HDC hdc);
 	virtual void Release() PURE;
 	virtual void CollisionActivate(GameObject* collideTarget);
 	virtual void CollisionDeactivate(GameObject* collideTarget);

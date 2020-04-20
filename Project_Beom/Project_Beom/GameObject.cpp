@@ -250,6 +250,10 @@ int GameObject::Update(const float& TimeDelta)
 	return 0;
 }
 
+void GameObject::RenderAfter(HDC hdc)
+{
+}
+
 void GameObject::CollisionActivate(GameObject* collideTarget)
 {
 }

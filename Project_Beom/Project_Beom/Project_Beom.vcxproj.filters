@@ -238,6 +238,33 @@
     <Filter Include="02.GameObejct\Bullet\CamelCannon">
       <UniqueIdentifier>{4080467a-5002-4c89-b531-7fa553e5274f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss">
+      <UniqueIdentifier>{b1fe811d-c1c1-425a-94ab-655caefefd3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\Parts">
+      <UniqueIdentifier>{bce7c15a-477e-4f35-8a3c-f157e3ad03b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\Parts\Left">
+      <UniqueIdentifier>{f548bf2c-2014-4c95-a06d-2a83ca00ad31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\Parts\Right">
+      <UniqueIdentifier>{36d82b2d-c1d1-4923-942a-ffc8c61a4d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\Parts\Boost">
+      <UniqueIdentifier>{8eab5431-ded4-4903-99f8-ad10be6dbb3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\Parts\Fire">
+      <UniqueIdentifier>{235d3f4b-2251-4359-9bf6-8ae02d2f178d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\Parts\Pro">
+      <UniqueIdentifier>{642cf6b5-c864-4d4d-b977-906ed6274641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\Parts\Smog">
+      <UniqueIdentifier>{260ef881-4185-44fa-b034-9aed132f8bac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Monster\Boss\State">
+      <UniqueIdentifier>{60b8af4d-c484-46ae-8d1b-8c165e8970d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -576,6 +603,27 @@
     <ClInclude Include="CamelCannonBullet.h">
       <Filter>02.GameObejct\Bullet\CamelCannon</Filter>
     </ClInclude>
+    <ClInclude Include="Boss.h">
+      <Filter>02.GameObejct\Monster\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="RightWing.h">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Right</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftWing.h">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Left</Filter>
+    </ClInclude>
+    <ClInclude Include="Boost.h">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Boost</Filter>
+    </ClInclude>
+    <ClInclude Include="Fire.h">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Fire</Filter>
+    </ClInclude>
+    <ClInclude Include="Pro.h">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Pro</Filter>
+    </ClInclude>
+    <ClInclude Include="Smog.h">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Smog</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -880,6 +928,27 @@
     </ClCompile>
     <ClCompile Include="CamelCannonBullet.cpp">
       <Filter>02.GameObejct\Bullet\CamelCannon</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>02.GameObejct\Monster\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="RightWing.cpp">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Right</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftWing.cpp">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Left</Filter>
+    </ClCompile>
+    <ClCompile Include="Boost.cpp">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Boost</Filter>
+    </ClCompile>
+    <ClCompile Include="Fire.cpp">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="Pro.cpp">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Pro</Filter>
+    </ClCompile>
+    <ClCompile Include="Smog.cpp">
+      <Filter>02.GameObejct\Monster\Boss\Parts\Smog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
