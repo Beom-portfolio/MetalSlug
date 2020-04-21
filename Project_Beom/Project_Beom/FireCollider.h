@@ -1,13 +1,12 @@
 #pragma once
 #include "GameObject.h"
 
-class State;
-class Monster
+class FireCollider
 	: public GameObject
 {
 public:
-	Monster();
-	virtual ~Monster();
+	FireCollider();
+	virtual ~FireCollider();
 
 public:
 	virtual bool Initialize();
@@ -16,8 +15,6 @@ public:
 	virtual void Release();
 
 public:
-	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+	virtual void CollisionActivate(GameObject* collideTarget);
 };
-
-
 

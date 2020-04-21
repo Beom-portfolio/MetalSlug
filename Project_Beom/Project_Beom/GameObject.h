@@ -66,6 +66,7 @@ public:
 	virtual void CollisionDeactivate(GameObject* collideTarget);
 	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
 
+	virtual void SetState(DWORD state);
 protected:
 	void GotoAngle(const float& TimeDelta);
 
@@ -75,6 +76,7 @@ protected:
 	RENDERTYPE		m_RenderType = RENDER_OBJ;
 	DIRECTION		m_Direction = DIR_END;
 	DWORD			m_Dir = 0;
+	DWORD			m_State = 0;
 
 	// Render
 	PIXELCOLLIDERINFO* m_PixelInfo = nullptr;

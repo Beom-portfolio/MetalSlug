@@ -71,102 +71,105 @@ void CamelCannon::Release()
 
 int CamelCannon::UpdateInput(const float& TimeDelta)
 {
-	if (m_Angle >= 90.f && m_Angle < 270.f)
-		m_leftCheck = true;
-	else if(m_Angle <= 90.f || m_Angle >= 270.f)
-		m_leftCheck = false;
-
-	if (m_Angle >= 0.f && m_Angle < 180.f)
-		m_upCheck = true;
-	else if (m_Angle <= 360.f && m_Angle >= 180.f)
-		m_upCheck = false;
-
-
-	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
+	// 제대로 하려면 문제가 많아짐...
 	{
-		if (m_upCheck)
+		if (m_Angle >= 90.f && m_Angle < 270.f)
+			m_leftCheck = true;
+		else if (m_Angle <= 90.f || m_Angle >= 270.f)
+			m_leftCheck = false;
+
+		if (m_Angle >= 0.f && m_Angle < 180.f)
+			m_upCheck = true;
+		else if (m_Angle <= 360.f && m_Angle >= 180.f)
+			m_upCheck = false;
+
+
+		if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_LEFT))
 		{
-			m_Angle += m_Speed * TimeDelta;
-			if (m_Angle > 180.f)
-				m_Angle = 180.f;
+			if (m_upCheck)
+			{
+				m_Angle += m_Speed * TimeDelta;
+				if (m_Angle > 180.f)
+					m_Angle = 180.f;
+			}
+			else
+			{
+				m_Angle -= m_Speed * TimeDelta;
+				if (m_Angle < 180.f)
+					m_Angle = 180.f;
+			}
+		}
+
+		if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
+		{
+			if (m_upCheck)
+			{
+				m_Angle -= m_Speed * TimeDelta;
+				if (m_Angle < 0.f)
+					m_Angle = 0.f;
+			}
+			else
+			{
+				m_Angle += m_Speed * TimeDelta;
+				if (m_Angle > 360.f)
+					m_Angle = 360.f;
+			}
+		}
+
+		if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_UP))
+		{
+			if (m_leftCheck)
+			{
+				m_Angle -= m_Speed * TimeDelta;
+				if (m_Angle < 90.f)
+					m_Angle = 90.f;
+			}
+			else
+			{
+				m_Angle += m_Speed * TimeDelta;
+				if (m_Angle < 270.f && m_Angle > 90.f)
+					m_Angle = 90.f;
+			}
+		}
+
+		if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_DOWN))
+		{
+			if (m_leftCheck)
+			{
+				m_Angle += m_Speed * TimeDelta;
+				if (m_Angle > 270.f)
+					m_Angle = 270.f;
+			}
+			else
+			{
+				m_Angle -= m_Speed * TimeDelta;
+				if (m_Angle > 90.f && m_Angle < 270.f)
+					m_Angle = 270.f;
+			}
+		}
+
+		if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, 'A'))
+		{
+			if (m_TimeStack > 0.045f)
+			{
+				GameObject* bullet = AbstractFactory<CamelCannonBullet>::CreateObj();
+				bullet->SetPosition(m_OriginCollidePos.X, m_OriginCollidePos.Y);
+				bullet->SetAngle(((int)m_Angle / 10) * 10.f);
+				GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
+				m_TimeStack = 0.f;
+			}
+
+			m_spriteIndexY += 40.f * TimeDelta;
+
+			if (5.f <= m_spriteIndexY)
+				m_spriteIndexY = 1.f;
 		}
 		else
 		{
-			m_Angle -= m_Speed * TimeDelta;
-			if (m_Angle < 180.f)
-				m_Angle = 180.f;
+			m_spriteIndexY = 0.f;
 		}
 	}
 
-	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_RIGHT))
-	{
-		if (m_upCheck)
-		{
-			m_Angle -= m_Speed * TimeDelta;
-			if (m_Angle < 0.f)
-				m_Angle = 0.f;
-		}
-		else
-		{
-			m_Angle += m_Speed * TimeDelta;
-			if (m_Angle > 360.f)
-				m_Angle = 360.f;
-		}
-	}
-
-	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_UP))
-	{
-		if (m_leftCheck)
-		{
-			m_Angle -= m_Speed * TimeDelta;
-			if (m_Angle < 90.f)
-				m_Angle = 90.f;
-		}
-		else
-		{
-			m_Angle += m_Speed * TimeDelta;
-			if (m_Angle < 270.f &&  m_Angle > 90.f)
-				m_Angle = 90.f;
-		}
-	}
-
-	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, VK_DOWN))
-	{
-		if (m_leftCheck)
-		{
-			m_Angle += m_Speed * TimeDelta;
-			if (m_Angle > 270.f)
-				m_Angle = 270.f;
-		}
-		else
-		{
-			m_Angle -= m_Speed * TimeDelta;
-			if (m_Angle > 90.f && m_Angle < 270.f)
-				m_Angle = 270.f;
-		}
-	}
-
-	if (GETMGR(KeyManager)->GetKeyState(STATE_PUSH, 'A'))
-	{
-		if (m_TimeStack > 0.045f)
-		{
-			GameObject* bullet = AbstractFactory<CamelCannonBullet>::CreateObj();
-			bullet->SetPosition(m_OriginCollidePos.X, m_OriginCollidePos.Y);
-			bullet->SetAngle(((int)m_Angle / 10) * 10.f);
-			GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
-			m_TimeStack = 0.f;
-		}
-
-		m_spriteIndexY += 40.f * TimeDelta;
-
-		if (5.f <= m_spriteIndexY)
-			m_spriteIndexY = 1.f;
-	}
-	else
-	{
-		m_spriteIndexY = 0.f;
-	}
-	
 	if (m_Angle < 0.f)
 		m_Angle += 360.f;
 

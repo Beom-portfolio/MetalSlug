@@ -158,6 +158,11 @@
     <ClInclude Include="Bomb.h" />
     <ClInclude Include="Boost.h" />
     <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossAttEndState.h" />
+    <ClInclude Include="BossAttState.h" />
+    <ClInclude Include="BossDieState.h" />
+    <ClInclude Include="BossIdleState.h" />
+    <ClInclude Include="BossPrepareState.h" />
     <ClInclude Include="Camel.h" />
     <ClInclude Include="CamelCannon.h" />
     <ClInclude Include="CamelCannonBullet.h" />
@@ -173,6 +178,7 @@
     <ClInclude Include="Extern.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Fire.h" />
+    <ClInclude Include="FireCollider.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="FrameManager.h" />
     <ClInclude Include="framework.h" />
@@ -191,7 +197,6 @@
     <ClInclude Include="Maingame.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="MediumExplosion.h" />
-    <ClInclude Include="Monster.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PistolBullet.h" />
@@ -278,6 +283,11 @@
     <ClCompile Include="Bomb.cpp" />
     <ClCompile Include="Boost.cpp" />
     <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossAttEndState.cpp" />
+    <ClCompile Include="BossAttState.cpp" />
+    <ClCompile Include="BossDieState.cpp" />
+    <ClCompile Include="BossIdleState.cpp" />
+    <ClCompile Include="BossPrepareState.cpp" />
     <ClCompile Include="Camel.cpp" />
     <ClCompile Include="CamelCannon.cpp" />
     <ClCompile Include="CamelCannonBullet.cpp" />
@@ -289,6 +299,7 @@
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="FireCollider.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="FrameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -304,7 +315,6 @@
     <ClCompile Include="MachinegunEffect.cpp" />
     <ClCompile Include="Maingame.cpp" />
     <ClCompile Include="MediumExplosion.cpp" />
-    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

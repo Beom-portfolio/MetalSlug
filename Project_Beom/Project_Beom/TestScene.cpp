@@ -7,7 +7,6 @@
 #include "Player.h"
 #include "Background.h"
 #include "PistolBullet.h"
-#include "Monster.h"
 #include "Soldier.h"
 #include "Tank.h"
 #include "Toma.h"
@@ -30,7 +29,7 @@ bool TestScene::Initialize()
 	m_CamManager->SetTarget(player);
 	m_CamManager->SetResolution(4200, 600);
 	m_CamManager->SetOffset(10, 10, 10, 10);
-	m_CamManager->SetFixPos(300, 300);
+	m_CamManager->SetFixPos(400, 200);
 
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);

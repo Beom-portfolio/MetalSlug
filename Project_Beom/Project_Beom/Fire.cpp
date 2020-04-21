@@ -9,6 +9,38 @@ Fire::~Fire()
 {
 }
 
+void Fire::SetState(DWORD state)
+{
+	switch (state)
+	{
+	case BOSS_IDLE:
+		if (DIR_RIGHT == m_Direction)
+			m_SpriteInfo.key = L"boss_wing_fire_idle_r";
+		else
+			m_SpriteInfo.key = L"boss_wing_fire_idle_l";
+		m_SpriteInfo.MaxFrame = 4;
+		m_SpriteInfo.Speed = 20.f;
+		break;
+	case BOSS_PREPARE:
+		m_SpriteInfo.key = L"boss_wing_fire_prepare";
+		m_SpriteInfo.MaxFrame = 24;
+		m_SpriteInfo.Speed = 15.f;
+		break;
+	case BOSS_ATT:
+		m_SpriteInfo.key = L"boss_wing_fire_att";
+		m_SpriteInfo.MaxFrame = 6;
+		m_SpriteInfo.Speed = 30.f;
+		break;
+	case BOSS_ATT_END:
+		m_SpriteInfo.key = L"boss_wing_fire_end";
+		m_SpriteInfo.MaxFrame = 16;
+		m_SpriteInfo.Speed = 10.f;
+		break;
+	}
+
+	m_SpriteInfo.SpriteIndex = 0.f;
+}
+
 bool Fire::Initialize()
 {
 	m_Info = { 0, 0, 300, 1200 };
@@ -21,17 +53,11 @@ bool Fire::Initialize()
 	m_SpriteInfo.MaxFrame = 4;
 	m_SpriteInfo.Speed = 20.f;
 
-
 	return true;
 }
 
 int Fire::Update(const float& TimeDelta)
 {
-	if (DIR_RIGHT == m_Direction)
-		m_SpriteInfo.key = L"boss_wing_fire_idle_r";
-	else
-		m_SpriteInfo.key = L"boss_wing_fire_idle_l";
-
 	m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
 	if ((float)m_SpriteInfo.MaxFrame <= m_SpriteInfo.SpriteIndex)
 		m_SpriteInfo.SpriteIndex = 0.f;

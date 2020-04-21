@@ -124,6 +124,11 @@ void GameObject::SetHypotenuse(float hypotenuse)
 	SetAngle(m_Angle);
 }
 
+void GameObject::SetState(DWORD state)
+{
+	m_State = state;
+}
+
 void GameObject::Hit(int damage)
 {
 	m_Hp -= damage;

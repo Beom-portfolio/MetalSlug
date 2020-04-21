@@ -265,6 +265,9 @@
     <Filter Include="02.GameObejct\Monster\Boss\State">
       <UniqueIdentifier>{60b8af4d-c484-46ae-8d1b-8c165e8970d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Bullet\Boss">
+      <UniqueIdentifier>{9ca96c3b-135a-4c6f-a31c-f315be899a16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -459,9 +462,6 @@
     <ClInclude Include="MachinegunEffect.h">
       <Filter>02.GameObejct\Effect\Machinegun</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>02.GameObejct\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerTopKnifeAttState.h">
       <Filter>02.GameObejct\Player\Top\State\Attack\Knife</Filter>
     </ClInclude>
@@ -624,6 +624,24 @@
     <ClInclude Include="Smog.h">
       <Filter>02.GameObejct\Monster\Boss\Parts\Smog</Filter>
     </ClInclude>
+    <ClInclude Include="BossPrepareState.h">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClInclude>
+    <ClInclude Include="BossIdleState.h">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClInclude>
+    <ClInclude Include="BossDieState.h">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClInclude>
+    <ClInclude Include="BossAttState.h">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClInclude>
+    <ClInclude Include="BossAttEndState.h">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClInclude>
+    <ClInclude Include="FireCollider.h">
+      <Filter>02.GameObejct\Bullet\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -784,9 +802,6 @@
     </ClCompile>
     <ClCompile Include="MachinegunEffect.cpp">
       <Filter>02.GameObejct\Effect\Machinegun</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>02.GameObejct\Monster</Filter>
     </ClCompile>
     <ClCompile Include="PlayerTopKnifeAttState.cpp">
       <Filter>02.GameObejct\Player\Top\State\Attack\Knife</Filter>
@@ -949,6 +964,24 @@
     </ClCompile>
     <ClCompile Include="Smog.cpp">
       <Filter>02.GameObejct\Monster\Boss\Parts\Smog</Filter>
+    </ClCompile>
+    <ClCompile Include="BossPrepareState.cpp">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClCompile>
+    <ClCompile Include="BossIdleState.cpp">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClCompile>
+    <ClCompile Include="BossDieState.cpp">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClCompile>
+    <ClCompile Include="BossAttState.cpp">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClCompile>
+    <ClCompile Include="BossAttEndState.cpp">
+      <Filter>02.GameObejct\Monster\Boss\State</Filter>
+    </ClCompile>
+    <ClCompile Include="FireCollider.cpp">
+      <Filter>02.GameObejct\Bullet\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

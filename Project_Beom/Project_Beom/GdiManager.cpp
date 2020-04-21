@@ -170,6 +170,7 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 			LoadGdiImage(L"saru_chip", L"../Resources/Monster/Sarubia/chip.bmp");
 			//boss
 			LoadGdiImage(L"boss_body_idle", L"../Resources/Monster/Boss/body.bmp");
+			LoadGdiImage(L"boss_body_hit", L"../Resources/Monster/Boss/body_hit.bmp");
 			LoadGdiImage(L"boss_body_destroy", L"../Resources/Monster/Boss/destroy.bmp");
 			LoadGdiImage(L"boss_wing_fire_prepare", L"../Resources/Monster/Boss/fire_preparing.bmp");
 			LoadGdiImage(L"boss_wing_fire_att", L"../Resources/Monster/Boss/fire_attack.bmp");
@@ -185,8 +186,6 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 			LoadGdiImage(L"boss_boost_r", L"../Resources/Monster/Boss/Right/boost_stand.bmp");
 			LoadGdiImage(L"boss_pro_att_l", L"../Resources/Monster/Boss/Left/pro_attack.bmp");
 			LoadGdiImage(L"boss_pro_att_r", L"../Resources/Monster/Boss/Right/pro_attack.bmp");
-			LoadGdiImage(L"boss_pro_damage_l", L"../Resources/Monster/Boss/Left/pro_damage.bmp");
-			LoadGdiImage(L"boss_pro_damage_r", L"../Resources/Monster/Boss/Right/pro_damage.bmp");
 			LoadGdiImage(L"boss_pro_idle_l", L"../Resources/Monster/Boss/Left/pro_stand.bmp");
 			LoadGdiImage(L"boss_pro_idle_r", L"../Resources/Monster/Boss/Right/pro_stand.bmp");
 		}
