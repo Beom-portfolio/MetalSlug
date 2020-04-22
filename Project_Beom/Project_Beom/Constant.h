@@ -1,7 +1,7 @@
 #pragma once
 
 constexpr UINT WINSIZE_X = 900;
-constexpr UINT WINSIZE_Y = 600;
+constexpr UINT WINSIZE_Y = 570;
 
 constexpr float PI = 3.141592f;
 constexpr float GRAVITY_ACC = 9.8f * 2.5f;

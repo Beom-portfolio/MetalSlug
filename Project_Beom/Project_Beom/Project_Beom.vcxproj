@@ -255,7 +255,9 @@
     <ClInclude Include="SoldierIdleState.h" />
     <ClInclude Include="SoldierKnifeState.h" />
     <ClInclude Include="SoldierRunState.h" />
+    <ClInclude Include="SpriteDeco.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="StaticDeco.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Tank.h" />
@@ -377,7 +379,9 @@
     <ClCompile Include="SoldierIdleState.cpp" />
     <ClCompile Include="SoldierKnifeState.cpp" />
     <ClCompile Include="SoldierRunState.cpp" />
+    <ClCompile Include="SpriteDeco.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="StaticDeco.cpp" />
     <ClCompile Include="System.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="TankAttState.cpp" />

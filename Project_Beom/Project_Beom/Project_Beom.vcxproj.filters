@@ -268,6 +268,15 @@
     <Filter Include="02.GameObejct\Bullet\Boss">
       <UniqueIdentifier>{9ca96c3b-135a-4c6f-a31c-f315be899a16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Background\Deco">
+      <UniqueIdentifier>{e4620cca-33c4-49be-bd3c-357f9ee7a4df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Background\Deco\Sprite">
+      <UniqueIdentifier>{cb170e9b-1353-441a-a8e7-fd7a639d54eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Background\Deco\Static">
+      <UniqueIdentifier>{8ef191f0-cc40-47c4-b0f6-85d13e043dbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -642,6 +651,12 @@
     <ClInclude Include="FireCollider.h">
       <Filter>02.GameObejct\Bullet\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="StaticDeco.h">
+      <Filter>99.Default\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteDeco.h">
+      <Filter>99.Default\헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -982,6 +997,12 @@
     </ClCompile>
     <ClCompile Include="FireCollider.cpp">
       <Filter>02.GameObejct\Bullet\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticDeco.cpp">
+      <Filter>99.Default\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteDeco.cpp">
+      <Filter>99.Default\소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,7 +14,7 @@ Camel::~Camel()
 bool Camel::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 400, 300, 200, 250 };
-	m_CollideInfo = GAMEOBJINFO{ 0, 0, 150, 80 };
+	m_CollideInfo = GAMEOBJINFO{ -20, 0, 50, 80 };
 
 	m_Speed = 250.f;
 	m_RenderType = RENDER_OBJ;
@@ -72,8 +72,8 @@ void Camel::Render(HDC hdc)
 		m_Info.Size_X, m_Info.Size_Y, RGB(255, 255, 255));
 
 	// for test
-	//if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
-		//Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
+	if (true == GET_MANAGER<CollisionManager>()->GetRenderCheck())
+		Rectangle(hdc, m_CollideRect.left, m_CollideRect.top, m_CollideRect.right, m_CollideRect.bottom);
 }
 
 void Camel::Release()

@@ -143,8 +143,8 @@ int CameraManager::Update(const float& TimeDelta)
 			totalDir.Y = Dir.Y / Length;
 		}
 
-		m_Pos.X += totalDir.X * speedX * TimeDelta;
-		m_Pos.Y += totalDir.Y * speedY * TimeDelta;
+		m_Pos.X += totalDir.X * 2.f * speedX * TimeDelta;
+		m_Pos.Y += totalDir.Y * 2.f * speedY * TimeDelta;
 		
 		if (Length <= 5.f)
 		{

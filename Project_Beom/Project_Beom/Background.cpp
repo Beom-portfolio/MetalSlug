@@ -11,11 +11,11 @@ Background::~Background()
 
 bool Background::Initialize()
 {
-	m_Info = GAMEOBJINFO{ 4200 / 2, 600 / 2, 4200, 600 };
+	m_Info = GAMEOBJINFO{ 9700 / 2, 600 / 2, 9700, 600 };
 	m_ObjType = OBJ_BACK;
 	m_RenderType = RENDER_BACKGROUND;
 
-	LoadPixelCollider("../Resources/Stage/Stage_Floor_0_Collider_Info.bmp", 255, 0, 0);
+	LoadPixelCollider("../Resources/Stage/stage_collider.bmp", 248, 0, 0);
 
 	return true;
 }
@@ -37,11 +37,8 @@ void Background::Render(HDC hdc)
 	else
 		hMemDC = GET_MANAGER<GdiManager>()->FindImage(L"back")->GetGdiImageDefault();
 
-	TransparentBlt(hdc, m_Rect.left, m_Rect.top, m_Info.Size_X, m_Info.Size_Y,
-		hMemDC,
-		(int)m_SpriteInfo.SpriteIndex * m_Info.Size_X,
-		m_SpriteInfo.StateIndex * m_Info.Size_Y,
-		m_Info.Size_X, m_Info.Size_Y, RGB(255, 0, 255));
+	BitBlt(hdc, m_Rect.left, m_Rect.top, m_Info.Size_X, m_Info.Size_Y,
+		hMemDC, 0, 0, SRCCOPY);
 }
 
 void Background::Release()

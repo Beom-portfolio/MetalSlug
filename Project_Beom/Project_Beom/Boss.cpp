@@ -43,7 +43,7 @@ bool Boss::Initialize()
 	m_OriginPosY = m_Info.Pos_Y;
 	m_Info.Pos_Y = -50.f;
 
-	m_Hp = 100;
+	m_Hp = 1000;
 	m_TotalHp = m_Hp;
 
 	m_isCollideOn = false;

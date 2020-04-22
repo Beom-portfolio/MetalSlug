@@ -34,9 +34,13 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		break;
 	case SCENESTATE::SCENE_TEST:
 		// back
-		LoadGdiImage(L"back", L"../Resources/Stage/Stage_Floor_0.bmp");
-		LoadGdiImage(L"back_collider", L"../Resources/Stage/Stage_Floor_0_Collider_Info.bmp");
-		
+		LoadGdiImage(L"back", L"../Resources/Stage/stage.bmp");
+		LoadGdiImage(L"back_collider", L"../Resources/Stage/stage_collider.bmp");
+		LoadGdiImage(L"y_sort_1", L"../Resources/Stage/Y_Sort_1.bmp");
+		LoadGdiImage(L"y_sort_2", L"../Resources/Stage/Y_Sort_2.bmp");
+		LoadGdiImage(L"deco_boss", L"../Resources/Stage/Deco_Boss.bmp");
+		LoadGdiImage(L"deco_boss_1", L"../Resources/Stage/Deco_Boss_1.bmp");
+		LoadGdiImage(L"deco_boss_2", L"../Resources/Stage/Deco_Boss_2.bmp");
 		// player
 		{
 			LoadGdiImage(L"none", L"../Resources/Player/none.bmp");
