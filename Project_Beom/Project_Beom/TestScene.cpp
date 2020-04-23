@@ -28,7 +28,7 @@ TestScene::~TestScene()
 bool TestScene::Initialize()
 {
 	GameObject* player = AbstractFactory<Player>::CreateObj();
-	player->SetPosition(9400, 200);
+	player->SetPosition(100, 200);
 	m_CamManager->SetTarget(player);
 	m_CamManager->SetResolution(9700, 600);
 	m_CamManager->SetOffset(5, 5, 5, 5);
@@ -38,7 +38,7 @@ bool TestScene::Initialize()
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
 	//
 	m_ObjManager->AddObject(L"CamelCannon", AbstractFactory<CamelCannon>::CreateObj(), OBJ_AFTERPLAYER);
-	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(9300, 300), OBJ_SLUG);
+	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(300, 300), OBJ_SLUG);
 
 	{
 		//map
@@ -92,18 +92,58 @@ bool TestScene::Initialize()
 		m_ObjManager->AddObject(L"deco_5", deco, OBJ_BACK1);
 	}
 
-	m_ObjManager->AddObject(L"Boss", AbstractFactory<Boss>::CreateObj(9250, -150), OBJ_MONSTER);
+	// monster load
+	{
+		ifstream file;
+		file.open(L"../Data/SaveFile.dat", ios_base::in | ios_base::binary);
+		if (file.is_open())
+		{
+			POSITION monPos;
+			MONSTERTYPE monType;
+			OBJTYPE objType;
+			while (!file.eof())
+			{
+				file.read((char*)& monPos.X, sizeof(float));
+				file.read((char*)& monPos.Y, sizeof(float));
+				file.read((char*)& monType, sizeof(int));
+
+				GameObject* monster = nullptr;
+				switch (monType)
+				{
+				case MONSTER_SOLDIER: 
+					monster = AbstractFactory<Soldier>::CreateObj(); 
+					objType = OBJ_MONSTER; 
+					break;
+				case MONSTER_TOMA:
+					monster = AbstractFactory<Toma>::CreateObj();
+					objType = OBJ_MONSTER;
+					break;
+				case MONSTER_TANK:
+					monster = AbstractFactory<Tank>::CreateObj();
+					objType = OBJ_BLOCK;
+					break;
+				case MONSTER_SARU: 
+					monster = AbstractFactory<Sarubia>::CreateObj();
+					objType = OBJ_BLOCK;
+					break;
+				}
+				monster->SetPosition(monPos.X, monPos.Y);
+				m_ObjManager->AddObject(monster, objType);
+			}
+		}
+	}
+
+
+	//m_ObjManager->AddObject(L"Boss", AbstractFactory<Boss>::CreateObj(9250, -150), OBJ_MONSTER);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Sarubia>::CreateObj(1000, 300), OBJ_BLOCK);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Toma>::CreateObj(1000, 200), OBJ_MONSTER);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Tank>::CreateObj(1000, 300), OBJ_BLOCK);
-	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Monster>::CreateObj(500, 300), OBJ_MONSTER);
+	
 	return true;
 }
 
 int TestScene::Update(const float& TimeDelta)
 {
-	Scene::Update(TimeDelta);
-
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F1))
 	{
 		GET_MANAGER<CollisionManager>()->GetRenderCheck() ? 
@@ -138,6 +178,7 @@ int TestScene::Update(const float& TimeDelta)
 		m_ObjManager->AddObject(AbstractFactory<Toma>::CreateObj(1000, 200), OBJ_MONSTER);
 	}
 
+	Scene::Update(TimeDelta);
 	return 0;
 }
 

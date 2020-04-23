@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "SceneManager.h"
 #include "TestScene.h"
+#include "ToolScene.h"
 
 SceneManager::SceneManager()
 {
@@ -25,6 +26,9 @@ bool SceneManager::ChangeSceneState(SCENESTATE SceneState)
 		break;
 	case SCENE_TEST:
 		m_Scene = new TestScene;
+		break;
+	case SCENE_TOOL:
+		m_Scene = new ToolScene;
 		break;
 	case SCENE_MAIN:
 		break;

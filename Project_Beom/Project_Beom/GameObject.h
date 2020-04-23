@@ -19,6 +19,7 @@ public:
 	const bool& GetCullingCheck() { return m_cullingCheck; }
 	const bool& GetCollideCheck() { return m_isCollide; }
 	const bool& GetCollideOnCheck() { return m_isCollideOn; }
+	const bool& GetNoScrollCheck() { return m_isNoScroll; }
 	const float& GetAngle() { return m_Angle; }
 	const float& GetSpeed() { return m_Speed; }
 	const float& GetGravity() { return m_GravitySpeed; }

@@ -97,6 +97,7 @@ int System::Logic()
 				PrintFPS();
 
 				GETMGR(KeyManager)->UpdateKey();
+				GETMGR(MouseManager)->Update();
 				// Game Loop
 				game->Update(m_frameTimeDelta);
 				game->Render();
@@ -213,6 +214,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
+	
+	//
+	case WM_LBUTTONDOWN:
+		GETMGR(MouseManager)->SetMouseLButton(true);
+		break;
+	case WM_LBUTTONUP:
+		GETMGR(MouseManager)->SetMouseLButton(false);
+		break;
+	case WM_RBUTTONDOWN:
+		GETMGR(MouseManager)->SetMouseRButton(true);
+		break;
+	case WM_RBUTTONUP:
+		GETMGR(MouseManager)->SetMouseRButton(false);
+		break;
+
+	//
+
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}

@@ -25,6 +25,7 @@
 #include <time.h>
 
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <string>
 #include <random>
@@ -78,5 +79,6 @@ using namespace Gdiplus;
 #include "GdiPlusManager.h"
 #include "ObjectManager.h"
 #include "CollisionManager.h"
+#include "MouseManager.h"
 
 #endif //PCH_H

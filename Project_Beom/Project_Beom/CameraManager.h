@@ -8,7 +8,7 @@ public:
 	virtual ~CameraManager();
 
 public:
-	void SetPos(int x, int y);
+	void SetPos(float x, float y);
 
 public:
 	const POSITION& GetPos() { return m_Pos; }

@@ -30,9 +30,9 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 	GdiManager* GdiMgr = GET_MANAGER<GdiManager>();
 	switch (SceneState)
 	{
-	case SCENESTATE::SCENE_MENU:
+	case SCENE_MENU:
 		break;
-	case SCENESTATE::SCENE_TEST:
+	case SCENE_TEST:
 		// back
 		LoadGdiImage(L"back", L"../Resources/Stage/stage.bmp");
 		LoadGdiImage(L"back_collider", L"../Resources/Stage/stage_collider.bmp");
@@ -210,6 +210,7 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"toma_bullet", L"../Resources/Weapon/All/toma_bullet.bmp");
 		LoadGdiImage(L"saru_bullet", L"../Resources/Weapon/All/saru_bullet.bmp");
 		LoadGdiImage(L"camel_cannon_bullet", L"../Resources/Weapon/HeavyMachine/Heavy2.bmp");
+		
 		// effect
 		LoadGdiImage(L"effect_pistol", L"../Resources/Effect/Normal.bmp");
 		LoadGdiImage(L"effect_explosion", L"../Resources/Effect/explosion.bmp");
@@ -226,7 +227,72 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"effect_tank_att_right", L"../Resources/Effect/tank_right_pung.bmp");
 		LoadGdiImage(L"effect_saru_explosion", L"../Resources/Effect/slug_bomb.bmp");
 		break;
-	case SCENESTATE::SCENE_MAIN:
+	case SCENE_TOOL:
+	{
+		LoadGdiImage(L"dummy_monsters", L"../Resources/Tool/Monsters.bmp");
+
+		// back
+		LoadGdiImage(L"back", L"../Resources/Stage/stage.bmp");
+		LoadGdiImage(L"back_collider", L"../Resources/Stage/stage_collider.bmp");
+		LoadGdiImage(L"y_sort_1", L"../Resources/Stage/Y_Sort_1.bmp");
+		LoadGdiImage(L"y_sort_2", L"../Resources/Stage/Y_Sort_2.bmp");
+		LoadGdiImage(L"deco_boss", L"../Resources/Stage/Deco_Boss.bmp");
+		LoadGdiImage(L"deco_boss_1", L"../Resources/Stage/Deco_Boss_1.bmp");
+		LoadGdiImage(L"deco_boss_2", L"../Resources/Stage/Deco_Boss_2.bmp");
+
+		// monster
+		{
+			//soldier
+			LoadGdiImage(L"soldier_l", L"../Resources/Monster/Monster_Left.bmp");
+			LoadGdiImage(L"soldier_r", L"../Resources/Monster/Monster_Right.bmp");
+			//tank
+			LoadGdiImage(L"tank_stand_r", L"../Resources/Monster/Tank/Right/stand.bmp");
+			LoadGdiImage(L"tank_stand_l", L"../Resources/Monster/Tank/Left/stand.bmp");
+			LoadGdiImage(L"tank_run_r", L"../Resources/Monster/Tank/Right/run.bmp");
+			LoadGdiImage(L"tank_run_l", L"../Resources/Monster/Tank/Left/run.bmp");
+			LoadGdiImage(L"tank_att_r", L"../Resources/Monster/Tank/Right/shot.bmp");
+			LoadGdiImage(L"tank_att_l", L"../Resources/Monster/Tank/Left/shot.bmp");
+			LoadGdiImage(L"tank_prepare_r", L"../Resources/Monster/Tank/Right/shot_preparing.bmp");
+			LoadGdiImage(L"tank_prepare_l", L"../Resources/Monster/Tank/Left/shot_preparing.bmp");
+			LoadGdiImage(L"tank_dead_r", L"../Resources/Monster/Tank/Right/dead.bmp");
+			LoadGdiImage(L"tank_dead_l", L"../Resources/Monster/Tank/Left/dead.bmp");
+			//toma
+			LoadGdiImage(L"toma_r", L"../Resources/Monster/Toma/Right/stand.bmp");
+			LoadGdiImage(L"toma_l", L"../Resources/Monster/Toma/Left/stand.bmp");
+			//sarubi
+			LoadGdiImage(L"saru_stand_r", L"../Resources/Monster/Sarubia/Right/stand.bmp");
+			LoadGdiImage(L"saru_stand_l", L"../Resources/Monster/Sarubia/Left/stand.bmp");
+			LoadGdiImage(L"saru_run_r", L"../Resources/Monster/Sarubia/Right/run.bmp");
+			LoadGdiImage(L"saru_run_l", L"../Resources/Monster/Sarubia/Left/run.bmp");
+			LoadGdiImage(L"saru_shot_r", L"../Resources/Monster/Sarubia/Right/shot.bmp");
+			LoadGdiImage(L"saru_shot_l", L"../Resources/Monster/Sarubia/Left/shot.bmp");
+			LoadGdiImage(L"saru_dead_r", L"../Resources/Monster/Sarubia/Right/dead.bmp");
+			LoadGdiImage(L"saru_dead_l", L"../Resources/Monster/Sarubia/Left/dead.bmp");
+			LoadGdiImage(L"saru_chip", L"../Resources/Monster/Sarubia/chip.bmp");
+			//boss
+			LoadGdiImage(L"boss_body_idle", L"../Resources/Monster/Boss/body.bmp");
+			LoadGdiImage(L"boss_body_hit", L"../Resources/Monster/Boss/body_hit.bmp");
+			LoadGdiImage(L"boss_body_destroy", L"../Resources/Monster/Boss/destroy.bmp");
+			LoadGdiImage(L"boss_wing_fire_prepare", L"../Resources/Monster/Boss/fire_preparing.bmp");
+			LoadGdiImage(L"boss_wing_fire_att", L"../Resources/Monster/Boss/fire_attack.bmp");
+			LoadGdiImage(L"boss_wing_fire_end", L"../Resources/Monster/Boss/fire_end.bmp");
+			LoadGdiImage(L"boss_wing_fire_idle_r", L"../Resources/Monster/Boss/right_fire_stand.bmp");
+			LoadGdiImage(L"boss_wing_fire_idle_l", L"../Resources/Monster/Boss/left_fire_stand.bmp");
+			LoadGdiImage(L"boss_smog_att", L"../Resources/Monster/Boss/smog_attack.bmp");
+			LoadGdiImage(L"boss_smog_end", L"../Resources/Monster/Boss/smog_end.bmp");
+			LoadGdiImage(L"boss_smog_prepare", L"../Resources/Monster/Boss/smog_preparing.bmp");
+			LoadGdiImage(L"boss_smog_stand", L"../Resources/Monster/Boss/smog_stand.bmp");
+
+			LoadGdiImage(L"boss_boost_l", L"../Resources/Monster/Boss/Left/boost_stand.bmp");
+			LoadGdiImage(L"boss_boost_r", L"../Resources/Monster/Boss/Right/boost_stand.bmp");
+			LoadGdiImage(L"boss_pro_att_l", L"../Resources/Monster/Boss/Left/pro_attack.bmp");
+			LoadGdiImage(L"boss_pro_att_r", L"../Resources/Monster/Boss/Right/pro_attack.bmp");
+			LoadGdiImage(L"boss_pro_idle_l", L"../Resources/Monster/Boss/Left/pro_stand.bmp");
+			LoadGdiImage(L"boss_pro_idle_r", L"../Resources/Monster/Boss/Right/pro_stand.bmp");
+		}
+	}
+		break;
+	case SCENE_MAIN:
 		// Load Image
 		break;
 	}

@@ -33,7 +33,7 @@ void SarubiaIdleState::Enter(GameObject* object)
 
 State* SarubiaIdleState::HandleInput(GameObject* object, KeyManager* input)
 {
-	if (m_Player->GetDeadCheck())
+	if (nullptr == m_Player || m_Player->GetDeadCheck())
 		return nullptr;
 
 	POSITION playerPos = m_Player->GetPosition();

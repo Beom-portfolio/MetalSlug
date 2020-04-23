@@ -12,7 +12,6 @@ public:
 
 public:
 	const TCHAR* GetTagFromObj(GameObject* Obj, OBJTYPE ObjType);
-
 	MAPOBJ& GetObjFromType(OBJTYPE ObjType) { return m_mapObj[ObjType]; }
 	GameObject* GetObjFromTag(const TCHAR* tag, OBJTYPE ObjType);
 
@@ -32,7 +31,7 @@ private:
 private:
 	unordered_multimap<const TCHAR*, GameObject*>			m_mapObj[OBJ_END];
 	vector<GameObject*>										m_vecRender[RENDER_END];
-
+	vector<wstring*>										m_vecNoNames;
 	RECT m_outOfScreen;
 };
 

@@ -34,7 +34,7 @@ void SoldierIdleState::Enter(GameObject* object)
 
 State* SoldierIdleState::HandleInput(GameObject* object, KeyManager* input)
 {
-	if (m_Player->GetDeadCheck())
+	if (nullptr == m_Player || m_Player->GetDeadCheck())
 		return nullptr;
 	
 	POSITION playerPos = m_Player->GetPosition();

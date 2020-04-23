@@ -252,6 +252,9 @@ int GameObject::Update(const float& TimeDelta)
 	m_OriginCollidePos.X = m_Info.Pos_X + m_CollideInfo.Pos_X;
 	m_OriginCollidePos.Y = m_Info.Pos_Y + m_CollideInfo.Pos_Y;
 
+	if (m_GravitySpeed > 1500.f)
+		m_isDead = true;
+
 	return 0;
 }
 

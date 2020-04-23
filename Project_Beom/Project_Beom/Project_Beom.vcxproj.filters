@@ -1,26 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="99.Default">
-      <UniqueIdentifier>{f946c6b5-4bd8-4718-a175-e8298d1c83d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="98.Headers">
       <UniqueIdentifier>{445f6dce-e434-41e7-bdf8-cc2e5fe8c697}</UniqueIdentifier>
     </Filter>
     <Filter Include="97.Manager">
       <UniqueIdentifier>{90c691f6-05fe-4bf9-bb74-5f98185bf881}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="99.Default\리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="99.Default\소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="99.Default\헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
     <Filter Include="97.Manager\AbstractFactory">
       <UniqueIdentifier>{86e45031-c341-4a16-9de8-3261cb112e23}</UniqueIdentifier>
@@ -276,6 +261,30 @@
     </Filter>
     <Filter Include="02.GameObejct\Background\Deco\Static">
       <UniqueIdentifier>{8ef191f0-cc40-47c4-b0f6-85d13e043dbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\Tool">
+      <UniqueIdentifier>{2ea16d40-637a-4c19-9e13-02ed170366a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Default">
+      <UniqueIdentifier>{f946c6b5-4bd8-4718-a175-e8298d1c83d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99.Default\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="99.Default\소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="99.Default\헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="97.Manager\Mouse">
+      <UniqueIdentifier>{2c0d7c2f-c87b-4ac5-8c8b-d5b97a82113c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Tool">
+      <UniqueIdentifier>{b5d988d8-b1f4-44b5-b211-a53aaa50e2f9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -651,11 +660,20 @@
     <ClInclude Include="FireCollider.h">
       <Filter>02.GameObejct\Bullet\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="StaticDeco.h">
-      <Filter>99.Default\헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SpriteDeco.h">
-      <Filter>99.Default\헤더 파일</Filter>
+      <Filter>02.GameObejct\Background\Deco\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticDeco.h">
+      <Filter>02.GameObejct\Background\Deco\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolScene.h">
+      <Filter>03.Scene\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseManager.h">
+      <Filter>97.Manager\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="DummyObject.h">
+      <Filter>02.GameObejct\Tool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -998,11 +1016,20 @@
     <ClCompile Include="FireCollider.cpp">
       <Filter>02.GameObejct\Bullet\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="StaticDeco.cpp">
-      <Filter>99.Default\소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SpriteDeco.cpp">
-      <Filter>99.Default\소스 파일</Filter>
+      <Filter>02.GameObejct\Background\Deco\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticDeco.cpp">
+      <Filter>02.GameObejct\Background\Deco\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolScene.cpp">
+      <Filter>03.Scene\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="MouseManager.cpp">
+      <Filter>97.Manager\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="DummyObject.cpp">
+      <Filter>02.GameObejct\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

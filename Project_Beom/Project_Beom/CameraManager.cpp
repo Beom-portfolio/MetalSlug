@@ -20,13 +20,15 @@ CameraManager::~CameraManager()
 	Release();
 }
 
-void CameraManager::SetPos(int x, int y)
+void CameraManager::SetPos(float x, float y)
 {
-	if (nullptr == m_Target)
-		return;
+	m_Pos.X = x;
+	m_Pos.Y = y;
 
-	m_Pos.X = -float(x - ((int)WINSIZE_X / 2));
-	m_Pos.Y = -float(y - ((int)WINSIZE_Y / 2));
+	if (0.f <= m_Pos.X) m_Pos.X = 0.f;
+	if (0.f <= m_Pos.Y) m_Pos.Y = 0.f;
+	if (-m_Resolution.X > m_Pos.X - (int)WINSIZE_X) m_Pos.X = -float(m_Resolution.X - (int)WINSIZE_X);
+	if (-m_Resolution.Y > m_Pos.Y - (int)WINSIZE_Y) m_Pos.Y = -float(m_Resolution.Y - (int)WINSIZE_Y);
 }
 
 void CameraManager::SetTarget(GameObject* target)
@@ -35,8 +37,8 @@ void CameraManager::SetTarget(GameObject* target)
 
 	// 타겟을 정함과 동시에 타겟의 위치를 미리 Set
 	GAMEOBJINFO targetInfo = m_Target->GetInfo();
-	SetPos((int)targetInfo.Pos_X, (int)targetInfo.Pos_Y);
-
+	m_Pos.X = -float(targetInfo.Pos_X - ((int)WINSIZE_X / 2));
+	m_Pos.Y = -float(targetInfo.Pos_Y - ((int)WINSIZE_Y / 2));
 }
 
 void CameraManager::SetResolution(int x, int y)

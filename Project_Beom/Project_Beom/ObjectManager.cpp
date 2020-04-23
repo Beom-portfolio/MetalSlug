@@ -45,16 +45,18 @@ void ObjectManager::AddObject(const TCHAR* tag, GameObject* Obj, OBJTYPE ObjType
 
 void ObjectManager::AddObject(GameObject* Obj, OBJTYPE ObjType)
 {
-	wstring tag;
-	tag = L"NoName_" + to_wstring(g_Count);
-	++g_Count;
-
 	if (nullptr == Obj)
 		return;
 
-	Obj->SetObjectType(ObjType);
+	wstring* tag = new wstring;
+	*tag = L"NoName" + to_wstring(g_Count);
+	++g_Count;
+	// 나중에 프로그램 종료시 한꺼번에 지워주기 위해
+	m_vecNoNames.emplace_back(tag);
 
-	m_mapObj[ObjType].insert(MAPOBJ::value_type(tag.c_str(), Obj));
+	Obj->SetObjectType(ObjType);
+	
+	m_mapObj[ObjType].insert(MAPOBJ::value_type(tag->c_str(), Obj));
 }
 
 void ObjectManager::Update(const float& TimeDelta)
@@ -150,6 +152,13 @@ void ObjectManager::ReleaseAll()
 		}
 		m_mapObj[i].clear();
 	}
+
+	// 동적할당을 통해 tag를 설정하였으면 그것들을 해제한다.
+	for (auto iter : m_vecNoNames)
+	{
+		SAFE_DELETE(iter);
+	}
+	m_vecNoNames.clear();
 }
 
 void ObjectManager::ReleaseFromType(OBJTYPE ObjType)
@@ -187,6 +196,9 @@ void ObjectManager::ReleaseObj(GameObject* Obj, OBJTYPE ObjType)
 
 bool ObjectManager::CullingCheck(GameObject* Obj)
 {
+	if (Obj->GetNoScrollCheck())
+		return false;
+
 	GAMEOBJINFO Info = Obj->GetInfo();
 	RECT objRect;
 	objRect.left = LONG(Info.Pos_X - (float)Info.Size_X / 2);
