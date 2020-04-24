@@ -31,6 +31,7 @@ public:
 	const POSITION GetPosition() { return POSITION{m_Info.Pos_X, m_Info.Pos_Y}; }
 	const POSITION& GetTotalPosition() { return m_TotalPos; }
 	const POSITION& GetOriginCollidePosition() { return m_OriginCollidePos; }
+	const GameObject* GetParent() { return m_ParentObj; }
 
 public:
 	void SetPosition(float posX, float posY);
@@ -47,7 +48,7 @@ public:
 	void SetCollideCheck(bool collide);
 	void SetSpriteInfo(SPRITEINFO spriteInfo);
 	void SetObjectType(OBJTYPE type);
-	void SetFollowedObj(GameObject* obj);
+	void SetParentObj(GameObject* obj);
 	void SetHypotenuse(float hypotenuse);
 	void Hit(int damage);
 
@@ -114,6 +115,6 @@ protected:
 	int				m_Hp = 0;
 	POSITION        m_TotalPos;
 
-	// 따라다녀야 할 오브젝트
-	GameObject* m_FollowedObj = nullptr;
+	// 부모 오브젝트
+	GameObject* m_ParentObj = nullptr;
 };

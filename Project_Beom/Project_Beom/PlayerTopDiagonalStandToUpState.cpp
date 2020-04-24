@@ -5,6 +5,7 @@
 #include "PlayerTop.h"
 #include "MachinegunBullet.h"
 #include "GameObject.h"
+#include "Player.h"
 
 // 0, 1, 2
 
@@ -63,7 +64,9 @@ void PlayerTopDiagonalStandToUpState::Update(GameObject* object, const float& Ti
 	for (int i = 0; i < 3; ++i)
 	{
 		if (i == m_count && i == (int)info.SpriteIndex)
-		{		
+		{	
+			((Player*)object->GetParent())->MinusBullet(1);
+
 			float angle = 0.f;		
 			if (DIR_LEFT == m_originDir)
 				angle = 180.f - (i + 1) * (90.f / 4);	

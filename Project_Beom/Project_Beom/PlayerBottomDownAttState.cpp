@@ -9,6 +9,7 @@
 #include "MachinegunBullet.h"
 #include "GameObject.h"
 #include "PistolBullet.h"
+#include "Player.h"
 
 PlayerBottomDownAttState::PlayerBottomDownAttState()
 {
@@ -140,6 +141,7 @@ void PlayerBottomDownAttState::Update(GameObject* object, const float& TimeDelta
 		{
 			if (i == m_count && i == (int)info.SpriteIndex)
 			{
+				((Player*)object->GetParent())->MinusBullet(1);
 				float posX, posY;
 				GameObject* bullet = AbstractFactory<MachinegunBullet>::CreateObj();
 				if (DIR_RIGHT == m_originDir)

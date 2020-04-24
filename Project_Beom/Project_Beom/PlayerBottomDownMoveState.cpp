@@ -9,6 +9,7 @@
 #include "PlayerBottomBombAttState.h"
 #include "PlayerBottom.h"
 #include "GameObject.h"
+#include "Player.h"
 
 PlayerBottomDownMoveState::PlayerBottomDownMoveState()
 {
@@ -78,7 +79,8 @@ State* PlayerBottomDownMoveState::HandleInput(GameObject* object, KeyManager* in
 	}
 
 	// АјАн
-	if (input->GetKeyState(STATE_DOWN, 'D'))
+	if ((0 < ((Player*)object->GetParent())->GetBombCount()) &&
+		input->GetKeyState(STATE_DOWN, 'D'))
 	{
 		object->SetSpeed(1.f);
 		return new PlayerBottomBombAttState();

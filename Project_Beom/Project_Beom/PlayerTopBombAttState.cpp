@@ -6,6 +6,7 @@
 #include "PlayerTopJumpState.h"
 #include "Bomb.h"
 #include "GameObject.h"
+#include "Player.h"
 
 PlayerTopBombAttState::PlayerTopBombAttState()
 {
@@ -58,7 +59,8 @@ State* PlayerTopBombAttState::HandleInput(GameObject* object, KeyManager* input)
 		return new PlayerTopJumpState();
 
 	// 공격
-	if (input->GetKeyState(STATE_DOWN, 'D'))
+	if ((0 < ((Player*)object->GetParent())->GetBombCount()) && 
+		input->GetKeyState(STATE_DOWN, 'D'))
 		return new PlayerTopBombAttState();
 
 	// 모두 재생하면 종료
@@ -75,6 +77,8 @@ void PlayerTopBombAttState::Update(GameObject* object, const float& TimeDelta)
 
 	if (!m_onceCheck && 2.f < info.SpriteIndex)
 	{
+		((Player*)object->GetParent())->MinusBomb(1);
+
 		float posX, posY;
 		posX = object->GetOriginCollidePosition().X;
 		posY = object->GetOriginCollidePosition().Y;

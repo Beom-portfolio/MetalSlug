@@ -189,6 +189,7 @@
     <ClInclude Include="GdiPlusImage.h" />
     <ClInclude Include="GdiPlusManager.h" />
     <ClInclude Include="GranadeExplosion.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="KnifeBullet.h" />
     <ClInclude Include="LeftWing.h" />
@@ -234,6 +235,14 @@
     <ClInclude Include="PlayerTopUnderState.h" />
     <ClInclude Include="PlayerTopUpAttState.h" />
     <ClInclude Include="PlayerTopUpState.h" />
+    <ClInclude Include="Prisoner.h" />
+    <ClInclude Include="PrisonerBindState.h" />
+    <ClInclude Include="PrisonerByeState.h" />
+    <ClInclude Include="PrisonerFlyState.h" />
+    <ClInclude Include="PrisonerItemState.h" />
+    <ClInclude Include="PrisonerRunoutState.h" />
+    <ClInclude Include="PrisonerRunState.h" />
+    <ClInclude Include="PrisonerUndoState.h" />
     <ClInclude Include="Pro.h" />
     <ClInclude Include="Project_Beom.h" />
     <ClInclude Include="Resource.h" />
@@ -314,6 +323,7 @@
     <ClCompile Include="GdiPlusImage.cpp" />
     <ClCompile Include="GdiPlusManager.cpp" />
     <ClCompile Include="GranadeExplosion.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="KnifeBullet.cpp" />
     <ClCompile Include="LeftWing.cpp" />
@@ -362,6 +372,14 @@
     <ClCompile Include="PlayerTopUnderState.cpp" />
     <ClCompile Include="PlayerTopUpAttState.cpp" />
     <ClCompile Include="PlayerTopUpState.cpp" />
+    <ClCompile Include="Prisoner.cpp" />
+    <ClCompile Include="PrisonerBindState.cpp" />
+    <ClCompile Include="PrisonerByeState.cpp" />
+    <ClCompile Include="PrisonerFlyState.cpp" />
+    <ClCompile Include="PrisonerItemState.cpp" />
+    <ClCompile Include="PrisonerRunoutState.cpp" />
+    <ClCompile Include="PrisonerRunState.cpp" />
+    <ClCompile Include="PrisonerUndoState.cpp" />
     <ClCompile Include="Pro.cpp" />
     <ClCompile Include="Project_Beom.cpp" />
     <ClCompile Include="RightWing.cpp" />

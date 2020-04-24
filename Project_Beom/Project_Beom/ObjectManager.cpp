@@ -61,17 +61,18 @@ void ObjectManager::AddObject(GameObject* Obj, OBJTYPE ObjType)
 
 void ObjectManager::Update(const float& TimeDelta)
 {
-	// Collision
-	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
-
-	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_PLAYER_BULLET]);
-	
-	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_BLOCK], &m_mapObj[OBJ_PLAYER_BULLET]);
+	// Collision	
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER_BULLET]);
 	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_SLUG]);
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_MONSTER]);
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_ITEM]);
 
-	GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_BLOCK]);
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_PLAYER_BULLET]);
+
+	GET_MANAGER<CollisionManager>()->CollisionRect(&m_mapObj[OBJ_BLOCK], &m_mapObj[OBJ_PLAYER_BULLET]);
+
 	GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_PLAYER], &m_mapObj[OBJ_BLOCK]);
+	GET_MANAGER<CollisionManager>()->CollisionRectEx(&m_mapObj[OBJ_MONSTER], &m_mapObj[OBJ_BLOCK]);
 
 	// ÁöÇü
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_MONSTER]);
@@ -80,6 +81,7 @@ void ObjectManager::Update(const float& TimeDelta)
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_MONSTER_BULLET]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_BLOCK]);
 	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_SLUG]);
+	GET_MANAGER<CollisionManager>()->CollisionPixelToRectDir(&m_mapObj[OBJ_BACK], &m_mapObj[OBJ_ITEM]);
 
 	// Culling Check
 	POSITION CamPos = GETMGR(CameraManager)->GetPos();

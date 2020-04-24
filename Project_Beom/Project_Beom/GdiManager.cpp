@@ -200,6 +200,22 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"player_ride", L"../Resources/Player/Ride.bmp");
 		LoadGdiImage(L"camel_cannon", L"../Resources/Camel/Gun.bmp");
 
+		// NPC
+		LoadGdiImage(L"prisoner_bind_l", L"../Resources/NPC/L_bind.bmp");
+		LoadGdiImage(L"prisoner_bind_r", L"../Resources/NPC/R_bind.bmp");
+		LoadGdiImage(L"prisoner_undo_l", L"../Resources/NPC/L_undo.bmp");
+		LoadGdiImage(L"prisoner_undo_r", L"../Resources/NPC/R_undo.bmp");
+		LoadGdiImage(L"prisoner_run_l", L"../Resources/NPC/L_run.bmp");
+		LoadGdiImage(L"prisoner_run_r", L"../Resources/NPC/R_run.bmp");
+		LoadGdiImage(L"prisoner_item_l", L"../Resources/NPC/L_item.bmp");
+		LoadGdiImage(L"prisoner_item_r", L"../Resources/NPC/R_item.bmp");
+		LoadGdiImage(L"prisoner_bye_l", L"../Resources/NPC/L_bye.bmp");
+		LoadGdiImage(L"prisoner_bye_r", L"../Resources/NPC/R_bye.bmp");
+		LoadGdiImage(L"prisoner_runout_l", L"../Resources/NPC/L_runout.bmp");
+		LoadGdiImage(L"prisoner_runout_r", L"../Resources/NPC/R_runout.bmp");
+		LoadGdiImage(L"prisoner_fly_l", L"../Resources/NPC/L_fly.bmp");
+		LoadGdiImage(L"prisoner_fly_r", L"../Resources/NPC/R_fly.bmp");
+
 		// bullet
 		LoadGdiImage(L"pistol_bullet", L"../Resources/Weapon/Pistol/Pistol.bmp");
 		LoadGdiImage(L"machinegun_bullet", L"../Resources/Weapon/HeavyMachine/Heavy.bmp");
@@ -226,7 +242,13 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"effect_tank_att_left", L"../Resources/Effect/tank_left_pung.bmp");
 		LoadGdiImage(L"effect_tank_att_right", L"../Resources/Effect/tank_right_pung.bmp");
 		LoadGdiImage(L"effect_saru_explosion", L"../Resources/Effect/slug_bomb.bmp");
+
+		// item
+		LoadGdiImage(L"item_bomb", L"../Resources/Item/Bomb.bmp");
+		LoadGdiImage(L"item_weapon", L"../Resources/Item/item_wapon.bmp");
+
 		break;
+
 	case SCENE_TOOL:
 	{
 		LoadGdiImage(L"dummy_monsters", L"../Resources/Tool/Monsters.bmp");
@@ -290,6 +312,22 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 			LoadGdiImage(L"boss_pro_idle_l", L"../Resources/Monster/Boss/Left/pro_stand.bmp");
 			LoadGdiImage(L"boss_pro_idle_r", L"../Resources/Monster/Boss/Right/pro_stand.bmp");
 		}
+
+		// NPC
+		LoadGdiImage(L"prisoner_bind_l", L"../Resources/NPC/L_bind.bmp");
+		LoadGdiImage(L"prisoner_bind_r", L"../Resources/NPC/R_bind.bmp");
+		LoadGdiImage(L"prisoner_undo_l", L"../Resources/NPC/L_undo.bmp");
+		LoadGdiImage(L"prisoner_undo_r", L"../Resources/NPC/R_undo.bmp");
+		LoadGdiImage(L"prisoner_run_l", L"../Resources/NPC/L_run.bmp");
+		LoadGdiImage(L"prisoner_run_r", L"../Resources/NPC/R_run.bmp");
+		LoadGdiImage(L"prisoner_item_l", L"../Resources/NPC/L_item.bmp");
+		LoadGdiImage(L"prisoner_item_r", L"../Resources/NPC/R_item.bmp");
+		LoadGdiImage(L"prisoner_bye_l", L"../Resources/NPC/L_bye.bmp");
+		LoadGdiImage(L"prisoner_bye_r", L"../Resources/NPC/R_bye.bmp");
+		LoadGdiImage(L"prisoner_runout_l", L"../Resources/NPC/L_runout.bmp");
+		LoadGdiImage(L"prisoner_runout_r", L"../Resources/NPC/R_runout.bmp");
+		LoadGdiImage(L"prisoner_fly_l", L"../Resources/NPC/L_fly.bmp");
+		LoadGdiImage(L"prisoner_fly_r", L"../Resources/NPC/R_fly.bmp");
 	}
 		break;
 	case SCENE_MAIN:

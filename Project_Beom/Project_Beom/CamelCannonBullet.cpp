@@ -83,8 +83,11 @@ void CamelCannonBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarge
 
 void CamelCannonBullet::CollisionActivate(GameObject* collideTarget)
 {
-	collideTarget->Hit(m_Damage);
-	GETMGR(ObjectManager)->AddObject(
-		AbstractFactory<PistolEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y), OBJ_EFFECT);
-	m_isDead = true;
+	if (!collideTarget->GetCollideCheck())
+	{
+		collideTarget->Hit(m_Damage);
+		GETMGR(ObjectManager)->AddObject(
+			AbstractFactory<PistolEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y), OBJ_EFFECT);
+		m_isDead = true;
+	}
 }

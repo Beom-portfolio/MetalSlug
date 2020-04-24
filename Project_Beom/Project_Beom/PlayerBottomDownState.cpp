@@ -8,6 +8,7 @@
 #include "PlayerBottomBombAttState.h"
 #include "PlayerBottom.h"
 #include "GameObject.h"
+#include "Player.h"
 
 PlayerBottomDownState::PlayerBottomDownState()
 {
@@ -66,7 +67,8 @@ State* PlayerBottomDownState::HandleInput(GameObject* object, KeyManager* input)
 	if (input->GetKeyState(STATE_DOWN, 'S'))
 		return new PlayerBottomJumpState();
 
-	if (input->GetKeyState(STATE_DOWN, 'D'))
+	if ((0 < ((Player*)object->GetParent())->GetBombCount())  && 
+		input->GetKeyState(STATE_DOWN, 'D'))
 		return new PlayerBottomBombAttState();
 
 	return nullptr;

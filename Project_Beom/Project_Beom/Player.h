@@ -10,6 +10,16 @@ public:
 	virtual ~Player();
 
 public:
+	void AddBomb(int count) { m_bombCount += count; }
+	void AddBullet(int count) { m_bulletCount += count; }
+	void MinusBullet(int count) { m_bulletCount -= count; }
+	void MinusBomb(int count) { m_bombCount -= count; }
+
+public:
+	int GetBombCount() { return m_bombCount; }
+	int GetBulletCount() { return m_bulletCount; }
+
+public:
 	virtual bool Initialize();
 	virtual int  Update(const float& TimeDelta);
 	virtual void Render(HDC hdc);
@@ -31,5 +41,8 @@ private:
 	GameObject* m_Slug = nullptr;
 	bool m_rideCheck = false;
 	bool m_spawnCheck = false;
+
+	int m_bulletCount = 10;
+	int m_bombCount = 10;
 };
 

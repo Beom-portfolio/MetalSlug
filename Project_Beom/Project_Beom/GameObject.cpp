@@ -113,9 +113,9 @@ void GameObject::SetObjectType(OBJTYPE type)
 	m_ObjType = type;
 }
 
-void GameObject::SetFollowedObj(GameObject* obj)
+void GameObject::SetParentObj(GameObject* obj)
 {
-	m_FollowedObj = obj;
+	m_ParentObj = obj;
 }
 
 void GameObject::SetHypotenuse(float hypotenuse)

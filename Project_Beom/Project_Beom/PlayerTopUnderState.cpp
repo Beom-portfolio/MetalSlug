@@ -6,6 +6,7 @@
 #include "PlayerTopJumpBombAttState.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
+#include "Player.h"
 
 PlayerTopUnderState::PlayerTopUnderState()
 {
@@ -50,7 +51,8 @@ State* PlayerTopUnderState::HandleInput(GameObject* object, KeyManager* input)
 		return new PlayerTopUnderAttState();
 
 	// ¼ö·ùÅº
-	if (input->GetKeyState(STATE_DOWN, 'D'))
+	if ((0 < ((Player*)object->GetParent())->GetBombCount()) &&
+		input->GetKeyState(STATE_DOWN, 'D'))
 		return new PlayerTopJumpBombAttState();
 
 	return nullptr;

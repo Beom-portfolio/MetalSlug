@@ -16,6 +16,8 @@
 #include "Boss.h"
 #include "StaticDeco.h"
 #include "SpriteDeco.h"
+#include "Prisoner.h"
+#include "Item.h"
 
 TestScene::TestScene()
 {
@@ -37,8 +39,10 @@ bool TestScene::Initialize()
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
 	//
-	m_ObjManager->AddObject(L"CamelCannon", AbstractFactory<CamelCannon>::CreateObj(), OBJ_AFTERPLAYER);
-	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(300, 300), OBJ_SLUG);
+	/*m_ObjManager->AddObject(L"CamelCannon", AbstractFactory<CamelCannon>::CreateObj(), OBJ_AFTERPLAYER);
+	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(300, 300), OBJ_SLUG);*/
+	/*m_Test = AbstractFactory<Prisoner>::CreateObj(400, 300);
+	m_ObjManager->AddObject(L"Prisoner", m_Test, OBJ_MONSTER);*/
 
 	{
 		//map
@@ -126,6 +130,10 @@ bool TestScene::Initialize()
 					monster = AbstractFactory<Sarubia>::CreateObj();
 					objType = OBJ_BLOCK;
 					break;
+				case MONSTER_NPC:
+					monster = AbstractFactory<Prisoner>::CreateObj();
+					objType = OBJ_MONSTER;
+					break;
 				}
 				monster->SetPosition(monPos.X, monPos.Y);
 				m_ObjManager->AddObject(monster, objType);
@@ -133,6 +141,15 @@ bool TestScene::Initialize()
 		}
 	}
 
+	/*GameObject* item = AbstractFactory<Item>::CreateObj();
+	item->SetPosition(400, 300);
+	((Item*)item)->SetItem(ITEM_MACHINEGUN);
+	m_ObjManager->AddObject(L"Item", item, OBJ_ITEM);
+
+	item = AbstractFactory<Item>::CreateObj();
+	item->SetPosition(500, 300);
+	((Item*)item)->SetItem(ITEM_BOMB);
+	m_ObjManager->AddObject(L"Item2", item, OBJ_ITEM);*/
 
 	//m_ObjManager->AddObject(L"Boss", AbstractFactory<Boss>::CreateObj(9250, -150), OBJ_MONSTER);
 	//m_ObjManager->AddObject(L"Monster", AbstractFactory<Sarubia>::CreateObj(1000, 300), OBJ_BLOCK);
@@ -153,7 +170,10 @@ int TestScene::Update(const float& TimeDelta)
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F3))
 	{
-		m_ObjManager->AddObject(L"Boss", AbstractFactory<Boss>::CreateObj(9250, -150), OBJ_MONSTER);
+		/*m_Test->SetFall(true);
+		m_Test->SetGravitySpeed(-500);*/
+
+		//m_ObjManager->AddObject(L"Boss", AbstractFactory<Boss>::CreateObj(9250, -150), OBJ_MONSTER);
 		//m_CamManager->SetFixPos(400, 200);
 
 		//m_ObjManager->AddObject(AbstractFactory<Sarubia>::CreateObj(1000 + rand() % 500 - rand() % 100, 300), OBJ_BLOCK);

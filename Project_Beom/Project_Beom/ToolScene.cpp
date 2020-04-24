@@ -8,6 +8,7 @@
 #include "StaticDeco.h"
 #include "SpriteDeco.h"
 #include "DummyObject.h"
+#include "Prisoner.h"
 
 ToolScene::ToolScene()
 {
@@ -83,7 +84,7 @@ int ToolScene::Update(const float& TimeDelta)
 {
 	m_TimeStack += TimeDelta;
 
-	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F5))
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F6))
 	{
 		GET_MANAGER<CollisionManager>()->GetRenderCheck() ?
 			GET_MANAGER<CollisionManager>()->SetRenderCheck(false)
@@ -114,6 +115,9 @@ int ToolScene::Update(const float& TimeDelta)
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F4))
 		((DummyObject*)m_Dummy)->SetType(MONSTER_SARU);
 
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F5))
+		((DummyObject*)m_Dummy)->SetType(MONSTER_NPC);
+
 	if (GETMGR(MouseManager)->GetMouseLButtonState(STATE_DOWN))
 	{
 		POINT mousePos = GETMGR(MouseManager)->GetMousePos();
@@ -125,6 +129,7 @@ int ToolScene::Update(const float& TimeDelta)
 		case MONSTER_TOMA: monster = AbstractFactory<Toma>::CreateObj(); break;
 		case MONSTER_TANK: monster = AbstractFactory<Tank>::CreateObj(); break;
 		case MONSTER_SARU: monster = AbstractFactory<Sarubia>::CreateObj(); break;
+		case MONSTER_NPC: monster = AbstractFactory<Prisoner>::CreateObj(); break;
 		}
 		monster->SetPosition(mousePos.x - camPos.X, mousePos.y - camPos.Y);
 		m_ObjManager->AddObject(monster, OBJ_MONSTER);
@@ -162,11 +167,13 @@ void ToolScene::Render(HDC hDC)
 	TextOut(hDC, 790, 50, L"F2 : 헬기", lstrlen(L"F2 : 헬기"));
 	TextOut(hDC, 790, 70, L"F3 : 탱크", lstrlen(L"F3 : 탱크"));
 	TextOut(hDC, 790, 90, L"F4 : 사루비아", lstrlen(L"F4 : 사루비아"));
+	TextOut(hDC, 790, 110, L"F5 : 죄수", lstrlen(L"F5 : 죄수"));
 
 	TextOut(hDC, 600, 10, L"마우스 좌클릭 : 배치", lstrlen(L"마우스 좌클릭 : 배치"));
 	TextOut(hDC, 600, 30, L"마우스 우클릭 : 되돌리기", lstrlen(L"마우스 우클릭 : 되돌리기"));
-	TextOut(hDC, 600, 70, L"F7 : 저장", lstrlen(L"F7 : 저장"));
-	TextOut(hDC, 600, 90, L"F8 : 불러오기", lstrlen(L"F8 : 불러오기"));
+	TextOut(hDC, 600, 70, L"F6 : 충돌체 보기", lstrlen(L"F6 : 충돌체 보기"));
+	TextOut(hDC, 600, 90, L"F7 : 저장", lstrlen(L"F7 : 저장"));
+	TextOut(hDC, 600, 110, L"F8 : 불러오기", lstrlen(L"F8 : 불러오기"));
 
 	if (m_SaveCheck)
 	{
@@ -236,6 +243,7 @@ void ToolScene::Load()
 			case MONSTER_TOMA: monster = AbstractFactory<Toma>::CreateObj(); break;
 			case MONSTER_TANK: monster = AbstractFactory<Tank>::CreateObj(); break;
 			case MONSTER_SARU: monster = AbstractFactory<Sarubia>::CreateObj(); break;
+			case MONSTER_NPC: monster = AbstractFactory<Prisoner>::CreateObj(); break;
 			}
 			monster->SetPosition(monPos.X, monPos.Y);
 			m_ObjManager->AddObject(monster, OBJ_MONSTER);

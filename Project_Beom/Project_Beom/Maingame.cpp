@@ -16,7 +16,7 @@ bool Maingame::Initialize()
 	m_GdiPlusMgr = GET_MANAGER<GdiPlusManager>();
 	m_SceneMgr = GET_MANAGER<SceneManager>();
 
-	if (!m_SceneMgr->ChangeSceneState(SCENE_TOOL))
+	if (!m_SceneMgr->ChangeSceneState(SCENE_TEST))
 		return false;
 
 	// 그릴 DC핸들을 주윈도우 핸들로 부터 가져온다.

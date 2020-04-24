@@ -33,6 +33,8 @@ bool Player::Initialize()
 	m_Direction = DIR_RIGHT;
 	m_Bottom->SetDirection(m_Direction);
 	m_Top->SetDirection(m_Direction);
+	m_Bottom->SetParentObj(this);
+	m_Top->SetParentObj(this);
 
 	// 스폰 준비
 	if (DIR_RIGHT == m_Direction)
@@ -310,8 +312,11 @@ void Player::CollisionActivate(GameObject* collideTarget)
 		}
 		break;
 	case OBJ_MONSTER:
-		m_Top->SetCollideCheck(true);
-		m_Bottom->SetCollideCheck(true);
+		if (!collideTarget->GetCollideCheck())
+		{
+			m_Top->SetCollideCheck(true);
+			m_Bottom->SetCollideCheck(true);
+		}
 		break;
 	case OBJ_MONSTER_BULLET:
 		if (m_TimeStack <= 2.5f) break;
@@ -388,19 +393,28 @@ int Player::UpdateInput(const float& TimeDelta)
 			m_Direction = DIR_RIGHT;
 	}
 
-
 	if (!m_fallCheck && GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'S'))
 	{
 		SetFall(true);
 		m_GravitySpeed = -300.f;
 	}
 
+	if (m_bulletCount <= 0)
+	{
+		m_bulletCount = 0;
+		((PlayerTop*)m_Top)->SetPlayerWeapon(PLAYER_PISTOL);
+		((PlayerBottom*)m_Bottom)->SetPlayerWeapon(PLAYER_PISTOL);
+	}
+	else
+	{
+		((PlayerTop*)m_Top)->SetPlayerWeapon(PLAYER_HEAVY);
+		((PlayerBottom*)m_Bottom)->SetPlayerWeapon(PLAYER_HEAVY);
+	}
+
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F2))
 	{
-		PLAYERWEAPON w = ((PlayerTop*)m_Top)->GetPlayerWeapon();
-		(PLAYER_PISTOL == w) ? w = PLAYER_HEAVY : w = PLAYER_PISTOL;
-		((PlayerTop*)m_Top)->SetPlayerWeapon(w);
-		((PlayerBottom*)m_Bottom)->SetPlayerWeapon(w);
+		m_bulletCount += 100;
+		m_bombCount += 10;
 	}
 
 	return 0;

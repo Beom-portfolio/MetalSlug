@@ -10,6 +10,7 @@
 #include "MachinegunBullet.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
+#include "Player.h"
 
 PlayerTopJumpAttState::PlayerTopJumpAttState()
 {
@@ -67,7 +68,8 @@ State* PlayerTopJumpAttState::HandleInput(GameObject* object, KeyManager* input)
 	SPRITEINFO info = object->GetSpriteInfo();
 
 	// ÆøÅº
-	if (input->GetKeyState(STATE_DOWN, 'D'))
+	if ((0 < ((Player*)object->GetParent())->GetBombCount()) &&
+		input->GetKeyState(STATE_DOWN, 'D'))
 		return new PlayerTopJumpBombAttState();
 
 	// ´Ù½Ã °ø°Ý
@@ -137,6 +139,8 @@ void PlayerTopJumpAttState::Update(GameObject* object, const float& TimeDelta)
 		{
 			if (i == m_count && i == (int)info.SpriteIndex)
 			{
+				((Player*)object->GetParent())->MinusBullet(1);
+
 				float posX, posY;
 				GameObject* bullet = AbstractFactory<MachinegunBullet>::CreateObj();
 				if (DIR_RIGHT == m_originDir)

@@ -13,6 +13,7 @@
 #include "MachinegunBullet.h"
 #include "PlayerTop.h"
 #include "GameObject.h"
+#include "Player.h"
 
 PlayerTopStandAttState::PlayerTopStandAttState()
 {
@@ -99,7 +100,8 @@ State* PlayerTopStandAttState::HandleInput(GameObject* object, KeyManager* input
 	}
 
 	// ÆøÅº
-	if (input->GetKeyState(STATE_DOWN, 'D'))
+	if ((0 < ((Player*)object->GetParent())->GetBombCount()) &&
+		input->GetKeyState(STATE_DOWN, 'D'))
 		return new PlayerTopBombAttState();
 
 	// ´Ù½Ã °ø°Ý
@@ -156,6 +158,8 @@ void PlayerTopStandAttState::Update(GameObject* object, const float& TimeDelta)
 		{
 			if (i == m_count && i == (int)info.SpriteIndex)
 			{
+				((Player*)object->GetParent())->MinusBullet(1);
+
 				float posX, posY;
 				GameObject* bullet = AbstractFactory<MachinegunBullet>::CreateObj();
 				if (DIR_RIGHT == m_originDir)

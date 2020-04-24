@@ -286,6 +286,15 @@
     <Filter Include="02.GameObejct\Tool">
       <UniqueIdentifier>{b5d988d8-b1f4-44b5-b211-a53aaa50e2f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\NPC">
+      <UniqueIdentifier>{4dcfe1af-859b-42e5-8cd1-0a3e4e097bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\NPC\State">
+      <UniqueIdentifier>{d0c2ac0b-afe5-41ac-88c7-af3603a5811b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Item">
+      <UniqueIdentifier>{b4a0167f-7172-4a7d-9989-a9581ad93810}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -675,6 +684,33 @@
     <ClInclude Include="DummyObject.h">
       <Filter>02.GameObejct\Tool</Filter>
     </ClInclude>
+    <ClInclude Include="Prisoner.h">
+      <Filter>02.GameObejct\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonerBindState.h">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonerUndoState.h">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonerRunState.h">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonerRunoutState.h">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonerByeState.h">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonerItemState.h">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClInclude>
+    <ClInclude Include="PrisonerFlyState.h">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>02.GameObejct\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -1030,6 +1066,33 @@
     </ClCompile>
     <ClCompile Include="DummyObject.cpp">
       <Filter>02.GameObejct\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Prisoner.cpp">
+      <Filter>02.GameObejct\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="PrisonerBindState.cpp">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PrisonerUndoState.cpp">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PrisonerRunState.cpp">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PrisonerRunoutState.cpp">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PrisonerByeState.cpp">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PrisonerItemState.cpp">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClCompile>
+    <ClCompile Include="PrisonerFlyState.cpp">
+      <Filter>02.GameObejct\NPC\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>02.GameObejct\Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
