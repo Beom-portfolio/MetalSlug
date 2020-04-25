@@ -18,6 +18,8 @@
 #include "SpriteDeco.h"
 #include "Prisoner.h"
 #include "Item.h"
+#include "StageUI.h"
+#include "Number.h"
 
 TestScene::TestScene()
 {
@@ -29,6 +31,60 @@ TestScene::~TestScene()
 
 bool TestScene::Initialize()
 {
+	// ui
+	{
+		SPRITEINFO info;
+		ZeroMemory(&info, sizeof(SPRITEINFO));
+		GameObject* ui = AbstractFactory<StageUI>::CreateObj();
+		info.key = L"press_start";
+		ui->SetSize(500, 50);
+		ui->SetSpriteInfo(info);
+		ui->SetPosition(750, 40);
+		m_ObjManager->AddObject(ui, OBJ_UI);
+
+		ui = AbstractFactory<StageUI>::CreateObj();
+		info.key = L"life_bullet";
+		ui->SetSize(300, 64);
+		ui->SetSpriteInfo(info);
+		ui->SetPosition(170, 50);
+		m_ObjManager->AddObject(ui, OBJ_UI);
+
+		ui = AbstractFactory<Number>::CreateObj();
+		((Number*)ui)->SetNumberStyle(NUMSTYLE_BIG);
+		((Number*)ui)->SetNumber(0);
+		ui->SetPosition(432, 40);
+		m_ObjManager->AddObject(L"TimeUI", ui, OBJ_UI);
+
+		ui = AbstractFactory<Number>::CreateObj();
+		((Number*)ui)->SetNumberStyle(NUMSTYLE_NOTNUMBER);
+		ui->SetSize(40, 16);
+		ui->SetPosition(127, 70);
+		info.key = L"infinite";
+		ui->SetSpriteInfo(info);
+		m_ObjManager->AddObject(ui, OBJ_UI);
+
+		ui = AbstractFactory<Number>::CreateObj();
+		((Number*)ui)->SetNumberStyle(NUMSTYLE_NOTNUMBER);
+		ui->SetSize(40, 16);
+		ui->SetPosition(213, 50);
+		info.key = L"infinite";
+		ui->SetSpriteInfo(info);
+		ui->SetRenderCheck(false);
+		m_ObjManager->AddObject(L"BulletInfinite", ui, OBJ_UI);
+		
+		ui = AbstractFactory<Number>::CreateObj();
+		((Number*)ui)->SetNumberStyle(NUMSTYLE_SMALL);
+		((Number*)ui)->SetNumber(200);
+		ui->SetPosition(230, 50);
+		m_ObjManager->AddObject(L"BulletUI", ui, OBJ_UI);
+
+		ui = AbstractFactory<Number>::CreateObj();
+		((Number*)ui)->SetNumberStyle(NUMSTYLE_SMALL);
+		((Number*)ui)->SetNumber(10);
+		ui->SetPosition(292, 50);
+		m_ObjManager->AddObject(L"BombUI", ui, OBJ_UI);
+	}
+
 	GameObject* player = AbstractFactory<Player>::CreateObj();
 	player->SetPosition(100, 200);
 	m_CamManager->SetTarget(player);
@@ -39,8 +95,8 @@ bool TestScene::Initialize()
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
 	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
 	//
-	/*m_ObjManager->AddObject(L"CamelCannon", AbstractFactory<CamelCannon>::CreateObj(), OBJ_AFTERPLAYER);
-	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(300, 300), OBJ_SLUG);*/
+	m_ObjManager->AddObject(L"CamelCannon", AbstractFactory<CamelCannon>::CreateObj(), OBJ_AFTERPLAYER);
+	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(300, 300), OBJ_SLUG);
 	/*m_Test = AbstractFactory<Prisoner>::CreateObj(400, 300);
 	m_ObjManager->AddObject(L"Prisoner", m_Test, OBJ_MONSTER);*/
 

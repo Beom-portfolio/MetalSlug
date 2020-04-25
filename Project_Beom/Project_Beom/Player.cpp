@@ -6,6 +6,7 @@
 #include "PlayerTop.h"
 #include "Camel.h"
 #include "Bomb.h"
+#include "Number.h"
 
 
 Player::Player()
@@ -49,11 +50,81 @@ bool Player::Initialize()
 	m_Info.Size_Y = 1150;
 	m_spawnCheck = true;
 	m_renderCheck = false;
+
+	m_TimeUI = GETMGR(ObjectManager)->GetObjFromTag(L"TimeUI", OBJ_UI);
+	m_Infinite = GETMGR(ObjectManager)->GetObjFromTag(L"BulletInfinite", OBJ_UI);
+	m_BulletUI = GETMGR(ObjectManager)->GetObjFromTag(L"BulletUI", OBJ_UI);
+	m_BombUI = GETMGR(ObjectManager)->GetObjFromTag(L"BombUI", OBJ_UI);
 	return true;
 }
 
 int Player::Update(const float& TimeDelta)
 {
+	// ui update
+	{
+		m_DecreaseStack += TimeDelta;
+		if (5.f <= m_DecreaseStack)
+		{
+			if (m_timeCount > 0)
+				--m_timeCount;
+			m_DecreaseStack = 0.f;
+		}
+
+		if (!m_isDead && 0 == m_timeCount)
+		{
+			m_Info.Size_X = 400;
+			m_Info.Size_Y = 267;
+			if (DIR_RIGHT == m_Direction)
+			{
+				m_SpriteInfo.key = L"player_dead_r";
+				SetFall(true);
+				m_GravitySpeed = -170;
+			}
+			else
+			{
+				m_SpriteInfo.key = L"player_dead_l";
+				SetFall(true);
+				m_GravitySpeed = -170;
+			}
+			m_SpriteInfo.SpriteIndex = 0.f;
+			m_SpriteInfo.StateIndex = 0;
+			m_SpriteInfo.MaxFrame = 10;
+			m_SpriteInfo.Speed = 10.f;
+			m_TimeStack = 0.f;
+			m_isDead = true;
+			m_isCollideOn = false;
+			if (m_rideCheck)
+			{
+				m_rideCheck = false;
+				((Camel*)m_Slug)->SetRideCheck(false);
+				m_Slug = nullptr;
+				m_Bottom->Update(0.f);
+				m_Top->Update(0.f);
+			}
+		}
+
+		((Number*)m_TimeUI)->SetNumber(m_timeCount);
+
+		if (m_bulletCount <= 0)
+		{
+			m_bulletCount = 0;
+			((PlayerTop*)m_Top)->SetPlayerWeapon(PLAYER_PISTOL);
+			((PlayerBottom*)m_Bottom)->SetPlayerWeapon(PLAYER_PISTOL);
+			m_BulletUI->SetRenderCheck(false);
+			m_Infinite->SetRenderCheck(true);
+		}
+		else
+		{
+			((PlayerTop*)m_Top)->SetPlayerWeapon(PLAYER_HEAVY);
+			((PlayerBottom*)m_Bottom)->SetPlayerWeapon(PLAYER_HEAVY);
+			m_BulletUI->SetRenderCheck(true);
+			m_Infinite->SetRenderCheck(false);
+		}
+
+		((Number*)m_BulletUI)->SetNumber(m_bulletCount);
+		((Number*)m_BombUI)->SetNumber(m_bombCount);
+	}
+
 	// 죽음 모션
 	if (m_isDead)
 	{
@@ -102,6 +173,9 @@ int Player::Update(const float& TimeDelta)
 		m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
 		if ((float)(m_SpriteInfo.MaxFrame) <= m_SpriteInfo.SpriteIndex)
 		{
+			m_timeCount = 59;
+			m_bulletCount = 0;
+			m_bombCount = 10;
 			m_TimeStack = 0.f;
 			m_spawnCheck = false;
 		}
@@ -167,6 +241,7 @@ int Player::Update(const float& TimeDelta)
 
 			if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'D'))
 			{
+				--m_bombCount;
 				POSITION aPos = AnglePos(m_OriginCollidePos.X, m_OriginCollidePos.Y, 65.f, 60);
 
 				GameObject* bullet = AbstractFactory<Bomb>::CreateObj();
@@ -228,65 +303,101 @@ void Player::Release()
 	SAFE_RELEASE(m_Top);
 }
 
-void Player::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
+void Player::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor)
 {
-	if ((dir & DIR_BOTTOM))
+	if (PIXEL24{ 0, 0, 248 } == collPixelColor || PIXEL24{ 248, 0, 248 } == collPixelColor)
 	{
-		if (m_GravitySpeed < 0)
-			return;
-
-		SetFall(false);
-
-		// 위로 올림
-		int x = (int)m_Info.Pos_X;
-		int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
-
-		const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
-		if (nullptr == pixelCollide)
-			return;
-
-		int count = 0;
-		for (int i = 1; i < 1000; ++i)
+		if ((dir & DIR_BOTTOM))
 		{
-			int addr = (int)(y - i) * pixelCollide->Width + (int)x;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (!(pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				 pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				 pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b))
+			if (m_GravitySpeed < 0)
+				return;
+
+			SetFall(false);
+
+			// 위로 올림
+			int x = (int)m_Info.Pos_X;
+			int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
+
+			const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
+			if (nullptr == pixelCollide)
+				return;
+
+			int count = 0;
+			for (int i = 1; i < 1000; ++i)
 			{
-				break;
+				int addr = (int)(y - i) * pixelCollide->Width + (int)x;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (!(pixelCollide->vecPixel[addr].r == collPixelColor.r &&
+					pixelCollide->vecPixel[addr].g == collPixelColor.g &&
+					pixelCollide->vecPixel[addr].b == collPixelColor.b))
+				{
+					break;
+				}
+				++count;
 			}
-			++count;
+			m_Info.Pos_Y -= count;
 		}
-		m_Info.Pos_Y -= count;		
-	}
-	else
-	{
-		if (m_fallCheck || m_GravitySpeed < 0)
-			return;
-
-		// 아래로 내림
-		int x = (int)m_Info.Pos_X;
-		int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
-
-		const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
-		if (nullptr == pixelCollide)
-			return;
-
-		int count = 0;
-		for (int i = 0; i < 1000; ++i)
+		else
 		{
-			int addr = (int)(y + i) * pixelCollide->Width + (int)x;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
+			if (m_fallCheck || m_GravitySpeed < 0 || m_rideCheck)
+				return;
+			
+			int x = (int)m_Info.Pos_X;
+			int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
+
+			const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
+			if (nullptr == pixelCollide)
+				return;
+
+			// 빨간 충돌 픽셀이 아니면 내리는 작업을 하지 않는다.
+			for (int i = 0; i < 10; ++i)
 			{
-				break;
+				int addr = (int)(y + i) * pixelCollide->Width + (int)x;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == 248 &&
+					pixelCollide->vecPixel[addr].g == 0 &&
+					pixelCollide->vecPixel[addr].b == 248)
+				{
+					return;
+				}
 			}
-			++count;
+
+			// 빨간 충돌 픽셀이 안보이면 중력 적용
+			bool isRed = false;
+			for (int i = 0; i < 10; ++i)
+			{
+				int addr = (int)(y + i) * pixelCollide->Width + (int)x;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == 248 &&
+					pixelCollide->vecPixel[addr].g == 0 &&
+					pixelCollide->vecPixel[addr].b == 0)
+				{
+					isRed = true;
+				}
+			}
+
+			if (!isRed)
+			{
+				SetFall(true);
+				return;
+			}
+
+			// 빨간 충돌 픽셀이면 아래로 내림
+			int count = 0;
+			for (int i = 0; i < 1000; ++i)
+			{
+				int addr = (int)(y + i) * pixelCollide->Width + (int)x;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == 248 &&
+					pixelCollide->vecPixel[addr].g == 0 &&
+					pixelCollide->vecPixel[addr].b == 0)
+				{
+					break;
+				}
+				++count;
+			}
+			m_Info.Pos_Y += count;
 		}
-		m_Info.Pos_Y += count;
 	}
 }
 
@@ -397,18 +508,6 @@ int Player::UpdateInput(const float& TimeDelta)
 	{
 		SetFall(true);
 		m_GravitySpeed = -300.f;
-	}
-
-	if (m_bulletCount <= 0)
-	{
-		m_bulletCount = 0;
-		((PlayerTop*)m_Top)->SetPlayerWeapon(PLAYER_PISTOL);
-		((PlayerBottom*)m_Bottom)->SetPlayerWeapon(PLAYER_PISTOL);
-	}
-	else
-	{
-		((PlayerTop*)m_Top)->SetPlayerWeapon(PLAYER_HEAVY);
-		((PlayerBottom*)m_Bottom)->SetPlayerWeapon(PLAYER_HEAVY);
 	}
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F2))

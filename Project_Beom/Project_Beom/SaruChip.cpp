@@ -68,7 +68,7 @@ void SaruChip::Release()
 {
 }
 
-void SaruChip::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
+void SaruChip::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor)
 {
 	if (0 != dir)
 	{

@@ -20,7 +20,7 @@ public:
 	bool GetRideCheck() { return m_rideCheck; }
 
 public:
-	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor);
 	virtual void CollisionActivate(GameObject* collideTarget);
 	virtual void CollisionDeactivate(GameObject* collideTarget);
 

@@ -134,7 +134,7 @@ void GameObject::Hit(int damage)
 	m_Hp -= damage;
 }
 
-bool GameObject::LoadPixelCollider(const char* pFilePath, unsigned char r, unsigned char g, unsigned char b)
+bool GameObject::LoadPixelCollider(const char* pFilePath, vector<PIXEL24> collpixels)
 {
 	if (nullptr != m_PixelInfo)
 	{
@@ -145,9 +145,7 @@ bool GameObject::LoadPixelCollider(const char* pFilePath, unsigned char r, unsig
 	}
 
 	m_PixelInfo = new PIXELCOLLIDERINFO;
-	m_PixelInfo->CollPixel.r = r;
-	m_PixelInfo->CollPixel.g = g;
-	m_PixelInfo->CollPixel.b = b;
+	m_PixelInfo->CollPixels = collpixels;
 
 	FILE* pFile = NULL;
 
@@ -252,7 +250,7 @@ int GameObject::Update(const float& TimeDelta)
 	m_OriginCollidePos.X = m_Info.Pos_X + m_CollideInfo.Pos_X;
 	m_OriginCollidePos.Y = m_Info.Pos_Y + m_CollideInfo.Pos_Y;
 
-	if (m_GravitySpeed > 1500.f)
+	if (m_GravitySpeed > 5000.f)
 		m_isDead = true;
 
 	return 0;
@@ -270,7 +268,7 @@ void GameObject::CollisionDeactivate(GameObject* collideTarget)
 {
 }
 
-void GameObject::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
+void GameObject::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor)
 {
 }
 

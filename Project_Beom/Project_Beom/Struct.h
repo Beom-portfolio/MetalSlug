@@ -93,6 +93,11 @@ typedef struct _tagPixel24
 	unsigned char	b;
 	unsigned char	g;
 	unsigned char	r;
+
+	bool operator==(_tagPixel24& other)
+	{
+		return other.r == r && other.g == g && other.b == b;
+	}
 }PIXEL24;
 
 typedef struct _tagPixelColliderInfo
@@ -100,7 +105,7 @@ typedef struct _tagPixelColliderInfo
 	vector<PIXEL24>		vecPixel;
 	UINT				Width;
 	UINT				Height;
-	PIXEL24				CollPixel;
+	vector<PIXEL24>		CollPixels;
 	POSITION			IntersectPos;
 }PIXELCOLLIDERINFO;
 

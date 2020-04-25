@@ -18,7 +18,7 @@ public:
 	virtual void Release();
 
 public:
-	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor);
 	virtual void CollisionActivate(GameObject* collideTarget);
 private:
 	float m_Gravity = 1.f;

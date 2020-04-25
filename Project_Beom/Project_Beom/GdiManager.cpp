@@ -31,6 +31,23 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 	switch (SceneState)
 	{
 	case SCENE_MENU:
+		LoadGdiImage(L"image", L"../Resources/MyMenu/Main.bmp");
+		LoadGdiImage(L"start", L"../Resources/MyMenu/start.bmp");
+		break;
+	case SCENE_SELECT:
+		LoadGdiImage(L"slect_screen", L"../Resources/Select/1.bmp");
+		LoadGdiImage(L"ui", L"../Resources/Select/P1.bmp");
+		LoadGdiImage(L"slot_tarma", L"../Resources/Select/Tarma4.bmp");
+		LoadGdiImage(L"slot", L"../Resources/Select/2.bmp");
+		LoadGdiImage(L"eri", L"../Resources/Select/Eri1.bmp");
+		LoadGdiImage(L"fio", L"../Resources/Select/Fio1.bmp");
+		LoadGdiImage(L"marco", L"../Resources/Select/Marco1.bmp");
+		LoadGdiImage(L"tarma", L"../Resources/Select/Tarma1.bmp");
+		LoadGdiImage(L"eri_select", L"../Resources/Select/Eri2.bmp");
+		LoadGdiImage(L"fio_select", L"../Resources/Select/Fio2.bmp");
+		LoadGdiImage(L"marco_select", L"../Resources/Select/Marco2.bmp");
+		LoadGdiImage(L"tarma_select", L"../Resources/Select/Tarma2.bmp");
+		LoadGdiImage(L"tarma_selected", L"../Resources/Select/Tarma3.bmp");
 		break;
 	case SCENE_TEST:
 		// back
@@ -247,6 +264,13 @@ void GdiManager::LoadImageBySceneState(SCENESTATE SceneState)
 		LoadGdiImage(L"item_bomb", L"../Resources/Item/Bomb.bmp");
 		LoadGdiImage(L"item_weapon", L"../Resources/Item/item_wapon.bmp");
 
+		// ui
+		LoadGdiImage(L"press_start", L"../Resources/UI/PressStart.bmp");
+		LoadGdiImage(L"life_bullet", L"../Resources/UI/Life_Bullet.bmp");
+		LoadGdiImage(L"big_numbers", L"../Resources/UI/Time.bmp");
+		LoadGdiImage(L"small_numbers", L"../Resources/UI/Number.bmp");
+		LoadGdiImage(L"infinite", L"../Resources/UI/Infinit.bmp");
+		
 		break;
 
 	case SCENE_TOOL:

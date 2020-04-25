@@ -15,7 +15,10 @@ bool Background::Initialize()
 	m_ObjType = OBJ_BACK;
 	m_RenderType = RENDER_BACKGROUND;
 
-	LoadPixelCollider("../Resources/Stage/stage_collider.bmp", 248, 0, 0);
+	vector<PIXEL24> collPixelInfos;
+	collPixelInfos.push_back(PIXEL24{ 0, 0, 248 });
+	collPixelInfos.push_back(PIXEL24{ 248, 0, 248 });
+	LoadPixelCollider("../Resources/Stage/stage_collider.bmp", collPixelInfos);
 
 	return true;
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-constexpr UINT WINSIZE_X = 900;
+constexpr UINT WINSIZE_X = 800;
 constexpr UINT WINSIZE_Y = 570;
 
 constexpr float PI = 3.141592f;

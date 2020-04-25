@@ -170,6 +170,7 @@
     <ClInclude Include="CamelRestState.h" />
     <ClInclude Include="CamelRunState.h" />
     <ClInclude Include="CameraManager.h" />
+    <ClInclude Include="Characters.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="Define.h" />
@@ -197,9 +198,11 @@
     <ClInclude Include="MachinegunEffect.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Maingame.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="MediumExplosion.h" />
     <ClInclude Include="MouseManager.h" />
+    <ClInclude Include="Number.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PistolBullet.h" />
@@ -258,6 +261,10 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="PlayerBottomStandState.h" />
+    <ClInclude Include="SelectScene.h" />
+    <ClInclude Include="SelectScreen.h" />
+    <ClInclude Include="SelectUI.h" />
+    <ClInclude Include="Slot.h" />
     <ClInclude Include="Smog.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="SoldierBomb.h" />
@@ -267,6 +274,7 @@
     <ClInclude Include="SoldierKnifeState.h" />
     <ClInclude Include="SoldierRunState.h" />
     <ClInclude Include="SpriteDeco.h" />
+    <ClInclude Include="StageUI.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StaticDeco.h" />
     <ClInclude Include="Struct.h" />
@@ -309,6 +317,7 @@
     <ClCompile Include="CamelRestState.cpp" />
     <ClCompile Include="CamelRunState.cpp" />
     <ClCompile Include="CameraManager.cpp" />
+    <ClCompile Include="Characters.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="DummyObject.cpp" />
     <ClCompile Include="Explosion.cpp" />
@@ -330,8 +339,10 @@
     <ClCompile Include="MachinegunBullet.cpp" />
     <ClCompile Include="MachinegunEffect.cpp" />
     <ClCompile Include="Maingame.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="MediumExplosion.cpp" />
     <ClCompile Include="MouseManager.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -394,6 +405,10 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="PlayerBottomStandState.cpp" />
+    <ClCompile Include="SelectScene.cpp" />
+    <ClCompile Include="SelectScreen.cpp" />
+    <ClCompile Include="SelectUI.cpp" />
+    <ClCompile Include="Slot.cpp" />
     <ClCompile Include="Smog.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="SoldierBomb.cpp" />
@@ -403,6 +418,7 @@
     <ClCompile Include="SoldierKnifeState.cpp" />
     <ClCompile Include="SoldierRunState.cpp" />
     <ClCompile Include="SpriteDeco.cpp" />
+    <ClCompile Include="StageUI.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StaticDeco.cpp" />
     <ClCompile Include="System.cpp" />

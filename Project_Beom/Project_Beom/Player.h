@@ -26,7 +26,7 @@ public:
 	virtual void Release();
 
 public:
-	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor);
 
 public:
 	virtual void CollisionActivate(GameObject* collideTarget);
@@ -42,7 +42,14 @@ private:
 	bool m_rideCheck = false;
 	bool m_spawnCheck = false;
 
-	int m_bulletCount = 10;
+	int m_bulletCount = 0;
 	int m_bombCount = 10;
+
+	int m_timeCount = 59;
+	float m_DecreaseStack = 0.f;
+	GameObject* m_TimeUI = nullptr;
+	GameObject* m_Infinite = nullptr;
+	GameObject* m_BulletUI = nullptr;
+	GameObject* m_BombUI = nullptr;
 };
 

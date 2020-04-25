@@ -87,65 +87,68 @@ void SaruBullet::Release()
 {
 }
 
-void SaruBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
+void SaruBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor)
 {
-	if (dir & DIR_BOTTOM)
+	if (PIXEL24{ 0, 0, 248 } == collPixelColor)
 	{
-		if (m_GravitySpeed < 0)
-			return;
-
-		SetFall(false);
-
-		// 위로 올림
-		int x = (int)m_Info.Pos_X;
-		int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
-
-		const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
-		if (nullptr == pixelCollide)
-			return;
-
-		int count = 0;
-		for (int i = 1; i < 1000; ++i)
+		if ((dir & DIR_BOTTOM))
 		{
-			int addr = (int)(y - i) * pixelCollide->Width + (int)x;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (!(pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b))
+			if (m_GravitySpeed < 0)
+				return;
+
+			SetFall(false);
+
+			// 위로 올림
+			int x = (int)m_Info.Pos_X;
+			int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
+
+			const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
+			if (nullptr == pixelCollide)
+				return;
+
+			int count = 0;
+			for (int i = 1; i < 1000; ++i)
 			{
-				break;
+				int addr = (int)(y - i) * pixelCollide->Width + (int)x;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (!(pixelCollide->vecPixel[addr].r == collPixelColor.r &&
+					pixelCollide->vecPixel[addr].g == collPixelColor.g &&
+					pixelCollide->vecPixel[addr].b == collPixelColor.b))
+				{
+					break;
+				}
+				++count;
 			}
-			++count;
+			m_Info.Pos_Y -= count;
 		}
-		m_Info.Pos_Y -= count;
-	}
-	else
-	{
-		if (m_fallCheck || m_GravitySpeed < 0)
-			return;
-
-		// 아래로 내림
-		int x = (int)m_Info.Pos_X;
-		int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
-
-		const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
-		if (nullptr == pixelCollide)
-			return;
-
-		int count = 0;
-		for (int i = 0; i < 1000; ++i)
+		else
 		{
-			int addr = (int)(y + i) * pixelCollide->Width + (int)x;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
+			if (m_fallCheck || m_GravitySpeed < 0)
+				return;
+
+			int x = (int)m_Info.Pos_X;
+			int y = (int)m_CollideRect.bottom - (int)GETMGR(CameraManager)->GetPos().Y;
+
+			const PIXELCOLLIDERINFO* pixelCollide = PixelTarget->GetPixelCollider();
+			if (nullptr == pixelCollide)
+				return;
+
+			// 빨간 충돌 픽셀이면 아래로 내림
+			int count = 0;
+			for (int i = 0; i < 1000; ++i)
 			{
-				break;
+				int addr = (int)(y + i) * pixelCollide->Width + (int)x;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == collPixelColor.r &&
+					pixelCollide->vecPixel[addr].g == collPixelColor.g &&
+					pixelCollide->vecPixel[addr].b == collPixelColor.b)
+				{
+					break;
+				}
+				++count;
 			}
-			++count;
+			m_Info.Pos_Y += count;
 		}
-		m_Info.Pos_Y += count;
 	}
 }
 

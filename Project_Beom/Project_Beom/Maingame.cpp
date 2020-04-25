@@ -16,6 +16,7 @@ bool Maingame::Initialize()
 	m_GdiPlusMgr = GET_MANAGER<GdiPlusManager>();
 	m_SceneMgr = GET_MANAGER<SceneManager>();
 
+	//if (!m_SceneMgr->ChangeSceneState(SCENE_MENU))
 	if (!m_SceneMgr->ChangeSceneState(SCENE_TEST))
 		return false;
 

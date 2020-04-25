@@ -295,6 +295,30 @@
     <Filter Include="02.GameObejct\Item">
       <UniqueIdentifier>{b4a0167f-7172-4a7d-9989-a9581ad93810}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02.GameObejct\Select">
+      <UniqueIdentifier>{a41b9bbe-3e02-4b9b-9e48-5acf575e96c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Select\Characters">
+      <UniqueIdentifier>{81f02a8e-2a8b-4d53-b709-6658a37a67a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Select\UI">
+      <UniqueIdentifier>{ba134174-a0e0-42f7-a331-9306c6f01a7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\Select">
+      <UniqueIdentifier>{2e664698-8822-4b04-9195-fcd2322ded44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\MainMenu">
+      <UniqueIdentifier>{d08c9438-3add-44b7-9522-f75c48464796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\Select\Slot">
+      <UniqueIdentifier>{1298a42f-56e8-47a4-9357-8261abc90cb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\UI\Number">
+      <UniqueIdentifier>{f926cd2f-4570-4826-a857-8d61f080a122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\UI\Stage">
+      <UniqueIdentifier>{42909e6c-94c6-41fd-94f6-583d11796c17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -711,6 +735,30 @@
     <ClInclude Include="Item.h">
       <Filter>02.GameObejct\Item</Filter>
     </ClInclude>
+    <ClInclude Include="SelectScene.h">
+      <Filter>03.Scene\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>03.Scene\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Slot.h">
+      <Filter>02.GameObejct\Select\Slot</Filter>
+    </ClInclude>
+    <ClInclude Include="Characters.h">
+      <Filter>02.GameObejct\Select\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectUI.h">
+      <Filter>02.GameObejct\Select\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectScreen.h">
+      <Filter>02.GameObejct\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="StageUI.h">
+      <Filter>02.GameObejct\UI\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Number.h">
+      <Filter>02.GameObejct\UI\Number</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project_Beom.cpp">
@@ -1093,6 +1141,30 @@
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>02.GameObejct\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectScene.cpp">
+      <Filter>03.Scene\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
+      <Filter>03.Scene\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Slot.cpp">
+      <Filter>02.GameObejct\Select\Slot</Filter>
+    </ClCompile>
+    <ClCompile Include="Characters.cpp">
+      <Filter>02.GameObejct\Select\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectUI.cpp">
+      <Filter>02.GameObejct\Select\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectScreen.cpp">
+      <Filter>02.GameObejct\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="StageUI.cpp">
+      <Filter>02.GameObejct\UI\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Number.cpp">
+      <Filter>02.GameObejct\UI\Number</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

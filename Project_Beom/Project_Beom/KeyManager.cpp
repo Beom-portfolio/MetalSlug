@@ -49,7 +49,9 @@ int KeyManager::UpdateKey()
 
 	ComputeKeyState(VK_F7);
 	ComputeKeyState(VK_F8);
+	ComputeKeyState(VK_F9);
 
+	ComputeKeyState(VK_RETURN);
 
 	return 0;
 }

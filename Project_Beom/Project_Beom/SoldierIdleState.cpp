@@ -61,7 +61,7 @@ State* SoldierIdleState::HandleInput(GameObject* object, KeyManager* input)
 			return new SoldierRunState();
 		case 1: case 2: case 3:
 			// 가까이 붙어있으면 칼빵을 날린다.
-			if (145 > abs(playerPos.X - myPos.X))
+			if (145 > GetDistance(playerPos, myPos))
 				return new SoldierKnifeState();
 			else
 				return new SoldierBombAttState();

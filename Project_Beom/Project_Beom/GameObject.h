@@ -56,7 +56,7 @@ public:
 
 public:
 	bool LoadPixelCollider(const char* pFilePath,
-		unsigned char r, unsigned char g, unsigned char b);
+		vector<PIXEL24> collpixels);
 
 public:
 	virtual bool Initialize() PURE;
@@ -66,7 +66,7 @@ public:
 	virtual void Release() PURE;
 	virtual void CollisionActivate(GameObject* collideTarget);
 	virtual void CollisionDeactivate(GameObject* collideTarget);
-	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor);
 
 	virtual void SetState(DWORD state);
 protected:

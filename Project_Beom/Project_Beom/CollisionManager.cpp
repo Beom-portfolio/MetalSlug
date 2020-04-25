@@ -115,44 +115,47 @@ void CollisionManager::CollisionPixelToRectDir(ObjectManager::MAPOBJ* pixel, Obj
 
 			int addr;
 
-			// 아래 
-			addr = rc.bottom * pixelCollide->Width + (int)info.Pos_X;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
+			for (auto collColor : pixelCollide->CollPixels)
 			{
-				dir |= DIR_BOTTOM;
+				// 아래 
+				addr = rc.bottom * pixelCollide->Width + (int)info.Pos_X;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == collColor.r &&
+					pixelCollide->vecPixel[addr].g == collColor.g &&
+					pixelCollide->vecPixel[addr].b == collColor.b)
+				{
+					dir |= DIR_BOTTOM;
+				}
+				// 위
+				addr = rc.top * pixelCollide->Width + (int)info.Pos_X;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == collColor.r &&
+					pixelCollide->vecPixel[addr].g == collColor.g &&
+					pixelCollide->vecPixel[addr].b == collColor.b)
+				{
+					dir |= DIR_TOP;
+				}
+				// 왼쪽
+				addr = (int)info.Pos_Y * pixelCollide->Width + (int)rc.left;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == collColor.r &&
+					pixelCollide->vecPixel[addr].g == collColor.g &&
+					pixelCollide->vecPixel[addr].b == collColor.b)
+				{
+					dir |= DIR_LEFT;
+				}
+				// 오른쪽
+				addr = (int)info.Pos_Y * pixelCollide->Width + (int)rc.right;
+				if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
+				if (pixelCollide->vecPixel[addr].r == collColor.r &&
+					pixelCollide->vecPixel[addr].g == collColor.g &&
+					pixelCollide->vecPixel[addr].b == collColor.b)
+				{
+					dir |= DIR_RIGHT;
+				}
+
+				Src.second->CollisionPixelPart((DIRECTION)dir, Dst.second, collColor);
 			}
-			// 위
-			addr = rc.top * pixelCollide->Width + (int)info.Pos_X;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
-			{
-				dir |= DIR_TOP;
-			}
-			// 왼쪽
-			addr = (int)info.Pos_Y * pixelCollide->Width + (int)rc.left;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
-			{
-				dir |= DIR_LEFT;
-			}
-			// 오른쪽
-			addr = (int)info.Pos_Y * pixelCollide->Width + (int)rc.right;
-			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
-			{
-				dir |= DIR_RIGHT;
-			}
-		
-			Src.second->CollisionPixelPart((DIRECTION)dir, Dst.second);
 		}
 	}
 }
@@ -174,13 +177,15 @@ void CollisionManager::CollisionPixelToPoint(ObjectManager::MAPOBJ* pixel, Objec
 			GAMEOBJINFO rc = Src.second->GetInfo();
 			int addr = (int)rc.Pos_Y * pixelCollide->Width + (int)rc.Pos_X;
 			if (addr < 0 || addr >= (int)pixelCollide->vecPixel.size()) return;
-			if (pixelCollide->vecPixel[addr].r == pixelCollide->CollPixel.r &&
-				pixelCollide->vecPixel[addr].g == pixelCollide->CollPixel.g &&
-				pixelCollide->vecPixel[addr].b == pixelCollide->CollPixel.b)
+			for (auto collColor : pixelCollide->CollPixels)
 			{
-				//printf("Collide! ");
+				if (pixelCollide->vecPixel[addr].r == collColor.r &&
+					pixelCollide->vecPixel[addr].g == collColor.g &&
+					pixelCollide->vecPixel[addr].b == collColor.b)
+				{
+					//printf("Collide! ");
+				}
 			}
-
 		}
 	}
 }

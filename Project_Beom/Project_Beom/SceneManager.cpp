@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "SceneManager.h"
+#include "MainMenuScene.h"
+#include "SelectScene.h"
 #include "TestScene.h"
 #include "ToolScene.h"
 
@@ -23,6 +25,10 @@ bool SceneManager::ChangeSceneState(SCENESTATE SceneState)
 	switch (SceneState)
 	{
 	case SCENE_MENU:
+		m_Scene = new MainMenuScene;
+		break;
+	case SCENE_SELECT:
+		m_Scene = new SelectScene;
 		break;
 	case SCENE_TEST:
 		m_Scene = new TestScene;
@@ -63,9 +69,5 @@ void SceneManager::Render(HDC hDC)
 
 void SceneManager::Release()
 {
-	if (m_Scene)
-	{
-		delete m_Scene;
-		m_Scene = nullptr;
-	}
+	SAFE_RELEASE(m_Scene);
 }

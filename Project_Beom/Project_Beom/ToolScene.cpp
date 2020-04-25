@@ -11,6 +11,7 @@
 #include "Prisoner.h"
 
 ToolScene::ToolScene()
+	:Scene()
 {
 }
 
@@ -152,6 +153,12 @@ int ToolScene::Update(const float& TimeDelta)
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F8))
 		Load();
 
+	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F9))
+	{
+		GETMGR(SceneManager)->ChangeSceneState(SCENE_MENU);
+		return 0;
+	}
+
 	m_CamManager->SetPos(camPos.X, camPos.Y);
 
 	Scene::Update(TimeDelta);
@@ -162,24 +169,28 @@ void ToolScene::Render(HDC hDC)
 {
 	Scene::Render(hDC);
 
-	TextOut(hDC, 790, 10, L"몬스터 변경", lstrlen(L"몬스터 변경"));
-	TextOut(hDC, 790, 30, L"F1 : 병사", lstrlen(L"F1 : 솔져"));
-	TextOut(hDC, 790, 50, L"F2 : 헬기", lstrlen(L"F2 : 헬기"));
-	TextOut(hDC, 790, 70, L"F3 : 탱크", lstrlen(L"F3 : 탱크"));
-	TextOut(hDC, 790, 90, L"F4 : 사루비아", lstrlen(L"F4 : 사루비아"));
-	TextOut(hDC, 790, 110, L"F5 : 죄수", lstrlen(L"F5 : 죄수"));
+	TextOut(hDC, 690, 10, L"몬스터 변경", lstrlen(L"몬스터 변경"));
+	TextOut(hDC, 690, 30, L"F1 : 병사", lstrlen(L"F1 : 솔져"));
+	TextOut(hDC, 690, 50, L"F2 : 헬기", lstrlen(L"F2 : 헬기"));
+	TextOut(hDC, 690, 70, L"F3 : 탱크", lstrlen(L"F3 : 탱크"));
+	TextOut(hDC, 690, 90, L"F4 : 사루비아", lstrlen(L"F4 : 사루비아"));
+	TextOut(hDC, 690, 110, L"F5 : 죄수", lstrlen(L"F5 : 죄수"));
 
-	TextOut(hDC, 600, 10, L"마우스 좌클릭 : 배치", lstrlen(L"마우스 좌클릭 : 배치"));
-	TextOut(hDC, 600, 30, L"마우스 우클릭 : 되돌리기", lstrlen(L"마우스 우클릭 : 되돌리기"));
-	TextOut(hDC, 600, 70, L"F6 : 충돌체 보기", lstrlen(L"F6 : 충돌체 보기"));
-	TextOut(hDC, 600, 90, L"F7 : 저장", lstrlen(L"F7 : 저장"));
-	TextOut(hDC, 600, 110, L"F8 : 불러오기", lstrlen(L"F8 : 불러오기"));
+	TextOut(hDC, 500, 10, L"마우스 좌클릭 : 배치", lstrlen(L"마우스 좌클릭 : 배치"));
+	TextOut(hDC, 500, 30, L"마우스 우클릭 : 되돌리기", lstrlen(L"마우스 우클릭 : 되돌리기"));
+	TextOut(hDC, 500, 50, L"W,S,A,D : 카메라 이동", lstrlen(L"W,S,A,D : 카메라 이동"));
+	TextOut(hDC, 500, 70, L"F6 : 충돌체 보기", lstrlen(L"F6 : 충돌체 보기"));
+	TextOut(hDC, 500, 90, L"F7 : 저장", lstrlen(L"F7 : 저장"));
+	TextOut(hDC, 500, 110, L"F8 : 불러오기", lstrlen(L"F8 : 불러오기"));
+	TextOut(hDC, 500, 130, L"F9 : 되돌아가기", lstrlen(L"F9 : 되돌아가기"));
+
+	
 
 	if (m_SaveCheck)
 	{
 		if (1.f <= m_TimeStack)
 			m_SaveCheck = false;
-		TextOut(hDC, 440, 10, L"저장 완료!", lstrlen(L"저장 완료!"));
+		TextOut(hDC, 340, 10, L"저장 완료!", lstrlen(L"저장 완료!"));
 	}
 
 	if (m_LoadCheck)

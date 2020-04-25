@@ -10,6 +10,7 @@ Scene::Scene()
 
 Scene::~Scene()
 {
+	Release();
 }
 
 int Scene::Update(const float& TimeDelta)

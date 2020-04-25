@@ -15,6 +15,6 @@ public:
 	virtual void Release();
 
 public:
-	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget);
+	virtual void CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor);
 };
 

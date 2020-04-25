@@ -26,7 +26,6 @@ void PrisonerRunState::Enter(GameObject* object)
 
 	object->SetSpriteInfo(info);
 	object->SetSize(109, 145);
-	object->SetCollideInfo(GAMEOBJINFO{ 0, 40, 50, 90 });
 }
 
 State* PrisonerRunState::HandleInput(GameObject* object, KeyManager* input)

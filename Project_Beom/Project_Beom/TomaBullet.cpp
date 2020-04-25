@@ -58,9 +58,9 @@ void TomaBullet::Release()
 {
 }
 
-void TomaBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget)
+void TomaBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 collPixelColor)
 {
-	if (0 != dir)
+	if (PIXEL24{ 0, 0, 248 } == collPixelColor && 0 != dir)
 	{
 		GETMGR(ObjectManager)->AddObject(
 			AbstractFactory<GranadeExplosion>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y - 80), OBJ_EFFECT);
