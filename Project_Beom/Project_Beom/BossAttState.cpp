@@ -15,6 +15,8 @@ BossAttState::~BossAttState()
 
 void BossAttState::Enter(GameObject* object)
 {
+	GETMGR(SoundManager)->PlaySound(L"BossAtt.mp3", CH_MONSTER);
+
 	GameObject* r, * l;
 	((Boss*)object)->GetWings(&r, &l);
 	r->SetState(BOSS_ATT);

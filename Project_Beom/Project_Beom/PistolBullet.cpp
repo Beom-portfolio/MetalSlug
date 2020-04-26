@@ -13,6 +13,7 @@ PistolBullet::~PistolBullet()
 
 bool PistolBullet::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"Pistol_Fire.mp3", CH_PLAYER);
 	m_Info = GAMEOBJINFO{ 0, 0, 20, 20 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 20 };
 	m_ObjType = OBJ_PLAYER_BULLET;
@@ -41,7 +42,7 @@ int PistolBullet::Update(const float& TimeDelta)
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;
 
-	m_Damage = 1;
+	m_Damage = 10;
 	return 0;
 }
 

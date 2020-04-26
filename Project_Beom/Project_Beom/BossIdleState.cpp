@@ -21,7 +21,7 @@ void BossIdleState::Enter(GameObject* object)
 
 	m_originPosY = object->GetPosition().Y;
 
-	m_waitTime = 5.f + ((rand() % 10) / 10.f);
+	m_waitTime = 3.f + ((rand() % 10) / 10.f);
 }
 
 State* BossIdleState::HandleInput(GameObject* object, KeyManager* input)

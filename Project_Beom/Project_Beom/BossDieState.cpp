@@ -39,6 +39,13 @@ void BossDieState::Update(GameObject* object, const float& TimeDelta)
 	float posY = object->GetPosition().Y;
 	posY += 40.f * TimeDelta;
 
+	m_effectStack += TimeDelta;
+	if (0.5f <= m_effectStack)
+	{
+		GETMGR(SoundManager)->PlaySound(L"Explode-2.wav", CH_MONSTER);
+		m_effectStack = 0.f;
+	}
+
 	m_TimeStack += 16.8f * TimeDelta;
 	if (m_rightCheck)
 	{
@@ -52,7 +59,7 @@ void BossDieState::Update(GameObject* object, const float& TimeDelta)
 
 
 			GameObject* effect = nullptr;
-			effect = AbstractFactory<BigExplosion>::CreateObj();
+			effect = AbstractFactory<BigExplosion>::CreateObj(true);
 			effect->SetPosition(object->GetInfo().Pos_X - float(rand() % 300) + float(rand() % 300),
 				object->GetInfo().Pos_Y - float(rand() % 200) + float(rand() % 200));
 			GETMGR(ObjectManager)->AddObject(effect, OBJ_EFFECT);
@@ -70,7 +77,7 @@ void BossDieState::Update(GameObject* object, const float& TimeDelta)
 			m_rightCheck = true;
 
 			GameObject* effect = nullptr;
-			effect = AbstractFactory<BigExplosion>::CreateObj();
+			effect = AbstractFactory<BigExplosion>::CreateObj(true);
 			effect->SetPosition(object->GetInfo().Pos_X - float(rand() % 300) + float(rand() % 300),
 				object->GetInfo().Pos_Y - float(rand() % 200) + float(rand() % 200));
 			GETMGR(ObjectManager)->AddObject(effect, OBJ_EFFECT);
@@ -80,12 +87,15 @@ void BossDieState::Update(GameObject* object, const float& TimeDelta)
 	if (m_waitTime <= m_runTime)
 	{
 		POSITION objPos = object->GetPosition();
+		GETMGR(SoundManager)->PlaySound(L"Explode-2.wav", CH_MONSTER);
+		GETMGR(SoundManager)->PlaySound(L"Explode3.wav", CH_MONSTER);
+		GETMGR(SoundManager)->PlaySound(L"Explode4.wav", CH_MONSTER);
 		for (int i = 0; i < 300; ++i)
 		{
 			if (0 == (i % 10))
 			{
 				GameObject* effect = nullptr;
-				effect = AbstractFactory<BigExplosion>::CreateObj();
+				effect = AbstractFactory<BigExplosion>::CreateObj(true);
 				effect->SetPosition(object->GetInfo().Pos_X - float(rand() % 300) + float(rand() % 300),
 					object->GetInfo().Pos_Y - float(rand() % 200) + float(rand() % 200));
 				GETMGR(ObjectManager)->AddObject(effect, OBJ_EFFECT);

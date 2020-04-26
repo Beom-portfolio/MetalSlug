@@ -23,7 +23,7 @@
 
 // 여기서 프로그램에 필요한 추가 헤더를 참조합니다.
 #include <time.h>
-
+#include <io.h>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -38,14 +38,22 @@ using namespace std;
 // GDI+ 라이브러리
 #include <Gdiplus.h>
 using namespace Gdiplus;
-
 #pragma comment(lib, "Gdiplus.lib")
+
+// TransparentBlt 라이브러리
+#pragma comment(lib, "msimg32.lib")
 
 // BSTR 지원
 #pragma comment(lib, "comsuppw.lib")
 
-// TransparentBlt 라이브러리
-#pragma comment(lib, "msimg32.lib")
+// 동영상 재생 라이브러리
+#include <Vfw.h>
+#pragma comment(lib, "vfw32.lib")
+
+// fmod 사운드 라이브러리
+#include "fmod.h"
+#include "fmod.hpp"
+#pragma comment(lib, "fmodex_vc.lib")
 
 // 디버깅용 콘솔 창
 #ifdef UNICODE 
@@ -66,6 +74,7 @@ using namespace Gdiplus;
 #include "Enum.h"
 #include "Struct.h"
 #include "Math.h"
+#include "Functor.h"
 
 // Managers
 #include "FrameManager.h"
@@ -80,5 +89,6 @@ using namespace Gdiplus;
 #include "ObjectManager.h"
 #include "CollisionManager.h"
 #include "MouseManager.h"
+#include "SoundManager.h"
 
 #endif //PCH_H

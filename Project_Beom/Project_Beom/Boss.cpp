@@ -5,6 +5,7 @@
 #include "BossIdleState.h"
 #include "BossDieState.h"
 #include "MediumExplosion.h"
+#include "Soldier.h"
 
 Boss::Boss()
 {
@@ -43,7 +44,7 @@ bool Boss::Initialize()
 	m_OriginPosY = m_Info.Pos_Y;
 	m_Info.Pos_Y = -50.f;
 
-	m_Hp = 1000;
+	m_Hp = 1500;
 	m_TotalHp = m_Hp;
 
 	m_isCollideOn = false;
@@ -59,12 +60,15 @@ int Boss::Update(const float& TimeDelta)
 		m_Info.Pos_Y += m_Speed * TimeDelta;
 
 		if (m_Info.Pos_Y > m_OriginPosY)
+		{
+			m_isCollideOn = true;
 			m_firstCheck = false;
+		}
 	}
 	else
 	{
-		m_isCollideOn = true;
 		m_State->Update(this, TimeDelta);
+		m_TimeSpawn += TimeDelta;
 		AI();
 	}
 
@@ -73,7 +77,7 @@ int Boss::Update(const float& TimeDelta)
 		if (m_TimeStack > 0.25f)
 		{
 			GameObject* effect = nullptr;
-			effect = AbstractFactory<MediumExplosion>::CreateObj();
+			effect = AbstractFactory<MediumExplosion>::CreateObj(true);
 			effect->SetPosition(m_Info.Pos_X - float(rand() % 300) + float(rand() % 300),
 				m_Info.Pos_Y - float(rand() % 200) + float(rand() % 200));
 			GETMGR(ObjectManager)->AddObject(effect, OBJ_EFFECT);
@@ -130,18 +134,28 @@ void Boss::CollisionActivate(GameObject* collideTarget)
 {
 	if (OBJ_PLAYER_BULLET == collideTarget->GetObjectType())
 	{
-		Hit(collideTarget->GetDamage());
-		if (0 >= m_Hp)
+		if (m_isCollideOn)
 		{
-			m_SpriteInfo.key = L"boss_body_destroy";
-			SAFE_DELETE(m_State);
-			m_State = new BossDieState;
-			m_State->Enter(this);
-			m_isCollideOn = false;
-			m_isRenderPart = false;
-			return;
+			Hit(collideTarget->GetDamage());
+			if (0 >= m_Hp)
+			{
+				for (auto& monster : GETMGR(ObjectManager)->GetObjFromType(OBJ_MONSTER))
+				{
+					if (this == monster.second)
+						continue;
+					monster.second->SetDead(true);
+				}
+
+				m_SpriteInfo.key = L"boss_body_destroy";
+				SAFE_DELETE(m_State);
+				m_State = new BossDieState;
+				m_State->Enter(this);
+				m_isCollideOn = false;
+				m_isRenderPart = false;
+				return;
+			}
+			m_SpriteInfo.key = L"boss_body_hit";
 		}
-		m_SpriteInfo.key = L"boss_body_hit";
 	}
 }
 
@@ -154,5 +168,17 @@ void Boss::AI()
 		m_State = state;
 
 		m_State->Enter(this);
+	}
+
+	if(0 < m_Hp)
+	{
+		if (2.f <= m_TimeSpawn)
+		{
+			int posX = rand() % 2 ? (int)m_Info.Pos_X - 70 : (int)m_Info.Pos_X + 70;
+			GameObject* mon = AbstractFactory<Soldier>::CreateObj(true);
+			mon->SetPosition((float)posX, m_Info.Pos_Y - 200.f);
+			GETMGR(ObjectManager)->AddObject(mon, OBJ_MONSTER);
+			m_TimeSpawn = 0.f;
+		}
 	}
 }

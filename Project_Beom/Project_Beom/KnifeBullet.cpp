@@ -11,6 +11,9 @@ KnifeBullet::~KnifeBullet()
 
 bool KnifeBullet::Initialize()
 {
+	(rand() % 2) ?
+		GETMGR(SoundManager)->PlaySound(L"Knife.WAV", CH_EFFECT) :
+		GETMGR(SoundManager)->PlaySound(L"Knife2.WAV", CH_EFFECT);
 	m_Info = GAMEOBJINFO{ 0, 0, 0, 0 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 20 };
 	m_ObjType = OBJ_PLAYER_BULLET;

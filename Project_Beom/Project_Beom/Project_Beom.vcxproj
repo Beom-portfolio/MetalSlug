@@ -89,7 +89,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -104,7 +104,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -121,7 +121,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -173,17 +173,20 @@
     <ClInclude Include="Characters.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Constant.h" />
+    <ClInclude Include="CreditScene.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="DummyObject.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Extern.h" />
+    <ClInclude Include="Fade.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="Fire.h" />
     <ClInclude Include="FireCollider.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="FrameManager.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Functor.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GdiImage.h" />
     <ClInclude Include="GdiManager.h" />
@@ -194,6 +197,7 @@
     <ClInclude Include="KeyManager.h" />
     <ClInclude Include="KnifeBullet.h" />
     <ClInclude Include="LeftWing.h" />
+    <ClInclude Include="LogoScene.h" />
     <ClInclude Include="MachinegunBullet.h" />
     <ClInclude Include="MachinegunEffect.h" />
     <ClInclude Include="Macro.h" />
@@ -273,7 +277,9 @@
     <ClInclude Include="SoldierIdleState.h" />
     <ClInclude Include="SoldierKnifeState.h" />
     <ClInclude Include="SoldierRunState.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteDeco.h" />
+    <ClInclude Include="StageScene.h" />
     <ClInclude Include="StageUI.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StaticDeco.h" />
@@ -319,8 +325,10 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Characters.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="CreditScene.cpp" />
     <ClCompile Include="DummyObject.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="Fade.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="FireCollider.cpp" />
@@ -336,6 +344,7 @@
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="KnifeBullet.cpp" />
     <ClCompile Include="LeftWing.cpp" />
+    <ClCompile Include="LogoScene.cpp" />
     <ClCompile Include="MachinegunBullet.cpp" />
     <ClCompile Include="MachinegunEffect.cpp" />
     <ClCompile Include="Maingame.cpp" />
@@ -417,7 +426,9 @@
     <ClCompile Include="SoldierIdleState.cpp" />
     <ClCompile Include="SoldierKnifeState.cpp" />
     <ClCompile Include="SoldierRunState.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteDeco.cpp" />
+    <ClCompile Include="StageScene.cpp" />
     <ClCompile Include="StageUI.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="StaticDeco.cpp" />

@@ -11,6 +11,8 @@ MediumExplosion::~MediumExplosion()
 
 bool MediumExplosion::Initialize()
 {
+	if(!m_check)
+		GETMGR(SoundManager)->PlaySound(L"Explode3.wav", CH_MONSTER);
 	m_Info = GAMEOBJINFO{ 0, 0, 50, 50 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
 	m_ObjType = OBJ_EFFECT;

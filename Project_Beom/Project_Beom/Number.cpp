@@ -35,6 +35,7 @@ bool Number::Initialize()
 {
 	m_isNoScroll = true;
 	m_isNotDead = true;
+	m_RenderType = RENDER_UI;
 	return true;
 }
 

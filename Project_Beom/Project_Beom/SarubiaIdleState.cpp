@@ -39,7 +39,7 @@ State* SarubiaIdleState::HandleInput(GameObject* object, KeyManager* input)
 	POSITION playerPos = m_Player->GetPosition();
 	POSITION myPos = object->GetPosition();
 
-	if (800.f < GetDistance(playerPos, myPos))
+	if (700.f < GetDistance(playerPos, myPos))
 		return nullptr;
 
 	if (600.f < GetDistance(playerPos, myPos))

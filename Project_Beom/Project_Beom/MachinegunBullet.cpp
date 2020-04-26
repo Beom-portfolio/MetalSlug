@@ -17,6 +17,7 @@ MachinegunBullet::~MachinegunBullet()
 
 bool MachinegunBullet::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"MachinegunSound.mp3", CH_PLAYER);
 	m_Info = GAMEOBJINFO{ 0, 0, 60, 60 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 20 };
 	m_ObjType = OBJ_PLAYER_BULLET;

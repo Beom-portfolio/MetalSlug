@@ -262,9 +262,6 @@
     <Filter Include="02.GameObejct\Background\Deco\Static">
       <UniqueIdentifier>{8ef191f0-cc40-47c4-b0f6-85d13e043dbc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Scene\Tool">
-      <UniqueIdentifier>{2ea16d40-637a-4c19-9e13-02ed170366a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="99.Default">
       <UniqueIdentifier>{f946c6b5-4bd8-4718-a175-e8298d1c83d0}</UniqueIdentifier>
     </Filter>
@@ -304,12 +301,6 @@
     <Filter Include="02.GameObejct\Select\UI">
       <UniqueIdentifier>{ba134174-a0e0-42f7-a331-9306c6f01a7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.Scene\Select">
-      <UniqueIdentifier>{2e664698-8822-4b04-9195-fcd2322ded44}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03.Scene\MainMenu">
-      <UniqueIdentifier>{d08c9438-3add-44b7-9522-f75c48464796}</UniqueIdentifier>
-    </Filter>
     <Filter Include="02.GameObejct\Select\Slot">
       <UniqueIdentifier>{1298a42f-56e8-47a4-9357-8261abc90cb3}</UniqueIdentifier>
     </Filter>
@@ -318,6 +309,36 @@
     </Filter>
     <Filter Include="02.GameObejct\UI\Stage">
       <UniqueIdentifier>{42909e6c-94c6-41fd-94f6-583d11796c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\Sound">
+      <UniqueIdentifier>{be9011cd-b34f-4afc-afa7-571941c4500a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02.GameObejct\UI\Fade">
+      <UniqueIdentifier>{1b15db98-210d-4f55-8835-41f6d32d00b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\03.Tool">
+      <UniqueIdentifier>{2ea16d40-637a-4c19-9e13-02ed170366a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\03.Stage">
+      <UniqueIdentifier>{a5af4fd2-3678-4e41-8850-4e25584b8b45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\02.Select">
+      <UniqueIdentifier>{2e664698-8822-4b04-9195-fcd2322ded44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\01.MainMenu">
+      <UniqueIdentifier>{d08c9438-3add-44b7-9522-f75c48464796}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\04.Credit">
+      <UniqueIdentifier>{21e86da1-9e25-4af9-80bb-bc6b087463e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\00.Logo">
+      <UniqueIdentifier>{670b706e-6d68-469f-815b-f13a9375a951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\03.Stage\Test">
+      <UniqueIdentifier>{f3822096-335b-4fa3-862e-6166f5c067dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Scene\03.Stage\StateScene">
+      <UniqueIdentifier>{e6082789-db19-454e-aff8-c7e58a655e19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -372,9 +393,6 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>97.Manager\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>97.Manager\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="SceneManager.h">
       <Filter>97.Manager\Scene</Filter>
     </ClInclude>
@@ -413,9 +431,6 @@
     </ClInclude>
     <ClInclude Include="GdiPlusManager.h">
       <Filter>97.Manager\GdiPlus</Filter>
-    </ClInclude>
-    <ClInclude Include="TestScene.h">
-      <Filter>03.Scene</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>02.GameObejct\Player</Filter>
@@ -700,7 +715,7 @@
       <Filter>02.GameObejct\Background\Deco\Static</Filter>
     </ClInclude>
     <ClInclude Include="ToolScene.h">
-      <Filter>03.Scene\Tool</Filter>
+      <Filter>03.Scene\03.Tool</Filter>
     </ClInclude>
     <ClInclude Include="MouseManager.h">
       <Filter>97.Manager\Mouse</Filter>
@@ -736,10 +751,10 @@
       <Filter>02.GameObejct\Item</Filter>
     </ClInclude>
     <ClInclude Include="SelectScene.h">
-      <Filter>03.Scene\Select</Filter>
+      <Filter>03.Scene\02.Select</Filter>
     </ClInclude>
     <ClInclude Include="MainMenuScene.h">
-      <Filter>03.Scene\MainMenu</Filter>
+      <Filter>03.Scene\01.MainMenu</Filter>
     </ClInclude>
     <ClInclude Include="Slot.h">
       <Filter>02.GameObejct\Select\Slot</Filter>
@@ -758,6 +773,30 @@
     </ClInclude>
     <ClInclude Include="Number.h">
       <Filter>02.GameObejct\UI\Number</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>97.Manager\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Functor.h">
+      <Filter>98.Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>03.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Fade.h">
+      <Filter>02.GameObejct\UI\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditScene.h">
+      <Filter>03.Scene\04.Credit</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoScene.h">
+      <Filter>03.Scene\00.Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="TestScene.h">
+      <Filter>03.Scene\03.Stage\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="StageScene.h">
+      <Filter>03.Scene\03.Stage\StateScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -778,9 +817,6 @@
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>97.Manager\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>97.Manager\Scene</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>97.Manager\Scene</Filter>
@@ -820,9 +856,6 @@
     </ClCompile>
     <ClCompile Include="GdiPlusManager.cpp">
       <Filter>97.Manager\GdiPlus</Filter>
-    </ClCompile>
-    <ClCompile Include="TestScene.cpp">
-      <Filter>03.Scene</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>02.GameObejct\Player</Filter>
@@ -1107,7 +1140,7 @@
       <Filter>02.GameObejct\Background\Deco\Static</Filter>
     </ClCompile>
     <ClCompile Include="ToolScene.cpp">
-      <Filter>03.Scene\Tool</Filter>
+      <Filter>03.Scene\03.Tool</Filter>
     </ClCompile>
     <ClCompile Include="MouseManager.cpp">
       <Filter>97.Manager\Mouse</Filter>
@@ -1143,10 +1176,10 @@
       <Filter>02.GameObejct\Item</Filter>
     </ClCompile>
     <ClCompile Include="SelectScene.cpp">
-      <Filter>03.Scene\Select</Filter>
+      <Filter>03.Scene\02.Select</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuScene.cpp">
-      <Filter>03.Scene\MainMenu</Filter>
+      <Filter>03.Scene\01.MainMenu</Filter>
     </ClCompile>
     <ClCompile Include="Slot.cpp">
       <Filter>02.GameObejct\Select\Slot</Filter>
@@ -1165,6 +1198,27 @@
     </ClCompile>
     <ClCompile Include="Number.cpp">
       <Filter>02.GameObejct\UI\Number</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>97.Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>03.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Fade.cpp">
+      <Filter>02.GameObejct\UI\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditScene.cpp">
+      <Filter>03.Scene\04.Credit</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoScene.cpp">
+      <Filter>03.Scene\00.Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="TestScene.cpp">
+      <Filter>03.Scene\03.Stage\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="StageScene.cpp">
+      <Filter>03.Scene\03.Stage\StateScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

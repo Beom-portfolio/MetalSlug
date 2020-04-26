@@ -22,7 +22,7 @@ bool Tank::Initialize()
 	m_State->Enter(this);
 	m_Speed = 75.f;
 
-	m_Hp = 100;
+	m_Hp = 150;
 	return true;
 }
 

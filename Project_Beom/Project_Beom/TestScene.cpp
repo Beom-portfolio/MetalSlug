@@ -1,9 +1,5 @@
 #include "pch.h"
 #include "TestScene.h"
-#include "AbstractFactory.h"
-#include "ObjectManager.h"
-#include "GdiManager.h"
-#include "CameraManager.h"
 #include "Player.h"
 #include "Background.h"
 #include "PistolBullet.h"
@@ -20,6 +16,7 @@
 #include "Item.h"
 #include "StageUI.h"
 #include "Number.h"
+#include "Fade.h"
 
 TestScene::TestScene()
 {
@@ -31,8 +28,15 @@ TestScene::~TestScene()
 
 bool TestScene::Initialize()
 {
+	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
+
+	GETMGR(SoundManager)->PlayBGM(L"Stage.mp3", CH_BGM);
+	GETMGR(SoundManager)->PlaySound(L"MissionStart.mp3", CH_VOICE);
 	// ui
 	{
+		m_Fade = AbstractFactory<Fade>::CreateObj();
+		m_ObjManager->AddObject(m_Fade, OBJ_UI1);
+
 		SPRITEINFO info;
 		ZeroMemory(&info, sizeof(SPRITEINFO));
 		GameObject* ui = AbstractFactory<StageUI>::CreateObj();
@@ -85,18 +89,18 @@ bool TestScene::Initialize()
 		m_ObjManager->AddObject(L"BombUI", ui, OBJ_UI);
 	}
 
-	GameObject* player = AbstractFactory<Player>::CreateObj();
-	player->SetPosition(100, 200);
-	m_CamManager->SetTarget(player);
+	m_Player = AbstractFactory<Player>::CreateObj();
+	//m_Player->SetPosition(100, 400);
+	m_Player->SetPosition(9000, 400);
+	m_CamManager->SetTarget(m_Player);
 	m_CamManager->SetResolution(9700, 600);
-	m_CamManager->SetOffset(5, 5, 5, 5);
-	m_CamManager->SetFixPos(400, 600);
+	m_CamManager->SetOffset(5, 5, 5, 100);
+	m_CamManager->SetFixPos(200, 100);
 
-	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_TEST);
-	m_ObjManager->AddObject(L"Player", player, OBJ_PLAYER);
+	m_ObjManager->AddObject(L"Player", m_Player, OBJ_PLAYER);
 	//
 	m_ObjManager->AddObject(L"CamelCannon", AbstractFactory<CamelCannon>::CreateObj(), OBJ_AFTERPLAYER);
-	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(300, 300), OBJ_SLUG);
+	m_ObjManager->AddObject(L"Camel", AbstractFactory<Camel>::CreateObj(5800, 200), OBJ_SLUG);
 	/*m_Test = AbstractFactory<Prisoner>::CreateObj(400, 300);
 	m_ObjManager->AddObject(L"Prisoner", m_Test, OBJ_MONSTER);*/
 
@@ -217,6 +221,40 @@ bool TestScene::Initialize()
 
 int TestScene::Update(const float& TimeDelta)
 {
+	// 보스 생성
+	if (!m_onceCheck && 9300.f <= m_Player->GetPosition().X)
+	{
+		GETMGR(SoundManager)->PlayBGM(L"Boss.mp3", CH_BGM);
+		m_CamManager->SetFixPos(0, 600);
+		m_ObjManager->AddObject(L"Boss", AbstractFactory<Boss>::CreateObj(9290, -150), OBJ_MONSTER);
+		m_onceCheck = true;
+	}
+
+
+	if (m_onceCheck && nullptr == m_ObjManager->GetObjFromTag(L"Boss", OBJ_MONSTER))
+	{
+		m_stack += TimeDelta;
+		if (!m_stackCheck)
+		{		
+			if (1.f <= m_stack)
+			{
+				GETMGR(SoundManager)->StopSound(CH_BGM);
+				GETMGR(SoundManager)->PlaySound(L"StageClear.mp3", CH_BGM);
+				GETMGR(SoundManager)->PlaySound(L"MissionComplete.mp3", CH_VOICE);
+				m_stackCheck = true;
+			}
+		}
+		if (6.f <= m_stack)
+		{
+			if (((Fade*)m_Fade)->GetChangeCheck())
+			{
+				GETMGR(SceneManager)->ChangeSceneState(SCENE_CREDIT);
+				return 0;
+			}
+			((Fade*)m_Fade)->SetFade(true);
+		}
+	}
+
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F1))
 	{
 		GET_MANAGER<CollisionManager>()->GetRenderCheck() ? 
@@ -226,6 +264,7 @@ int TestScene::Update(const float& TimeDelta)
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F3))
 	{
+		((Fade*)m_Fade)->SetFade(false);
 		/*m_Test->SetFall(true);
 		m_Test->SetGravitySpeed(-500);*/
 
@@ -239,7 +278,8 @@ int TestScene::Update(const float& TimeDelta)
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F4))
 	{
-		m_CamManager->SetFixPos(400, 600);
+		((Fade*)m_Fade)->SetFade(true);
+		//m_CamManager->SetFixPos(0, 600);
 
 		//m_ObjManager->AddObject(AbstractFactory<Soldier>::CreateObj(500 + rand() % 100 - rand() % 100, 300), OBJ_MONSTER);
 	}
@@ -265,5 +305,6 @@ void TestScene::Render(HDC hDC)
 
 void TestScene::Release()
 {
+	GETMGR(SoundManager)->StopAll();
 	Scene::Release();
 }

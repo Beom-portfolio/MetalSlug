@@ -183,9 +183,12 @@ void Item::CollisionActivate(GameObject* collideTarget)
 		switch (m_type)
 		{
 		case ITEM_MACHINEGUN:
+			GETMGR(SoundManager)->PlaySound(L"GetHeavy.mp3", CH_VOICE);
 			((Player*)collideTarget)->AddBullet(200);
 			break;
 		case ITEM_BOMB:
+			GETMGR(SoundManager)->PlaySound(L"Get_Item.mp3", CH_VOICE);
+			GETMGR(SoundManager)->PlaySound(L"Granade.mp3", CH_VOICE);
 			((Player*)collideTarget)->AddBomb(10);
 			break;
 		}

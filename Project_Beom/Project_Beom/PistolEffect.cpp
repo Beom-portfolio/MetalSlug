@@ -11,6 +11,7 @@ PistolEffect::~PistolEffect()
 
 bool PistolEffect::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"hit2.wav", CH_EFFECT);
 	m_Info = GAMEOBJINFO{ 0, 0, 32, 32 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
 	m_ObjType = OBJ_EFFECT;

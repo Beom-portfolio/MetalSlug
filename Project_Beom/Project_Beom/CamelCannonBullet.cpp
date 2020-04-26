@@ -13,6 +13,7 @@ CamelCannonBullet::~CamelCannonBullet()
 
 bool CamelCannonBullet::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"MachinegunSound.mp3", CH_PLAYER);
 	m_Info = GAMEOBJINFO{ 0, 0, 90, 90 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 20 };
 	m_ObjType = OBJ_PLAYER_BULLET;
@@ -20,7 +21,7 @@ bool CamelCannonBullet::Initialize()
 	m_SpriteInfo.key = L"camel_cannon_bullet";
 
 	m_Speed = 1500.f;
-	m_Damage = 2;
+	m_Damage = 3;
 
 	return true;
 }
@@ -67,6 +68,7 @@ void CamelCannonBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarge
 {
 	if (PIXEL24{ 0, 0, 248 } == collPixelColor && 0 != dir)
 	{
+		GETMGR(SoundManager)->PlaySound(L"hit2.wav", CH_EFFECT);
 		GameObject* effect = AbstractFactory<MachinegunEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y);
 		if (DIR_LEFT & dir)
 			effect->SetDirection(DIR_LEFT);
@@ -85,6 +87,7 @@ void CamelCannonBullet::CollisionActivate(GameObject* collideTarget)
 {
 	if (!collideTarget->GetCollideCheck())
 	{
+		GETMGR(SoundManager)->PlaySound(L"hit2.wav", CH_EFFECT);
 		collideTarget->Hit(m_Damage);
 		GETMGR(ObjectManager)->AddObject(
 			AbstractFactory<PistolEffect>::CreateObj((int)m_Info.Pos_X, (int)m_Info.Pos_Y), OBJ_EFFECT);

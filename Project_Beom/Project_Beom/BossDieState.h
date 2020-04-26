@@ -20,6 +20,7 @@ private:
 	bool m_rightCheck = true;
 	float m_TimeStack = 0.5f;
 	float m_originPosX = 0.f;
+	float m_effectStack = 0.f;
 };
 
 

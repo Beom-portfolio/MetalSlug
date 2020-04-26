@@ -14,5 +14,10 @@ public:
 
 private:
 	GameObject* m_Test = nullptr;
+	GameObject* m_Player = nullptr;
+	GameObject* m_Fade = nullptr;
+	bool m_onceCheck = false;
+	bool m_stackCheck = false;
+	float m_stack = 0.f;
 };
 

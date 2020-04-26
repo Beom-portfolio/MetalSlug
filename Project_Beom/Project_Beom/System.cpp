@@ -55,6 +55,7 @@ bool System::Initialize(HINSTANCE hInstance, int nCmdShow)
 		return FALSE;
 
 	m_KeyManager = GETMGR(KeyManager);
+	m_MouseManager = GETMGR(MouseManager);
 
 	return true;
 }
@@ -96,8 +97,8 @@ int System::Logic()
 			{
 				PrintFPS();
 
-				GETMGR(KeyManager)->UpdateKey();
-				GETMGR(MouseManager)->Update();
+				m_KeyManager->UpdateKey();
+				m_MouseManager->Update();
 				// Game Loop
 				game->Update(m_frameTimeDelta);
 				game->Render();
@@ -115,6 +116,7 @@ void System::Release()
 	m_FrameManager->DestroyInstance();
 	m_TimerManager->DestroyInstance();
 	m_KeyManager->DestroyInstance();
+	m_MouseManager->DestroyInstance();
 }
 
 void System::PrintFPS()
@@ -186,36 +188,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
-	case WM_COMMAND:
-	{
-		int wmId = LOWORD(wParam);
-		// 메뉴 선택을 구문 분석합니다:
-		switch (wmId)
+	case WM_KEYDOWN:
+		switch (wParam)
 		{
-		case IDM_ABOUT:
-			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-			break;
-		case IDM_EXIT:
+		case VK_ESCAPE:
 			DestroyWindow(hWnd);
 			break;
-		default:
-			return DefWindowProc(hWnd, message, wParam, lParam);
 		}
-	}
-	break;
-	case WM_PAINT:
-	{
-		PAINTSTRUCT ps;
-		HDC hdc = BeginPaint(hWnd, &ps);
-		// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
-		EndPaint(hWnd, &ps);
-	}
-	break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
 		break;
-	
-	//
 	case WM_LBUTTONDOWN:
 		GETMGR(MouseManager)->SetMouseLButton(true);
 		break;
@@ -228,30 +208,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_RBUTTONUP:
 		GETMGR(MouseManager)->SetMouseRButton(false);
 		break;
-
-	//
-
+	case WM_DESTROY:
+		PostQuitMessage(0);
+		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
 	return 0;
-}
-
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	UNREFERENCED_PARAMETER(lParam);
-	switch (message)
-	{
-	case WM_INITDIALOG:
-		return (INT_PTR)TRUE;
-
-	case WM_COMMAND:
-		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-		{
-			EndDialog(hDlg, LOWORD(wParam));
-			return (INT_PTR)TRUE;
-		}
-		break;
-	}
-	return (INT_PTR)FALSE;
 }

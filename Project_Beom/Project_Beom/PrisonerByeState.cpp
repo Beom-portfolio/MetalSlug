@@ -13,6 +13,7 @@ PrisonerByeState::~PrisonerByeState()
 
 void PrisonerByeState::Enter(GameObject* object)
 {
+	GETMGR(SoundManager)->PlaySound(L"NPC_Bye.mp3", CH_VOICE);
 	SPRITEINFO info = object->GetSpriteInfo();
 	if (DIR_RIGHT == object->GetDirection())
 		info.key = L"prisoner_bye_r";

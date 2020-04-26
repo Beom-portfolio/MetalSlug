@@ -12,7 +12,7 @@ Slot::~Slot()
 bool Slot::Initialize()
 {
 	m_Info = GAMEOBJINFO{ 0, 0, 174, 324 };
-	m_Speed = 300.f;
+	m_Speed = 500.f;
 	m_Direction = DIR_TOP;
 	m_SpriteInfo.key = L"slot";
 	return true;

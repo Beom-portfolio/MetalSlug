@@ -22,7 +22,7 @@ void GdiPlusManager::LoadImageBySceneState(SCENESTATE SceneState)
 	switch (SceneState)
 	{
 	case SCENESTATE::SCENE_TEST:
-	case SCENESTATE::SCENE_MAIN:
+	case SCENESTATE::SCENE_STAGE:
 		break;
 	}
 }

@@ -24,6 +24,7 @@ public:
 	const float& GetSpeed() { return m_Speed; }
 	const float& GetGravity() { return m_GravitySpeed; }
 	const int& GetDamage() { return m_Damage; }
+	const int& GetHp() { return m_Hp; }
 	const PIXELCOLLIDERINFO* GetPixelCollider() { return m_PixelInfo; }
 	const SPRITEINFO& GetSpriteInfo() { return m_SpriteInfo; }
 	const DIRECTION& GetDirection() { return m_Direction; }
@@ -51,7 +52,7 @@ public:
 	void SetParentObj(GameObject* obj);
 	void SetHypotenuse(float hypotenuse);
 	void Hit(int damage);
-
+	void SetCheck(bool check) { m_check = check; }
 	virtual void SetDirection(DIRECTION dir);
 
 public:
@@ -117,4 +118,5 @@ protected:
 
 	// 부모 오브젝트
 	GameObject* m_ParentObj = nullptr;
+	bool		m_check = false;
 };

@@ -15,6 +15,7 @@ bool SelectUI::Initialize()
 	m_SpriteInfo.key = L"ui";
 	m_SpriteInfo.Speed = 5.f;
 	m_SpriteInfo.MaxFrame = 2;
+	m_RenderType = RENDER_UI;
 	return true;
 }
 

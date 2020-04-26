@@ -13,6 +13,7 @@ TomaBullet::~TomaBullet()
 
 bool TomaBullet::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"TomaAtt.mp3", CH_EFFECT);
 	m_Info = GAMEOBJINFO{ 0, 0, 100, 100 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 20, 40 };
 	m_ObjType = OBJ_MONSTER_BULLET;

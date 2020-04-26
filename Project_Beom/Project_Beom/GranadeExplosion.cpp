@@ -11,6 +11,7 @@ GranadeExplosion::~GranadeExplosion()
 
 bool GranadeExplosion::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"Explode-2.wav", CH_EFFECT);
 	m_Info = GAMEOBJINFO{ 0, 0, 100, 200 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 100, 200 };
 	m_ObjType = OBJ_EFFECT;

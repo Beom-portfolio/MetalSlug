@@ -22,7 +22,7 @@ bool Sarubia::Initialize()
 	m_State = new SarubiaIdleState;
 	m_State->Enter(this);
 
-	m_Hp = 100;
+	m_Hp = 200;
 	return true;
 }
 

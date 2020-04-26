@@ -11,6 +11,8 @@ BigExplosion::~BigExplosion()
 
 bool BigExplosion::Initialize()
 {
+	if (!m_check)
+		GETMGR(SoundManager)->PlaySound(L"Explode5.wav", CH_MONSTER);
 	m_Info = GAMEOBJINFO{ 0, 0, 170, 170 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
 	m_ObjType = OBJ_EFFECT;

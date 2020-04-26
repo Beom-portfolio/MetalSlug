@@ -23,6 +23,7 @@ private:
 	TimerManager* m_TimerManager = nullptr;
 	FrameManager* m_FrameManager = nullptr;
 	KeyManager* m_KeyManager = nullptr;
+	MouseManager* m_MouseManager = nullptr;
 
 	int m_frameCount = 0;
 	float m_timeCount = 0.f;

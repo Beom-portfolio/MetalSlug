@@ -7,10 +7,12 @@ template <class SubClass>
 class AbstractFactory
 {
 public:
-	static GameObject* CreateObj()
+	static GameObject* CreateObj(bool check = false)
 	{
 		GameObject* pObj = new SubClass;
+		pObj->SetCheck(check);
 		pObj->Initialize();
+		
 
 		return pObj;
 	}

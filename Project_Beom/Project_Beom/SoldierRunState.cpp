@@ -18,7 +18,7 @@ void SoldierRunState::Enter(GameObject* object)
 	POSITION myInfo = object->GetPosition();
 
 	// 너무 많이 벌어지면.. 따라간다.
-	if (400 < abs(playerPos.X - myInfo.X))
+	if (580 < abs(playerPos.X - myInfo.X))
 	{
 		if (playerPos.X > myInfo.X)
 			object->SetDirection(DIR_RIGHT);

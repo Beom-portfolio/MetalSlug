@@ -15,7 +15,7 @@ public:
 
 private:
 	float m_runTime = 0.f;
-	float m_attTime = 10.f;
+	float m_attTime = 5.f;
 	bool m_rightCheck = (rand() % 2) ? true : false;
 	float m_TimeStack = 0.5f;
 	float m_originPosX = 0.f;

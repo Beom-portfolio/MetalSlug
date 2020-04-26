@@ -34,5 +34,7 @@ private:
 
 	bool m_isRenderPart = true;
 	int m_TotalHp = 0;
+
+	float m_TimeSpawn = 0.f;
 };
 

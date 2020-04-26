@@ -11,6 +11,7 @@ TankBullet::~TankBullet()
 
 bool TankBullet::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"TankAtt.wav", CH_EFFECT);
 	m_Info = GAMEOBJINFO{ 0, 0, 200, 200 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 60, 50 };
 	m_ObjType = OBJ_EFFECT;

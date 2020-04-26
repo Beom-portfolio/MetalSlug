@@ -3,6 +3,7 @@
 #include "State.h"
 #include "SoldierIdleState.h"
 #include "SoldierDieState.h"
+#include "SoldierRunState.h"
 
 Soldier::Soldier()
 {
@@ -17,7 +18,10 @@ bool Soldier::Initialize()
 	m_Info = GAMEOBJINFO{ 0, 0, 495, 495 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 60, 92 };
 
-	m_State = new SoldierIdleState;
+	if(!m_check)
+		m_State = new SoldierIdleState;
+	else
+		m_State = new SoldierRunState;
 	m_State->Enter(this);
 	m_Speed = 150.f;
 
@@ -163,6 +167,17 @@ void Soldier::CollisionActivate(GameObject* collideTarget)
 {
 	if (!m_isCollide && OBJ_PLAYER_BULLET == collideTarget->GetObjectType())
 	{
+		switch (rand() % 4)
+		{
+		case 0:
+			GETMGR(SoundManager)->PlaySound(L"Soldier_Dead.wav", CH_MONSTER); break;
+		case 1:
+			GETMGR(SoundManager)->PlaySound(L"Soldier_Dead2.mp3", CH_MONSTER); break;
+		case 2:
+			GETMGR(SoundManager)->PlaySound(L"Soldier_Dead3.mp3", CH_MONSTER); break;
+		case 3:
+			GETMGR(SoundManager)->PlaySound(L"Soldier_Dead4.mp3", CH_MONSTER); break;
+		}
 		SAFE_DELETE(m_State);
 		m_State = new SoldierDieState;
 		m_State->Enter(this);

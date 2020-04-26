@@ -11,6 +11,7 @@ SaruExplosion::~SaruExplosion()
 
 bool SaruExplosion::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"bigexplode.mp3", CH_EFFECT);
 	m_Info = GAMEOBJINFO{ 0, 0, 135, 310 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
 	m_ObjType = OBJ_EFFECT;

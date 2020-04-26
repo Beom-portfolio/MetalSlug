@@ -132,10 +132,13 @@ void Bomb::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXEL24 co
 			{
 				if (dir & DIR_BOTTOM)
 				{
-					GameObject* effect = AbstractFactory<GranadeExplosion>::CreateObj();
-					effect->SetPosition(m_Info.Pos_X, m_Info.Pos_Y - 80.f);
-					GETMGR(ObjectManager)->AddObject(effect, OBJ_PLAYER_BULLET);
-					m_isDead = true;
+					if (!m_isDead)
+					{
+						GameObject* effect = AbstractFactory<GranadeExplosion>::CreateObj();
+						effect->SetPosition(m_Info.Pos_X, m_Info.Pos_Y - 80.f);
+						GETMGR(ObjectManager)->AddObject(effect, OBJ_PLAYER_BULLET);
+						m_isDead = true;
+					}
 				}
 			}
 		}

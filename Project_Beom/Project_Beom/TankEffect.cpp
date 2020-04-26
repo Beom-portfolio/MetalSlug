@@ -11,6 +11,7 @@ TankEffect::~TankEffect()
 
 bool TankEffect::Initialize()
 {
+
 	m_Info = GAMEOBJINFO{ 0, 0, 200, 200 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 0, 0 };
 	m_ObjType = OBJ_EFFECT;

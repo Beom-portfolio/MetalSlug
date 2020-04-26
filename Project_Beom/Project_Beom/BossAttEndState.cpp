@@ -14,6 +14,7 @@ BossAttEndState::~BossAttEndState()
 
 void BossAttEndState::Enter(GameObject* object)
 {
+	GETMGR(SoundManager)->PlaySound(L"BossAttEnd.mp3", CH_MONSTER);
 	SPRITEINFO info = object->GetSpriteInfo();
 	info.MaxFrame = 16;
 	info.Speed = 11.f;

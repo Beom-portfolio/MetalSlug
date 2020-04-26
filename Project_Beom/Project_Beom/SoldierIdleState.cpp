@@ -28,7 +28,7 @@ void SoldierIdleState::Enter(GameObject* object)
 
 	object->SetSpriteInfo(info);
 
-	m_waitTime = 1.f + ((rand() % 10) / 10.f);
+	m_waitTime = 0.5f + ((rand() % 10) / 10.f);
 	m_Player = GETMGR(ObjectManager)->GetObjFromTag(L"Player", OBJ_PLAYER);
 }
 
@@ -49,7 +49,7 @@ State* SoldierIdleState::HandleInput(GameObject* object, KeyManager* input)
 		object->SetDirection(DIR_LEFT);
 
 	// 너무 벌어졌으면 계속 간다.
-	if (400 < GetDistance(playerPos, myPos))
+	if (580 < GetDistance(playerPos, myPos))
 		return new SoldierRunState();
 
 	// 그외

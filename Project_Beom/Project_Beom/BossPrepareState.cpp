@@ -14,6 +14,7 @@ BossPrepareState::~BossPrepareState()
 
 void BossPrepareState::Enter(GameObject* object)
 {
+	GETMGR(SoundManager)->PlaySound(L"BossPrepare.mp3", CH_MONSTER);
 	SPRITEINFO info = object->GetSpriteInfo();
 	info.MaxFrame = 24;
 	info.Speed = 15.f;

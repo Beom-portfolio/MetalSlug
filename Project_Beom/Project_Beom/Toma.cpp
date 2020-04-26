@@ -22,7 +22,7 @@ bool Toma::Initialize()
 	m_State->Enter(this);
 	m_Speed = 105.f;
 
-	m_Hp = 100;
+	m_Hp = 45;
 	return true;
 }
 
@@ -33,8 +33,10 @@ int Toma::Update(const float& TimeDelta)
 
 	m_SpriteInfo.SpriteIndex += m_SpriteInfo.Speed * TimeDelta;
 	
-	if((float)m_SpriteInfo.MaxFrame <= m_SpriteInfo.SpriteIndex)
+	if ((float)m_SpriteInfo.MaxFrame <= m_SpriteInfo.SpriteIndex)
+	{
 		m_SpriteInfo.SpriteIndex = 0.f;
+	}
 
 	if (-1 == GameObject::Update(TimeDelta))
 		return -1;

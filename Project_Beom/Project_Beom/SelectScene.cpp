@@ -17,8 +17,9 @@ SelectScene::~SelectScene()
 bool SelectScene::Initialize()
 {
 	GETMGR(GdiManager)->LoadImageBySceneState(SCENE_SELECT);
+	GETMGR(SoundManager)->PlayBGM(L"Select.mp3", CH_BGM);
 
-	m_ObjManager->AddObject(AbstractFactory<SelectScreen>::CreateObj(), OBJ_UI);
+	m_ObjManager->AddObject(AbstractFactory<SelectScreen>::CreateObj(), OBJ_EFFECT);
 
 	SPRITEINFO info;
 	ZeroMemory(&info, sizeof(SPRITEINFO));
@@ -61,11 +62,11 @@ int SelectScene::Update(const float& TimeDelta)
 
 	if (m_endCheck && 4.f <= m_TimeStack)
 	{
-		GETMGR(SceneManager)->ChangeSceneState(SCENE_TEST);
+		GETMGR(SceneManager)->ChangeSceneState(SCENE_STAGE);
 		return 0;
 	}
 
-	if (!m_endCheck && !m_onceCheck && 2.f <= m_TimeStack)
+	if (!m_endCheck && !m_onceCheck && 1.5f <= m_TimeStack)
 	{
 		m_ui = AbstractFactory<SelectUI>::CreateObj(130 - 5, 122);
 		m_ObjManager->AddObject(m_ui, OBJ_UI);
@@ -124,7 +125,8 @@ int SelectScene::Update(const float& TimeDelta)
 
 		// 캐릭터 선택시 입력 비활성화 
 		if ((2 == m_slotIndex) && GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_RETURN))
-		{
+		{	
+			GETMGR(SoundManager)->PlaySound(L"TarmaSelect.mp3", CH_VOICE);
 			info.key = L"tarma_selected";
 			m_tarma->SetSpriteInfo(info);
 			m_slectCheck = true;
@@ -156,10 +158,14 @@ int SelectScene::Update(const float& TimeDelta)
 
 void SelectScene::Render(HDC hDC)
 {
+	HDC hMemDC = GET_MANAGER<GdiManager>()->FindImage(L"fade")->GetGdiImageDefault();
+	BitBlt(hDC, 0, 0, WINSIZE_X, WINSIZE_Y, hMemDC, 0, 0, SRCCOPY);
+
 	Scene::Render(hDC);
 }
 
 void SelectScene::Release()
 {
+	GETMGR(SoundManager)->StopAll();
 	Scene::Release();
 }

@@ -17,5 +17,6 @@ private:
 
 	SceneManager* m_SceneMgr = nullptr;
 	GdiPlusManager* m_GdiPlusMgr = nullptr;
+	SoundManager* m_SoundMgr = nullptr;
 };
 

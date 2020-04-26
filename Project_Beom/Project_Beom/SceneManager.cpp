@@ -4,6 +4,9 @@
 #include "SelectScene.h"
 #include "TestScene.h"
 #include "ToolScene.h"
+#include "LogoScene.h"
+#include "CreditScene.h"
+#include "StageScene.h"
 
 SceneManager::SceneManager()
 {
@@ -24,19 +27,26 @@ bool SceneManager::ChangeSceneState(SCENESTATE SceneState)
 
 	switch (SceneState)
 	{
+	case SCENE_LOGO:
+		m_Scene = new LogoScene;
+		break;
 	case SCENE_MENU:
 		m_Scene = new MainMenuScene;
 		break;
 	case SCENE_SELECT:
 		m_Scene = new SelectScene;
 		break;
-	case SCENE_TEST:
-		m_Scene = new TestScene;
-		break;
 	case SCENE_TOOL:
 		m_Scene = new ToolScene;
 		break;
-	case SCENE_MAIN:
+	case SCENE_TEST:
+		m_Scene = new TestScene;
+		break;
+	case SCENE_STAGE:
+		m_Scene = new StageScene;
+		break;
+	case SCENE_CREDIT:
+		m_Scene = new CreditScene;
 		break;
 	}
 

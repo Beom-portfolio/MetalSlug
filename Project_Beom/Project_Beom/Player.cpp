@@ -241,14 +241,17 @@ int Player::Update(const float& TimeDelta)
 
 			if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, 'D'))
 			{
-				--m_bombCount;
-				POSITION aPos = AnglePos(m_OriginCollidePos.X, m_OriginCollidePos.Y, 65.f, 60);
+				if (0 < m_bombCount)
+				{
+					--m_bombCount;
+					POSITION aPos = AnglePos(m_OriginCollidePos.X, m_OriginCollidePos.Y, 65.f, 60);
 
-				GameObject* bullet = AbstractFactory<Bomb>::CreateObj();
-				bullet->SetDirection(DIR_RIGHT);
-				bullet->SetPosition(aPos.X, aPos.Y);
-				bullet->SetGravitySpeed(-300);
-				GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
+					GameObject* bullet = AbstractFactory<Bomb>::CreateObj();
+					bullet->SetDirection(DIR_RIGHT);
+					bullet->SetPosition(aPos.X, aPos.Y);
+					bullet->SetGravitySpeed(-300);
+					GETMGR(ObjectManager)->AddObject(bullet, OBJ_PLAYER_BULLET);
+				}
 			}
 
 			m_Bottom->SetPosition(m_Info.Pos_X, m_Info.Pos_Y);
@@ -432,6 +435,7 @@ void Player::CollisionActivate(GameObject* collideTarget)
 	case OBJ_MONSTER_BULLET:
 		if (m_TimeStack <= 2.5f) break;
 		//dead
+		GETMGR(SoundManager)->PlaySound(L"Die.mp3", CH_PLAYER);
 		m_Info.Size_X = 400;
 		m_Info.Size_Y = 267;
 		if (DIR_RIGHT == m_Direction)

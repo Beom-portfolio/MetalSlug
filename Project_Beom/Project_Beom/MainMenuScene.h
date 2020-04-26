@@ -16,6 +16,8 @@ public:
 private:
 	float m_TimeStack = 0.f;
 	bool m_renderCheck = false;
+	HWND	m_hVideo; // 동영상 재생을 하기위한 윈도우창 핸들.
+	
 };
 
 

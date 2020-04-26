@@ -28,10 +28,17 @@ int MainMenuScene::Update(const float& TimeDelta)
 	}
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_RETURN))
+	{
+		GETMGR(SoundManager)->PlaySound(L"Insert_Coin.mp3", CH_EFFECT);
 		GETMGR(SceneManager)->ChangeSceneState(SCENE_SELECT);
+		return 0;
+	}
 
 	if (GETMGR(KeyManager)->GetKeyState(STATE_DOWN, VK_F1))
+	{
 		GETMGR(SceneManager)->ChangeSceneState(SCENE_TOOL);
+		return 0;
+	}
 
 	return 0;
 }

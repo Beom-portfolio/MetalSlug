@@ -34,7 +34,7 @@ State* TomaIdleState::HandleInput(GameObject* object, KeyManager* input)
 	POSITION playerPos = m_Player->GetPosition();
 	POSITION myPos = object->GetPosition();
 
-	if (800.f < abs(playerPos.X - myPos.X))
+	if (600.f < abs(playerPos.X - myPos.X))
 		return nullptr;
 
 	if (myPos.X < playerPos.X)

@@ -13,6 +13,7 @@ SaruBullet::~SaruBullet()
 
 bool SaruBullet::Initialize()
 {
+	GETMGR(SoundManager)->PlaySound(L"SaruAtt.wav", CH_MONSTER);
 	m_Info = GAMEOBJINFO{ 0, 0, 60, 60 };
 	m_CollideInfo = GAMEOBJINFO{ 0, 0, 40, 40 };
 	m_ObjType = OBJ_MONSTER_BULLET;
@@ -154,6 +155,7 @@ void SaruBullet::CollisionPixelPart(DIRECTION dir, GameObject* PixelTarget, PIXE
 
 void SaruBullet::CollisionActivate(GameObject* collideTarget)
 {
+
 	GameObject* effect = AbstractFactory<SaruExplosion>::CreateObj();
 	effect->SetPosition(m_Info.Pos_X, m_Info.Pos_Y - 160.f);
 	GETMGR(ObjectManager)->AddObject(effect, OBJ_EFFECT);
